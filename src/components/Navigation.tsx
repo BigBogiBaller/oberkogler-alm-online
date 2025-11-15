@@ -2,6 +2,7 @@ import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import CartSheet from "@/components/CartSheet";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,15 +34,19 @@ const Navigation = () => {
             <Button variant="default" size="sm">
               Kontakt
             </Button>
+            <CartSheet />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-foreground"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Button and Cart */}
+          <div className="md:hidden flex items-center gap-2">
+            <CartSheet />
+            <button
+              className="text-foreground"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
