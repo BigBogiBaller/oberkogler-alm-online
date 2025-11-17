@@ -8,49 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 32 25% 97%;
-    --foreground: 28 20% 15%;
+    --background: 35 30% 92%;
+    --foreground: 25 35% 20%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 28 20% 15%;
+    --card: 35 45% 88%;
+    --card-foreground: 25 35% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 28 20% 15%;
+    --popover: 35 45% 88%;
+    --popover-foreground: 25 35% 20%;
 
-    --primary: 145 35% 28%;
-    --primary-foreground: 32 25% 97%;
+    --primary: 25 50% 35%;
+    --primary-foreground: 35 30% 92%;
 
-    --secondary: 28 45% 45%;
-    --secondary-foreground: 32 25% 97%;
+    --secondary: 20 45% 48%;
+    --secondary-foreground: 35 30% 92%;
 
-    --muted: 32 20% 90%;
-    --muted-foreground: 28 15% 45%;
+    --muted: 35 25% 80%;
+    --muted-foreground: 25 25% 40%;
 
-    --accent: 32 40% 85%;
-    --accent-foreground: 28 20% 15%;
+    --accent: 30 55% 65%;
+    --accent-foreground: 25 35% 20%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 35 30% 92%;
 
-    --border: 32 20% 88%;
-    --input: 32 20% 88%;
-    --ring: 145 35% 28%;
+    --border: 30 25% 70%;
+    --input: 30 25% 70%;
+    --ring: 25 50% 35%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    /* Alpine design tokens */
-    --alpine-green: 145 35% 28%;
-    --alpine-green-light: 145 30% 40%;
-    --alpine-brown: 28 45% 45%;
-    --alpine-cream: 32 40% 85%;
+    /* Rustic Alpine design tokens */
+    --alpine-green: 140 30% 30%;
+    --alpine-green-light: 140 25% 45%;
+    --alpine-brown: 25 50% 35%;
+    --alpine-cream: 35 40% 75%;
+    --wood-dark: 20 45% 28%;
+    --wood-light: 30 40% 55%;
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(145 35% 28% / 0.95), hsl(145 30% 40% / 0.9));
-    --gradient-subtle: linear-gradient(180deg, hsl(32 25% 97%), hsl(32 40% 95%));
+    /* Rustic Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(25 50% 35% / 0.85), hsl(20 45% 28% / 0.9));
+    --gradient-subtle: linear-gradient(180deg, hsl(35 30% 92%), hsl(30 35% 85%));
+    --gradient-wood: linear-gradient(180deg, hsl(30 40% 55%), hsl(25 45% 40%));
     
-    /* Shadows */
-    --shadow-soft: 0 4px 20px hsl(28 20% 15% / 0.08);
-    --shadow-medium: 0 8px 30px hsl(28 20% 15% / 0.12);
+    /* Rustic Shadows - deeper, warmer */
+    --shadow-soft: 0 4px 20px hsl(25 35% 20% / 0.15);
+    --shadow-medium: 0 8px 30px hsl(25 35% 20% / 0.25);
+    --shadow-deep: 0 12px 40px hsl(25 35% 20% / 0.35);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -66,41 +70,44 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 28 25% 12%;
-    --foreground: 32 25% 95%;
+    --background: 25 25% 15%;
+    --foreground: 35 25% 90%;
 
-    --card: 28 20% 15%;
-    --card-foreground: 32 25% 95%;
+    --card: 25 30% 18%;
+    --card-foreground: 35 25% 90%;
 
-    --popover: 28 20% 15%;
-    --popover-foreground: 32 25% 95%;
+    --popover: 25 30% 18%;
+    --popover-foreground: 35 25% 90%;
 
-    --primary: 145 30% 45%;
-    --primary-foreground: 32 25% 97%;
+    --primary: 30 55% 55%;
+    --primary-foreground: 25 25% 15%;
 
-    --secondary: 28 35% 25%;
-    --secondary-foreground: 32 25% 95%;
+    --secondary: 20 45% 35%;
+    --secondary-foreground: 35 25% 90%;
 
-    --muted: 28 20% 20%;
-    --muted-foreground: 32 15% 65%;
+    --muted: 25 20% 25%;
+    --muted-foreground: 35 15% 60%;
 
-    --accent: 28 30% 22%;
-    --accent-foreground: 32 25% 95%;
+    --accent: 30 45% 30%;
+    --accent-foreground: 35 25% 90%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 35 25% 90%;
 
-    --border: 28 20% 25%;
-    --input: 28 20% 25%;
-    --ring: 145 30% 45%;
+    --border: 25 25% 30%;
+    --input: 25 25% 30%;
+    --ring: 30 55% 55%;
     
-    --alpine-green: 145 30% 45%;
-    --alpine-green-light: 145 25% 55%;
-    --alpine-brown: 28 35% 35%;
-    --alpine-cream: 32 25% 30%;
+    --alpine-green: 140 25% 40%;
+    --alpine-green-light: 140 20% 50%;
+    --alpine-brown: 25 45% 40%;
+    --alpine-cream: 35 30% 35%;
+    --wood-dark: 20 40% 22%;
+    --wood-light: 30 35% 45%;
     
-    --gradient-hero: linear-gradient(135deg, hsl(145 30% 25% / 0.95), hsl(145 25% 35% / 0.9));
-    --gradient-subtle: linear-gradient(180deg, hsl(28 25% 12%), hsl(28 20% 15%));
+    --gradient-hero: linear-gradient(135deg, hsl(25 45% 30% / 0.85), hsl(20 40% 25% / 0.9));
+    --gradient-subtle: linear-gradient(180deg, hsl(25 25% 15%), hsl(25 30% 18%));
+    --gradient-wood: linear-gradient(180deg, hsl(30 35% 45%), hsl(25 40% 30%));
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -120,5 +127,11 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Lora', Georgia, serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', Georgia, serif;
+    font-weight: 700;
   }
 }
