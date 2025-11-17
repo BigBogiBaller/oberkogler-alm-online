@@ -1,55 +1,92 @@
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Mountain } from "lucide-react";
+import { MapPin, Phone, Mail, Mountain, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-alm.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+import hero4 from "@/assets/hero-4.jpg";
+import hero5 from "@/assets/hero-5.jpg";
+import hero6 from "@/assets/hero-6.jpg";
 
 const Index = () => {
+  const { t } = useLanguage();
+  const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section */}
+      {/* Hero Section with Carousel */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
+        <Carousel 
+          className="absolute inset-0"
+          plugins={[
+            Autoplay({
+              delay: 5000,
+            }),
+          ]}
+          opts={{
+            loop: true,
+          }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/40 to-background" />
-        </div>
+          <CarouselContent>
+            {heroImages.map((image, index) => (
+              <CarouselItem key={index}>
+                <div 
+                  className="h-screen bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${image})` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/40 to-background" />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-4" />
+          <CarouselNext className="right-4" />
+        </Carousel>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <Mountain className="w-16 h-16 mx-auto mb-6 text-primary-foreground" />
           <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6">
-            Oberkogler Alm
+            {t('hero.title')}
           </h1>
           <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-            Traditionelle Alpine Spezialitäten aus den Bergen
+            {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/shop">
               <Button size="lg" variant="secondary" className="text-lg">
-                Zum Shop
+                {t('hero.toShop')}
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="text-lg bg-primary-foreground/10 text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary">
-              Mehr erfahren
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="text-lg bg-primary-foreground/10 text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              onClick={() => {
+                const aboutSection = document.getElementById('about');
+                aboutSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              {t('hero.learnMore')}
             </Button>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-background to-accent">
+      <section id="about" className="py-20 px-4 bg-gradient-to-b from-background to-accent">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl font-bold text-center mb-6 text-primary">
-            Willkommen auf der Oberkogler Alm
+            {t('about.title')}
           </h2>
           <p className="text-lg text-muted-foreground text-center mb-8 leading-relaxed">
-            Seit Generationen produzieren wir auf unserer Alm hochwertige alpine Spezialitäten. 
-            Umgeben von den majestätischen Bergen, nutzen wir traditionelle Herstellungsmethoden 
-            und die besten natürlichen Zutaten aus unserer Region.
+            {t('about.text')}
           </p>
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             <Card className="border-border/50 shadow-sm hover:shadow-md transition-shadow">
@@ -57,9 +94,9 @@ const Index = () => {
                 <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                   <Mountain className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">100% Regional</h3>
+                <h3 className="font-semibold text-lg mb-2">{t('about.regional')}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Alle Produkte aus der Region und von unserer Alm
+                  {t('about.regionalText')}
                 </p>
               </CardContent>
             </Card>
@@ -68,9 +105,9 @@ const Index = () => {
                 <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-secondary/20 flex items-center justify-center">
                   <Mountain className="w-6 h-6 text-secondary" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Tradition</h3>
+                <h3 className="font-semibold text-lg mb-2">{t('about.tradition')}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Traditionelle Herstellung nach alten Rezepten
+                  {t('about.traditionText')}
                 </p>
               </CardContent>
             </Card>
@@ -79,9 +116,9 @@ const Index = () => {
                 <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-accent flex items-center justify-center">
                   <Mountain className="w-6 h-6 text-accent-foreground" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">Qualität</h3>
+                <h3 className="font-semibold text-lg mb-2">{t('about.quality')}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Höchste Qualität durch sorgfältige Handarbeit
+                  {t('about.qualityText')}
                 </p>
               </CardContent>
             </Card>
@@ -89,35 +126,73 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-20 px-4 bg-muted/30">
+      {/* 3D Virtual Tour Section */}
+      <section className="py-20 px-4 bg-background">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-4xl font-bold text-center mb-12 text-primary">
-            Kontakt
+          <h2 className="text-4xl font-bold text-center mb-6 text-primary">
+            {t('tour.title')}
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <p className="text-lg text-muted-foreground text-center mb-8">
+            {t('tour.text')}
+          </p>
+          <Card className="overflow-hidden border-border/50 shadow-lg">
+            <CardContent className="p-0">
+              <div className="aspect-video w-full">
+                <iframe
+                  src="https://my.matterport.com/show?play=1&lang=en-US&m=ACL5BLHHGgf"
+                  className="w-full h-full"
+                  allowFullScreen
+                  title="Oberkogler Alm 3D Tour"
+                />
+              </div>
+            </CardContent>
+          </Card>
+          <div className="text-center mt-6">
+            <Button 
+              size="lg" 
+              variant="default"
+              onClick={() => window.open('https://my.matterport.com/show?play=1&lang=en-US&m=ACL5BLHHGgf', '_blank')}
+            >
+              <ExternalLink className="w-4 h-4 mr-2" />
+              {t('tour.button')}
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-12 text-primary">
+            {t('contact.title')}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
             <Card className="border-border/50">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-xl mb-4">Besuchen Sie uns</h3>
+                <h3 className="font-semibold text-xl mb-4">{t('contact.visit')}</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-medium">Oberkogler Alm</p>
                       <p className="text-muted-foreground text-sm">
-                        Almweg 123<br />
-                        5555 Bergdorf<br />
+                        Wörschachberg 63<br />
+                        8942 Wörschach<br />
                         Österreich
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                    <p className="text-muted-foreground">+43 123 456 789</p>
+                    <a href="tel:+436645014429" className="text-muted-foreground hover:text-primary transition-colors">
+                      +43 664 5014429
+                    </a>
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                    <p className="text-muted-foreground">info@oberkogler-alm.at</p>
+                    <a href="mailto:maximilian_schwaiger@hotmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                      maximilian_schwaiger@hotmail.com
+                    </a>
                   </div>
                 </div>
               </CardContent>
@@ -125,24 +200,42 @@ const Index = () => {
             
             <Card className="border-border/50">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-xl mb-4">Öffnungszeiten</h3>
+                <h3 className="font-semibold text-xl mb-4">{t('contact.hours')}</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Montag - Freitag</span>
-                    <span className="font-medium">9:00 - 18:00</span>
+                    <span className="text-muted-foreground">{t('contact.monday')}</span>
+                    <span className="font-medium">{t('contact.closed')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Samstag</span>
-                    <span className="font-medium">9:00 - 16:00</span>
+                    <span className="text-muted-foreground">{t('contact.tuesday')}</span>
+                    <span className="font-medium">10:00 - 18:00</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Sonntag</span>
-                    <span className="font-medium">Geschlossen</span>
+                  <div className="pt-2 border-t border-border">
+                    <p className="text-sm text-muted-foreground font-medium mb-1">
+                      {t('contact.kitchen')}
+                    </p>
+                    <p className="text-sm text-muted-foreground">10:00 - 17:00</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
+          
+          {/* Google Maps */}
+          <Card className="border-border/50 overflow-hidden shadow-lg">
+            <CardContent className="p-0">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2691.9642510758026!2d14.17117247626381!3d47.56848397118633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47716d88a3786ecd%3A0x8b4f23744d2c760a!2sOberkogler%20Alm!5e0!3m2!1sen!2srs!4v1763413665846!5m2!1sen!2srs"
+                width="100%" 
+                height="450" 
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Oberkogler Alm Location"
+              />
+            </CardContent>
+          </Card>
         </div>
       </section>
 
@@ -150,7 +243,7 @@ const Index = () => {
       <footer className="bg-primary text-primary-foreground py-8 px-4">
         <div className="container mx-auto text-center">
           <p className="text-sm">
-            © 2024 Oberkogler Alm. Alle Rechte vorbehalten.
+            © 2024 Oberkogler Alm. {t('footer.rights')}
           </p>
         </div>
       </footer>

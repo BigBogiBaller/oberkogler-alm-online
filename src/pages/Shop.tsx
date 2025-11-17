@@ -6,9 +6,11 @@ import { ShoppingCart } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts, formatPrice, type ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Shop = () => {
   const { addItem } = useCartStore();
+  const { t } = useLanguage();
   
   const { data: products, isLoading, error } = useQuery({
     queryKey: ['shopify-products'],
@@ -37,11 +39,10 @@ const Shop = () => {
       <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-accent/50 to-background">
         <div className="container mx-auto max-w-6xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            Unser Shop
+            {t('shop.title')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Entdecken Sie unsere handverlesenen alpinen Spezialitäten, 
-            hergestellt mit Liebe und Tradition auf unserer Alm.
+            {t('shop.subtitle')}
           </p>
         </div>
       </section>
@@ -51,9 +52,9 @@ const Shop = () => {
         <div className="container mx-auto max-w-6xl">
           {error && (
             <div className="text-center py-12">
-              <p className="text-destructive mb-4">Fehler beim Laden der Produkte</p>
+              <p className="text-destructive mb-4">{t('shop.error')}</p>
               <p className="text-sm text-muted-foreground">
-                Bitte versuchen Sie es später erneut
+                {t('shop.tryAgain')}
               </p>
             </div>
           )}
@@ -95,7 +96,7 @@ const Shop = () => {
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                            Kein Bild verfügbar
+                            {t('shop.noImage')}
                           </div>
                         )}
                       </div>
@@ -105,7 +106,7 @@ const Shop = () => {
                         {product.title}
                       </h3>
                       <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                        {product.description || "Traditionelle alpine Spezialität"}
+                        {product.description}
                       </p>
                       <p className="text-2xl font-bold text-primary">
                         {formatPrice(price.amount, price.currencyCode)}
@@ -118,7 +119,7 @@ const Shop = () => {
                         disabled={!variant?.availableForSale}
                       >
                         <ShoppingCart className="w-4 h-4 mr-2" />
-                        {variant?.availableForSale ? 'In den Warenkorb' : 'Ausverkauft'}
+                        {variant?.availableForSale ? t('shop.addToCart') : t('shop.soldOut')}
                       </Button>
                     </CardFooter>
                   </Card>
@@ -127,25 +128,20 @@ const Shop = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-lg text-muted-foreground mb-4">
-                Derzeit sind keine Produkte verfügbar
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Schauen Sie bald wieder vorbei oder fügen Sie Produkte in Ihrem Shopify Store hinzu
-              </p>
+              <p className="text-muted-foreground">{t('shop.noProducts')}</p>
             </div>
           )}
         </div>
       </section>
 
       {/* Info Banner */}
-      <section className="py-12 px-4 bg-primary text-primary-foreground">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl font-bold mb-4">
-            Kostenloser Versand ab 50€
-          </h2>
-          <p className="text-primary-foreground/90">
-            Alle Produkte werden frisch verpackt und schnell zu Ihnen geliefert.
+      <section className="py-12 px-4 bg-accent/30">
+        <div className="container mx-auto max-w-6xl text-center">
+          <h3 className="text-2xl font-bold text-primary mb-2">
+            {t('shop.freeShipping')}
+          </h3>
+          <p className="text-muted-foreground">
+            {t('shop.freeShippingText')}
           </p>
         </div>
       </section>
@@ -154,7 +150,7 @@ const Shop = () => {
       <footer className="bg-primary text-primary-foreground py-8 px-4">
         <div className="container mx-auto text-center">
           <p className="text-sm">
-            © 2024 Oberkogler Alm. Alle Rechte vorbehalten.
+            © 2024 Oberkogler Alm. {t('footer.rights')}
           </p>
         </div>
       </footer>
