@@ -63,6 +63,14 @@ export default {
           brown: "hsl(var(--alpine-brown))",
           cream: "hsl(var(--alpine-cream))",
         },
+        wood: {
+          dark: "hsl(var(--wood-dark))",
+          light: "hsl(var(--wood-light))",
+        },
+      },
+      fontFamily: {
+        serif: ['Lora', 'Georgia', 'serif'],
+        heading: ['Merriweather', 'Georgia', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
