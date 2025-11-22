@@ -14,6 +14,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.shop': 'Shop',
     'nav.contact': 'Kontakt',
+    'nav.reviews': 'Rezensionen',
     
     // Hero
     'hero.title': 'Oberkogler Alm',
@@ -30,6 +31,26 @@ const translations = {
     'about.traditionText': 'Traditionelle Herstellung nach alten Rezepten',
     'about.quality': 'Qualität',
     'about.qualityText': 'Höchste Qualität durch sorgfältige Handarbeit',
+    
+    // Team
+    'team.title': 'Unser Team',
+    'team.subtitle': 'Lernen Sie die Menschen hinter der Oberkogler Alm kennen',
+    'team.owner': 'Familie Schwaiger',
+    'team.ownerRole': 'Inhaber & Gastgeber',
+    'team.ownerDesc': 'Mit Herz und Leidenschaft führen wir die Tradition unserer Alm fort',
+    'team.chef': 'Küchenchef',
+    'team.chefRole': 'Kulinarik',
+    'team.chefDesc': 'Zaubert täglich regionale Köstlichkeiten nach traditionellen Rezepten',
+    'team.service': 'Service-Team',
+    'team.serviceRole': 'Herzlicher Service',
+    'team.serviceDesc': 'Sorgt für einen unvergesslichen Aufenthalt auf unserer Alm',
+    
+    // Gallery
+    'gallery.title': 'Unsere Alm',
+    'gallery.subtitle': 'Entdecken Sie die Schönheit der Oberkogler Alm',
+    
+    // Social Media
+    'social.title': 'Folgen Sie uns auf Social Media',
     
     // Virtual Tour
     'tour.title': '3D Rundgang',
@@ -57,6 +78,14 @@ const translations = {
     'shop.freeShipping': 'Kostenloser Versand',
     'shop.freeShippingText': 'Bei Bestellungen über €50',
     
+    // Reviews
+    'reviews.title': 'Gästebewertungen',
+    'reviews.subtitle': 'Was unsere Gäste über uns sagen',
+    'reviews.reviews': 'Bewertungen',
+    'reviews.language': 'de',
+    'reviews.visitUs': 'Besuchen Sie uns auf Google Maps für mehr Rezensionen',
+    'reviews.googleLink': 'Zu Google Maps',
+    
     // Footer
     'footer.rights': 'Alle Rechte vorbehalten.',
   },
@@ -65,6 +94,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.shop': 'Shop',
     'nav.contact': 'Contact',
+    'nav.reviews': 'Reviews',
     
     // Hero
     'hero.title': 'Oberkogler Alm',
@@ -81,6 +111,26 @@ const translations = {
     'about.traditionText': 'Traditional production according to old recipes',
     'about.quality': 'Quality',
     'about.qualityText': 'Highest quality through careful craftsmanship',
+    
+    // Team
+    'team.title': 'Our Team',
+    'team.subtitle': 'Meet the people behind Oberkogler Alm',
+    'team.owner': 'Schwaiger Family',
+    'team.ownerRole': 'Owners & Hosts',
+    'team.ownerDesc': 'Continuing our alpine tradition with heart and passion',
+    'team.chef': 'Head Chef',
+    'team.chefRole': 'Culinary',
+    'team.chefDesc': 'Creates daily regional delicacies using traditional recipes',
+    'team.service': 'Service Team',
+    'team.serviceRole': 'Warm Service',
+    'team.serviceDesc': 'Ensures an unforgettable stay at our alpine hut',
+    
+    // Gallery
+    'gallery.title': 'Our Alpine Hut',
+    'gallery.subtitle': 'Discover the beauty of Oberkogler Alm',
+    
+    // Social Media
+    'social.title': 'Follow Us on Social Media',
     
     // Virtual Tour
     'tour.title': '3D Virtual Tour',
@@ -107,6 +157,14 @@ const translations = {
     'shop.soldOut': 'Sold Out',
     'shop.freeShipping': 'Free Shipping',
     'shop.freeShippingText': 'On orders over €50',
+    
+    // Reviews
+    'reviews.title': 'Guest Reviews',
+    'reviews.subtitle': 'What our guests say about us',
+    'reviews.reviews': 'Reviews',
+    'reviews.language': 'en',
+    'reviews.visitUs': 'Visit us on Google Maps for more reviews',
+    'reviews.googleLink': 'Go to Google Maps',
     
     // Footer
     'footer.rights': 'All rights reserved.',
