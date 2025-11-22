@@ -81,13 +81,30 @@ const Index = () => {
 
       {/* About Section */}
       <section id="about" className="py-20 px-4 bg-gradient-to-b from-background to-accent">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-6 text-primary">
             {t('about.title')}
           </h2>
-          <p className="text-lg text-muted-foreground text-center mb-8 leading-relaxed">
+          <p className="text-lg text-muted-foreground text-center mb-8 leading-relaxed max-w-4xl mx-auto">
             {t('about.text')}
           </p>
+          
+          {/* Instagram Video Embed */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <Card className="overflow-hidden border-border/50 shadow-lg">
+              <CardContent className="p-0">
+                <div className="aspect-[9/16] w-full max-w-md mx-auto">
+                  <iframe
+                    src="https://www.instagram.com/reel/DLelUmZo5ID/embed"
+                    className="w-full h-full"
+                    allowFullScreen
+                    title="Oberkogler Alm Video"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             <Card className="border-border/50 shadow-sm hover:shadow-md transition-shadow">
               <CardContent className="pt-6 text-center">
@@ -126,9 +143,80 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Team Section */}
+      <section className="py-20 px-4 bg-background">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-6 text-primary">
+            {t('team.title')}
+          </h2>
+          <p className="text-lg text-muted-foreground text-center mb-12">
+            {t('team.subtitle')}
+          </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-border/50 shadow-sm hover:shadow-lg transition-all">
+              <CardContent className="pt-6 text-center">
+                <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                  <Mountain className="w-16 h-16 text-primary" />
+                </div>
+                <h3 className="font-semibold text-xl mb-2">{t('team.owner')}</h3>
+                <p className="text-muted-foreground text-sm mb-3">{t('team.ownerRole')}</p>
+                <p className="text-sm">{t('team.ownerDesc')}</p>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50 shadow-sm hover:shadow-lg transition-all">
+              <CardContent className="pt-6 text-center">
+                <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center">
+                  <Mountain className="w-16 h-16 text-secondary" />
+                </div>
+                <h3 className="font-semibold text-xl mb-2">{t('team.chef')}</h3>
+                <p className="text-muted-foreground text-sm mb-3">{t('team.chefRole')}</p>
+                <p className="text-sm">{t('team.chefDesc')}</p>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50 shadow-sm hover:shadow-lg transition-all">
+              <CardContent className="pt-6 text-center">
+                <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+                  <Mountain className="w-16 h-16 text-accent-foreground" />
+                </div>
+                <h3 className="font-semibold text-xl mb-2">{t('team.service')}</h3>
+                <p className="text-muted-foreground text-sm mb-3">{t('team.serviceRole')}</p>
+                <p className="text-sm">{t('team.serviceDesc')}</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section className="py-20 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-6 text-primary">
+            {t('gallery.title')}
+          </h2>
+          <p className="text-lg text-muted-foreground text-center mb-12">
+            {t('gallery.subtitle')}
+          </p>
+          <div className="grid md:grid-cols-3 gap-4">
+            {heroImages.map((image, index) => (
+              <Card key={index} className="overflow-hidden border-border/50 shadow-sm hover:shadow-lg transition-all group">
+                <CardContent className="p-0">
+                  <div className="aspect-square overflow-hidden">
+                    <img 
+                      src={image} 
+                      alt={`Oberkogler Alm ${index + 1}`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 3D Virtual Tour Section */}
       <section className="py-20 px-4 bg-background">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-6 text-primary">
             {t('tour.title')}
           </h2>
@@ -156,6 +244,63 @@ const Index = () => {
               <ExternalLink className="w-4 h-4 mr-2" />
               {t('tour.button')}
             </Button>
+          </div>
+
+          {/* Social Media Videos */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-center mb-8 text-primary">
+              {t('social.title')}
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Card className="overflow-hidden border-border/50 shadow-sm hover:shadow-lg transition-all">
+                <CardContent className="p-0">
+                  <div className="aspect-[9/16]">
+                    <iframe
+                      src="https://www.instagram.com/reel/DLelUmZo5ID/embed"
+                      className="w-full h-full"
+                      allowFullScreen
+                      title="Instagram Video 1"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden border-border/50 shadow-sm hover:shadow-lg transition-all">
+                <CardContent className="p-0">
+                  <div className="aspect-[9/16]">
+                    <iframe
+                      src="https://www.instagram.com/reel/DMbAuEwIQh0/embed"
+                      className="w-full h-full"
+                      allowFullScreen
+                      title="Instagram Video 2"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden border-border/50 shadow-sm hover:shadow-lg transition-all">
+                <CardContent className="p-0">
+                  <div className="aspect-[9/16]">
+                    <iframe
+                      src="https://www.instagram.com/reel/DL6wiPtIVZ1/embed"
+                      className="w-full h-full"
+                      allowFullScreen
+                      title="Instagram Video 3"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden border-border/50 shadow-sm hover:shadow-lg transition-all">
+                <CardContent className="p-0">
+                  <div className="aspect-[9/16]">
+                    <iframe
+                      src="https://www.instagram.com/reel/DL1mtTsIrHo/embed"
+                      className="w-full h-full"
+                      allowFullScreen
+                      title="Instagram Video 4"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
