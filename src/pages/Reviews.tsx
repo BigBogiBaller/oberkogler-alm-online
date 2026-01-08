@@ -2,8 +2,6 @@ import Navigation from "@/components/Navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import ReviewForm from "@/components/ReviewForm";
-import Newsletter from "@/components/Newsletter";
 
 const Reviews = () => {
   const { t } = useLanguage();
@@ -89,80 +87,53 @@ const Reviews = () => {
             <span className="text-muted-foreground">({reviews.length} {t('reviews.reviews')})</span>
           </div>
           
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Reviews Grid */}
-            <div className="lg:col-span-2">
-              <div className="grid md:grid-cols-2 gap-6">
-                {reviews.map((review, index) => (
-                  <Card key={index} className="border-border/50 shadow-sm hover:shadow-md transition-shadow">
-                    <CardContent className="pt-6">
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <h3 className="font-semibold text-lg">{review.name}</h3>
-                          <p className="text-sm text-muted-foreground">{review.date}</p>
-                        </div>
-                        <div className="flex">
-                          {[...Array(review.rating)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {t('reviews.language') === 'de' ? review.textDe : review.textEn}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {reviews.map((review, index) => (
+              <Card key={index} className="border-border/50 shadow-sm hover:shadow-md transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className="font-semibold text-lg">{review.name}</h3>
+                      <p className="text-sm text-muted-foreground">{review.date}</p>
+                    </div>
+                    <div className="flex">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {t('reviews.language') === 'de' ? review.textDe : review.textEn}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-            {/* Review Form Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24">
-                <ReviewForm />
-                
-                <Card className="border-border/50 mt-6">
-                  <CardContent className="pt-6">
-                    <p className="text-muted-foreground mb-4">{t('reviews.visitUs')}</p>
-                    <a 
-                      href="https://www.google.com/maps/place/Oberkogler+Alm/@47.568484,14.1737474"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline font-medium"
-                    >
-                      {t('reviews.googleLink')}
-                    </a>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
+          <div className="mt-12 text-center">
+            <Card className="border-border/50 inline-block">
+              <CardContent className="pt-6">
+                <p className="text-muted-foreground mb-4">{t('reviews.visitUs')}</p>
+                <a 
+                  href="https://www.google.com/maps/place/Oberkogler+Alm/@47.568484,14.1737474"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium"
+                >
+                  {t('reviews.googleLink')}
+                </a>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Footer with Newsletter */}
-      <footer className="bg-primary text-primary-foreground py-12 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl font-bold mb-2">{t('newsletter.title')}</h3>
-              <p className="text-primary-foreground/80 mb-4">{t('newsletter.subtitle')}</p>
-              <Newsletter />
-            </div>
-            <div className="text-right">
-              <h3 className="text-xl font-bold mb-4">Oberkogler Alm</h3>
-              <p className="text-primary-foreground/80 text-sm">
-                Wörschachberg 63<br />
-                8942 Wörschach<br />
-                Österreich
-              </p>
-            </div>
-          </div>
-          <div className="border-t border-primary-foreground/20 pt-6 text-center">
-            <p className="text-sm text-primary-foreground/80">
-              © 2024 Oberkogler Alm. {t('footer.rights')}
-            </p>
-          </div>
+      {/* Footer */}
+      <footer className="bg-primary text-primary-foreground py-8 px-4">
+        <div className="container mx-auto text-center">
+          <p className="text-sm">
+            © 2024 Oberkogler Alm. {t('footer.rights')}
+          </p>
         </div>
       </footer>
     </div>
