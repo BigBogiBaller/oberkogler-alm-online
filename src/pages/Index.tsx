@@ -6,6 +6,9 @@ import { MapPin, Phone, Mail, Mountain, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import MenuPopup from "@/components/MenuPopup";
+import ImageLightbox from "@/components/ImageLightbox";
+import LocalProducts from "@/components/LocalProducts";
+import Newsletter from "@/components/Newsletter";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import hero1 from "@/assets/hero-1.jpg";
@@ -18,20 +21,33 @@ import hero6 from "@/assets/hero-6.jpg";
 const Index = () => {
   const { t } = useLanguage();
   const [showMenuPopup, setShowMenuPopup] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   useEffect(() => {
-    // Show menu popup after 2 seconds on first load
     const timer = setTimeout(() => {
       setShowMenuPopup(true);
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+
   const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6];
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <MenuPopup open={showMenuPopup} onOpenChange={setShowMenuPopup} />
+      <ImageLightbox
+        images={heroImages}
+        initialIndex={lightboxIndex}
+        open={lightboxOpen}
+        onOpenChange={setLightboxOpen}
+      />
       
       {/* Hero Section with Carousel */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -71,6 +87,11 @@ const Index = () => {
             {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/reservation">
+              <Button size="lg" className="text-lg bg-reservation text-reservation-foreground hover:bg-reservation/90">
+                {t('hero.reserve')}
+              </Button>
+            </Link>
             <Link to="/shop">
               <Button size="lg" variant="secondary" className="text-lg">
                 {t('hero.toShop')}
@@ -199,7 +220,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Local Products Section */}
+      <LocalProducts />
+
+      {/* Gallery Section with Lightbox */}
       <section className="py-20 px-4 bg-muted/30">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-6 text-primary">
@@ -210,7 +234,11 @@ const Index = () => {
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             {heroImages.map((image, index) => (
-              <Card key={index} className="overflow-hidden border-border/50 shadow-sm hover:shadow-lg transition-all group">
+              <Card 
+                key={index} 
+                className="overflow-hidden border-border/50 shadow-sm hover:shadow-lg transition-all group cursor-pointer"
+                onClick={() => openLightbox(index)}
+              >
                 <CardContent className="p-0">
                   <div className="aspect-square overflow-hidden">
                     <img 
@@ -396,12 +424,29 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-8 px-4">
-        <div className="container mx-auto text-center">
-          <p className="text-sm">
-            © 2024 Oberkogler Alm. {t('footer.rights')}
-          </p>
+      {/* Footer with Newsletter */}
+      <footer className="bg-primary text-primary-foreground py-12 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 className="text-xl font-bold mb-2">{t('newsletter.title')}</h3>
+              <p className="text-primary-foreground/80 mb-4">{t('newsletter.subtitle')}</p>
+              <Newsletter />
+            </div>
+            <div className="text-right">
+              <h3 className="text-xl font-bold mb-4">Oberkogler Alm</h3>
+              <p className="text-primary-foreground/80 text-sm">
+                Wörschachberg 63<br />
+                8942 Wörschach<br />
+                Österreich
+              </p>
+            </div>
+          </div>
+          <div className="border-t border-primary-foreground/20 pt-6 text-center">
+            <p className="text-sm text-primary-foreground/80">
+              © 2024 Oberkogler Alm. {t('footer.rights')}
+            </p>
+          </div>
         </div>
       </footer>
     </div>

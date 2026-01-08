@@ -68,8 +68,8 @@ export default {
           light: "hsl(var(--wood-light))",
         },
         reservation: {
-          red: "hsl(var(--reservation-red))",
-          "red-foreground": "hsl(var(--reservation-red-foreground))",
+          DEFAULT: "hsl(var(--reservation-red))",
+          foreground: "hsl(var(--reservation-red-foreground))",
         },
       },
       fontFamily: {
