@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Mountain, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
-import MenuPopup from "@/components/MenuPopup";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import hero1 from "@/assets/hero-1.jpg";
@@ -17,21 +15,11 @@ import hero6 from "@/assets/hero-6.jpg";
 
 const Index = () => {
   const { t } = useLanguage();
-  const [showMenuPopup, setShowMenuPopup] = useState(false);
-
-  useEffect(() => {
-    // Show menu popup after 2 seconds on first load
-    const timer = setTimeout(() => {
-      setShowMenuPopup(true);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
   const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6];
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <MenuPopup open={showMenuPopup} onOpenChange={setShowMenuPopup} />
       
       {/* Hero Section with Carousel */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">

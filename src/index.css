@@ -45,8 +45,6 @@ All colors MUST be HSL.
     --alpine-cream: 35 40% 75%;
     --wood-dark: 20 45% 28%;
     --wood-light: 30 40% 55%;
-    --reservation-red: 0 85% 45%;
-    --reservation-red-foreground: 0 0% 100%;
     
     /* Rustic Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(25 50% 35% / 0.85), hsl(20 45% 28% / 0.9));

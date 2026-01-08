@@ -67,10 +67,6 @@ export default {
           dark: "hsl(var(--wood-dark))",
           light: "hsl(var(--wood-light))",
         },
-        reservation: {
-          red: "hsl(var(--reservation-red))",
-          "red-foreground": "hsl(var(--reservation-red-foreground))",
-        },
       },
       fontFamily: {
         serif: ['Lora', 'Georgia', 'serif'],

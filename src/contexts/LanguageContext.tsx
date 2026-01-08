@@ -11,17 +11,10 @@ interface LanguageContextType {
 const translations = {
   de: {
     // Navigation
-    nav: {
-      home: 'Home',
-      shop: 'Shop',
-      menu: 'Speisekarte',
-      reservation: 'Reservierung',
-      events: 'Events',
-      reviews: 'Bewertungen',
-      contact: 'Kontakt',
-      openingHours: 'Öffnungszeiten',
-      vouchers: 'Gutscheine'
-    },
+    'nav.home': 'Home',
+    'nav.shop': 'Shop',
+    'nav.contact': 'Kontakt',
+    'nav.reviews': 'Rezensionen',
     
     // Hero
     'hero.title': 'Oberkogler Alm',
@@ -74,81 +67,34 @@ const translations = {
     'contact.kitchen': 'Küche geöffnet',
     
     // Shop
-    shop: {
-      title: 'Unser Shop',
-      subtitle: 'Entdecken Sie unsere handverlesenen alpinen Spezialitäten, hergestellt mit Liebe und Tradition auf unserer Alm.',
-      error: 'Fehler beim Laden der Produkte',
-      tryAgain: 'Bitte versuchen Sie es später erneut',
-      noProducts: 'Keine Produkte gefunden',
-      noImage: 'Kein Bild verfügbar',
-      addToCart: 'In den Warenkorb',
-      soldOut: 'Ausverkauft',
-      freeShipping: 'Kostenloser Versand',
-      freeShippingText: 'Bei Bestellungen über €50'
-    },
-    
-    // Menu
-    menu: {
-      title: 'Speisekarte',
-      subtitle: 'Genießen Sie unsere traditionellen Alm-Spezialitäten',
-      qrTitle: 'Speisekarte QR-Code',
-      qrSubtitle: 'Scannen Sie den QR-Code für unsere aktuelle Speisekarte',
-      close: 'Schließen',
-      viewMenu: 'Speisekarte ansehen'
-    },
-    
-    // Reservation
-    reservation: {
-      title: 'Tisch Reservieren',
-      subtitle: 'Reservieren Sie Ihren Tisch auf der Oberkogler Alm',
-      name: 'Name',
-      email: 'E-Mail',
-      phone: 'Telefon',
-      date: 'Datum',
-      time: 'Uhrzeit',
-      guests: 'Anzahl Personen',
-      message: 'Nachricht (optional)',
-      submit: 'Reservierung anfragen',
-      success: 'Reservierungsanfrage erfolgreich gesendet!',
-      error: 'Fehler beim Senden der Reservierung'
-    },
-    
-    // Events
-    events: {
-      title: 'Veranstaltungen',
-      subtitle: 'Kommende Events auf der Oberkogler Alm',
-      noEvents: 'Aktuell keine Veranstaltungen geplant',
-      date: 'Datum',
-      time: 'Uhrzeit',
-      location: 'Ort'
-    },
+    'shop.title': 'Unser Shop',
+    'shop.subtitle': 'Entdecken Sie unsere handverlesenen alpinen Spezialitäten, hergestellt mit Liebe und Tradition auf unserer Alm.',
+    'shop.error': 'Fehler beim Laden der Produkte',
+    'shop.tryAgain': 'Bitte versuchen Sie es später erneut',
+    'shop.noProducts': 'Keine Produkte gefunden',
+    'shop.noImage': 'Kein Bild verfügbar',
+    'shop.addToCart': 'In den Warenkorb',
+    'shop.soldOut': 'Ausverkauft',
+    'shop.freeShipping': 'Kostenloser Versand',
+    'shop.freeShippingText': 'Bei Bestellungen über €50',
     
     // Reviews
-    reviews: {
-      title: 'Gästebewertungen',
-      subtitle: 'Was unsere Gäste über uns sagen',
-      reviews: 'Bewertungen',
-      language: 'de',
-      visitUs: 'Besuchen Sie uns auf Google Maps für mehr Rezensionen',
-      googleLink: 'Zu Google Maps'
-    },
+    'reviews.title': 'Gästebewertungen',
+    'reviews.subtitle': 'Was unsere Gäste über uns sagen',
+    'reviews.reviews': 'Bewertungen',
+    'reviews.language': 'de',
+    'reviews.visitUs': 'Besuchen Sie uns auf Google Maps für mehr Rezensionen',
+    'reviews.googleLink': 'Zu Google Maps',
     
     // Footer
     'footer.rights': 'Alle Rechte vorbehalten.',
   },
   en: {
     // Navigation
-    nav: {
-      home: 'Home',
-      shop: 'Shop',
-      menu: 'Menu',
-      reservation: 'Reservation',
-      events: 'Events',
-      reviews: 'Reviews',
-      contact: 'Contact',
-      openingHours: 'Opening Hours',
-      vouchers: 'Vouchers'
-    },
+    'nav.home': 'Home',
+    'nav.shop': 'Shop',
+    'nav.contact': 'Contact',
+    'nav.reviews': 'Reviews',
     
     // Hero
     'hero.title': 'Oberkogler Alm',
@@ -201,64 +147,24 @@ const translations = {
     'contact.kitchen': 'Kitchen open',
     
     // Shop
-    shop: {
-      title: 'Our Shop',
-      subtitle: 'Discover our handpicked alpine specialties, made with love and tradition on our mountain pasture.',
-      error: 'Error loading products',
-      tryAgain: 'Please try again later',
-      noProducts: 'No products found',
-      noImage: 'No image available',
-      addToCart: 'Add to Cart',
-      soldOut: 'Sold Out',
-      freeShipping: 'Free Shipping',
-      freeShippingText: 'On orders over €50'
-    },
-    
-    // Menu
-    menu: {
-      title: 'Menu',
-      subtitle: 'Enjoy our traditional alpine specialties',
-      qrTitle: 'Menu QR Code',
-      qrSubtitle: 'Scan the QR code for our current menu',
-      close: 'Close',
-      viewMenu: 'View Menu'
-    },
-    
-    // Reservation
-    reservation: {
-      title: 'Reserve a Table',
-      subtitle: 'Reserve your table at Oberkogler Alm',
-      name: 'Name',
-      email: 'Email',
-      phone: 'Phone',
-      date: 'Date',
-      time: 'Time',
-      guests: 'Number of Guests',
-      message: 'Message (optional)',
-      submit: 'Request Reservation',
-      success: 'Reservation request sent successfully!',
-      error: 'Error sending reservation'
-    },
-    
-    // Events
-    events: {
-      title: 'Events',
-      subtitle: 'Upcoming events at Oberkogler Alm',
-      noEvents: 'No events currently scheduled',
-      date: 'Date',
-      time: 'Time',
-      location: 'Location'
-    },
+    'shop.title': 'Our Shop',
+    'shop.subtitle': 'Discover our handpicked alpine specialties, made with love and tradition on our mountain pasture.',
+    'shop.error': 'Error loading products',
+    'shop.tryAgain': 'Please try again later',
+    'shop.noProducts': 'No products found',
+    'shop.noImage': 'No image available',
+    'shop.addToCart': 'Add to Cart',
+    'shop.soldOut': 'Sold Out',
+    'shop.freeShipping': 'Free Shipping',
+    'shop.freeShippingText': 'On orders over €50',
     
     // Reviews
-    reviews: {
-      title: 'Guest Reviews',
-      subtitle: 'What our guests say about us',
-      reviews: 'Reviews',
-      language: 'en',
-      visitUs: 'Visit us on Google Maps for more reviews',
-      googleLink: 'Go to Google Maps'
-    },
+    'reviews.title': 'Guest Reviews',
+    'reviews.subtitle': 'What our guests say about us',
+    'reviews.reviews': 'Reviews',
+    'reviews.language': 'en',
+    'reviews.visitUs': 'Visit us on Google Maps for more reviews',
+    'reviews.googleLink': 'Go to Google Maps',
     
     // Footer
     'footer.rights': 'All rights reserved.',
@@ -271,18 +177,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>('de');
 
   const t = (key: string): string => {
-    const keys = key.split('.');
-    let result: any = translations[language];
-    
-    for (const k of keys) {
-      if (result && typeof result === 'object') {
-        result = result[k];
-      } else {
-        return key;
-      }
-    }
-    
-    return typeof result === 'string' ? result : key;
+    return translations[language][key as keyof typeof translations.de] || key;
   };
 
   return (
