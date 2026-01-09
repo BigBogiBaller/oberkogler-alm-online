@@ -15,6 +15,7 @@ const translations = {
     'nav.shop': 'Shop',
     'nav.contact': 'Kontakt',
     'nav.reviews': 'Rezensionen',
+    'nav.menu': 'Speisekarte',
     
     // Hero
     'hero.title': 'Oberkogler Alm',
@@ -86,6 +87,20 @@ const translations = {
     'reviews.visitUs': 'Besuchen Sie uns auf Google Maps für mehr Rezensionen',
     'reviews.googleLink': 'Zu Google Maps',
     
+    // Menu
+    'menu.title': 'Unsere Speisekarte',
+    'menu.subtitle': 'Genießen Sie traditionelle alpine Köstlichkeiten, zubereitet mit frischen Zutaten aus der Region.',
+    'menu.badge': 'Kulinarische Spezialitäten',
+    'menu.qrTitle': 'Speisekarte zum Mitnehmen',
+    'menu.qrDescription': 'Scannen Sie den QR-Code, um unsere Speisekarte auf Ihrem Smartphone zu speichern.',
+    'menu.qrScan': 'Mit der Kamera Ihres Smartphones scannen',
+    'menu.qrClose': 'Speisekarte ansehen',
+    'menu.showQR': 'QR-Code anzeigen',
+    'menu.allergens': 'Allergene',
+    'menu.vegetarian': 'Vegetarisch',
+    'menu.contains': 'Enthält',
+    'menu.hoursTitle': 'Unsere Öffnungszeiten',
+    
     // Footer
     'footer.rights': 'Alle Rechte vorbehalten.',
   },
@@ -95,6 +110,7 @@ const translations = {
     'nav.shop': 'Shop',
     'nav.contact': 'Contact',
     'nav.reviews': 'Reviews',
+    'nav.menu': 'Menu',
     
     // Hero
     'hero.title': 'Oberkogler Alm',
@@ -165,6 +181,20 @@ const translations = {
     'reviews.language': 'en',
     'reviews.visitUs': 'Visit us on Google Maps for more reviews',
     'reviews.googleLink': 'Go to Google Maps',
+    
+    // Menu
+    'menu.title': 'Our Menu',
+    'menu.subtitle': 'Enjoy traditional alpine delicacies prepared with fresh regional ingredients.',
+    'menu.badge': 'Culinary Specialties',
+    'menu.qrTitle': 'Menu To Go',
+    'menu.qrDescription': 'Scan the QR code to save our menu on your smartphone.',
+    'menu.qrScan': 'Scan with your smartphone camera',
+    'menu.qrClose': 'View Menu',
+    'menu.showQR': 'Show QR Code',
+    'menu.allergens': 'Allergens',
+    'menu.vegetarian': 'Vegetarian',
+    'menu.contains': 'Contains',
+    'menu.hoursTitle': 'Our Opening Hours',
     
     // Footer
     'footer.rights': 'All rights reserved.',

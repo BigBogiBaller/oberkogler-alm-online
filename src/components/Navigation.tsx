@@ -32,6 +32,9 @@ const Navigation = () => {
             <NavLink to="/" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">
               {t('nav.home')}
             </NavLink>
+            <NavLink to="/menu" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">
+              {t('nav.menu')}
+            </NavLink>
             <NavLink to="/shop" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">
               {t('nav.shop')}
             </NavLink>
@@ -79,6 +82,9 @@ const Navigation = () => {
           <div className="md:hidden mt-4 pb-4 flex flex-col gap-4">
             <NavLink to="/" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold" onClick={() => setIsMenuOpen(false)}>
               {t('nav.home')}
+            </NavLink>
+            <NavLink to="/menu" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold" onClick={() => setIsMenuOpen(false)}>
+              {t('nav.menu')}
             </NavLink>
             <NavLink to="/shop" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold" onClick={() => setIsMenuOpen(false)}>
               {t('nav.shop')}
