@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
 import hero4 from "@/assets/hero-4.jpg";
@@ -15,7 +14,7 @@ import hero6 from "@/assets/hero-6.jpg";
 
 const Index = () => {
   const { t } = useLanguage();
-  const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6];
+  const heroImages = [hero2, hero3, hero4, hero5, hero6];
 
   return (
     <div className="min-h-screen bg-background">
