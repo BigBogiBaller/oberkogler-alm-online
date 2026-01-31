@@ -40,7 +40,7 @@ const Index = () => {
                   className="h-screen bg-cover bg-center bg-no-repeat"
                   style={{ backgroundImage: `url(${image})` }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/40 to-background" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
                 </div>
               </CarouselItem>
             ))}
