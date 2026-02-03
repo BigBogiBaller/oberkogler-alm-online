@@ -114,7 +114,7 @@ const Index = () => {
             alt="Oberkogler Alm" 
             className="w-48 md:w-64 mx-auto mb-6 drop-shadow-2xl"
           />
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-in-up drop-shadow-lg font-medium" style={{ animationDelay: '200ms', color: '#5c4a32' }}>
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-in-up drop-shadow-lg font-medium text-white" style={{ animationDelay: '200ms' }}>
             {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
