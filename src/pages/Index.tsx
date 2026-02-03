@@ -13,7 +13,7 @@ import hero4 from "@/assets/hero-4.jpg";
 import hero5 from "@/assets/hero-5.jpg";
 import hero6 from "@/assets/hero-6.jpg";
 import heroAlm from "@/assets/hero-alm.jpg";
-
+import oberkoglerLogo from "@/assets/oberkogler-logo.png";
 // Animated Section Component
 const AnimatedSection = ({ 
   children, 
@@ -107,16 +107,17 @@ const Index = () => {
         </Carousel>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <Mountain className="w-16 h-16 mx-auto mb-6 text-primary-foreground animate-float" />
-          <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in-down">
-            {t('hero.title')}
-          </h1>
-          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+          <img 
+            src={oberkoglerLogo} 
+            alt="Oberkogler Alm" 
+            className="w-48 md:w-64 mx-auto mb-6 animate-float drop-shadow-2xl"
+          />
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-in-up drop-shadow-lg" style={{ animationDelay: '200ms', color: '#c9a84c' }}>
             {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
             <Link to="/shop">
-              <Button size="lg" variant="secondary" className="text-lg hover-lift">
+              <Button size="lg" className="text-lg hover-lift bg-alpine-brown hover:bg-alpine-brown/90 text-white border-0">
                 {t('hero.toShop')}
               </Button>
             </Link>
@@ -124,7 +125,8 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-lg bg-primary-foreground/10 text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary hover-lift"
+                className="text-lg hover-lift border-2"
+                style={{ backgroundColor: 'rgba(201, 168, 76, 0.9)', borderColor: '#c9a84c', color: 'white' }}
               >
                 {t('hero.toMenu')}
               </Button>
