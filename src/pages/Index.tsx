@@ -7,6 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useScrollAnimation, useStaggerAnimation } from "@/hooks/useScrollAnimation";
+import MenuQRPopup from "@/components/MenuQRPopup";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
 import hero4 from "@/assets/hero-4.jpg";
@@ -75,9 +76,10 @@ const Index = () => {
     { key: 'hartwuerstl', price: '€4,50' },
   ];
 
-  return (
+    return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      <MenuQRPopup />
       
       {/* Hero Section with Ken Burns Effect */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
