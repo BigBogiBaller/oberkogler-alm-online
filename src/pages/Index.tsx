@@ -110,9 +110,9 @@ const Index = () => {
       })]} opts={{
         loop: true
       }}>
-          <CarouselContent>
-            {heroImages.map((image, index) => <CarouselItem key={index}>
-                <div className="h-screen bg-cover bg-center bg-no-repeat animate-ken-burns" style={{
+          <CarouselContent className="-ml-0">
+            {heroImages.map((image, index) => <CarouselItem key={index} className="pl-0">
+                <div className="h-screen w-screen bg-cover bg-center bg-no-repeat animate-ken-burns scale-110" style={{
               backgroundImage: `url(${image})`
             }}>
                   <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
