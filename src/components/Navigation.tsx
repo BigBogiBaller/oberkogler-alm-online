@@ -102,7 +102,7 @@ const Navigation = () => {
             )}
           >
             <span className="hidden sm:inline text-base md:text-2xl tracking-[0.2em]">Oberkogler Alm</span>
-            <span className="sm:hidden flex flex-col items-center leading-tight text-[10px] tracking-[0.15em]">
+            <span className="sm:hidden flex flex-col items-center leading-tight text-xs tracking-[0.12em]">
               <span>Oberkogler</span>
               <span>Alm</span>
             </span>
