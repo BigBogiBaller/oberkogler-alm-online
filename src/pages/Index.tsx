@@ -105,17 +105,14 @@ const Index = () => {
       
       {/* Hero Section with Ken Burns Effect */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        <Carousel className="hero-carousel absolute inset-0 w-full h-full overflow-hidden" plugins={[Autoplay({
+        <Carousel className="absolute inset-0" plugins={[Autoplay({
         delay: 6000
       })]} opts={{
-        loop: true,
-        containScroll: "keepSnaps",
-        align: "center",
-        dragFree: false
+        loop: true
       }}>
-          <CarouselContent className="ml-0 h-full">
-            {heroImages.map((image, index) => <CarouselItem key={index} className="pl-0 relative h-full" style={{ flex: '0 0 100%', minWidth: '100%', maxWidth: '100%' }}>
-                <div className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-ken-burns scale-[1.3]" style={{
+          <CarouselContent className="ml-0">
+            {heroImages.map((image, index) => <CarouselItem key={index} className="pl-0" style={{ flex: '0 0 100%' }}>
+                <div className="h-screen w-screen bg-cover bg-center bg-no-repeat animate-ken-burns scale-[1.3]" style={{
               backgroundImage: `url(${image})`
             }}>
                   <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
