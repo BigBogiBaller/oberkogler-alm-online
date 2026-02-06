@@ -104,7 +104,7 @@ const Navigation = () => {
           {/* Right Section - Nav Links + Shop Button + Cart */}
           <div className="flex items-center">
             {/* Desktop Nav Links */}
-            <div className="hidden lg:flex items-center gap-6 pr-6">
+            <div className="hidden lg:flex items-center gap-8 mr-8">
               <NavLink 
                 to="/menu" 
                 className={cn(
@@ -128,7 +128,7 @@ const Navigation = () => {
 
             {/* Cart */}
             <div className={cn(
-              "pr-4",
+              "mr-6",
               isScrolled ? "text-foreground" : "text-white"
             )}>
               <CartSheet />
@@ -137,7 +137,7 @@ const Navigation = () => {
             {/* Shop Button - Full height corner */}
             <NavLink 
               to="/shop"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 md:px-12 py-6 text-sm tracking-wider font-medium transition-colors flex items-center justify-center h-full min-h-[72px]"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 md:px-20 py-6 text-sm tracking-wider font-medium transition-colors flex items-center justify-center h-full min-h-[72px]"
             >
               Shop
             </NavLink>
