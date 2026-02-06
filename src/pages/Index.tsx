@@ -113,8 +113,8 @@ const Index = () => {
         align: "start"
       }}>
           <CarouselContent className="ml-0">
-            {heroImages.map((image, index) => <CarouselItem key={index} className="pl-0 basis-full">
-                <div className="h-screen w-full bg-cover bg-center bg-no-repeat animate-ken-burns scale-110" style={{
+            {heroImages.map((image, index) => <CarouselItem key={index} className="pl-0 basis-full overflow-hidden">
+                <div className="h-screen w-full bg-cover bg-center bg-no-repeat animate-ken-burns scale-125" style={{
               backgroundImage: `url(${image})`
             }}>
                   <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
