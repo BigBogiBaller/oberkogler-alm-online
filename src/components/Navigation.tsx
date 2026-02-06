@@ -1,5 +1,4 @@
 import { NavLink } from "@/components/NavLink";
-import { Button } from "@/components/ui/button";
 import { Menu, X, Mail, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import CartSheet from "@/components/CartSheet";
@@ -19,6 +18,10 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -29,13 +32,6 @@ const Navigation = () => {
 
   const closeSidebar = () => setIsSidebarOpen(false);
 
-  const navItems = [
-    { to: "/", label: t('nav.home'), hasSubmenu: true },
-    { to: "/menu", label: t('nav.menu') },
-    { to: "/shop", label: t('nav.shop') },
-    { to: "/reviews", label: t('nav.reviews') },
-  ];
-
   return (
     <>
       {/* Main Navigation Bar */}
@@ -43,113 +39,108 @@ const Navigation = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}>
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            {/* Left Section - Hamburger + Language + Icons */}
-            <div className="flex items-center gap-4 md:gap-6">
-              {/* Hamburger Menu */}
-              <button 
-                className={cn(
-                  "p-2 transition-colors",
-                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
-                )}
-                onClick={() => setIsSidebarOpen(true)}
-                aria-label="Open menu"
-              >
-                <Menu size={24} strokeWidth={1.5} />
-              </button>
-
-              {/* Language Toggle */}
-              <button 
-                onClick={() => setLanguage(language === 'de' ? 'en' : 'de')}
-                className={cn(
-                  "text-sm font-medium tracking-wider transition-colors",
-                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
-                )}
-              >
-                {language.toUpperCase()}
-              </button>
-
-              {/* Email Icon */}
-              <a 
-                href="mailto:info@oberkogler-alm.at" 
-                className={cn(
-                  "transition-colors hidden sm:block",
-                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
-                )}
-                aria-label="Email"
-              >
-                <Mail size={20} strokeWidth={1.5} />
-              </a>
-
-              {/* Phone Icon */}
-              <a 
-                href="tel:+4336873575" 
-                className={cn(
-                  "transition-colors hidden sm:block",
-                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
-                )}
-                aria-label="Phone"
-              >
-                <Phone size={20} strokeWidth={1.5} />
-              </a>
-            </div>
-
-            {/* Center - Logo Text (shown when scrolled or on mobile) */}
-            <NavLink 
-              to="/" 
+        <div className="flex items-center justify-between">
+          {/* Left Section - Hamburger + Language + Icons */}
+          <div className="flex items-center gap-4 md:gap-6 px-4 py-4">
+            {/* Hamburger Menu */}
+            <button 
               className={cn(
-                "absolute left-1/2 -translate-x-1/2 text-xl md:text-2xl font-heading tracking-[0.2em] uppercase transition-all duration-300",
-                isScrolled ? "opacity-100 text-primary" : "opacity-0 md:opacity-0"
+                "p-2 transition-colors",
+                isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+              )}
+              onClick={() => setIsSidebarOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu size={24} strokeWidth={1.5} />
+            </button>
+
+            {/* Language Toggle */}
+            <button 
+              onClick={() => setLanguage(language === 'de' ? 'en' : 'de')}
+              className={cn(
+                "text-sm font-medium tracking-wider transition-colors",
+                isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
               )}
             >
-              Oberkogler Alm
-            </NavLink>
+              {language.toUpperCase()}
+            </button>
 
-            {/* Right Section - Nav Links + Shop Button + Cart */}
-            <div className="flex items-center gap-4 md:gap-6">
-              {/* Desktop Nav Links */}
-              <div className="hidden lg:flex items-center gap-6">
-                <NavLink 
-                  to="/menu" 
-                  className={cn(
-                    "text-sm tracking-wider transition-colors",
-                    isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
-                  )}
-                  activeClassName="font-semibold"
-                >
-                  {t('nav.menu')}
-                </NavLink>
-                <NavLink 
-                  to="/reviews" 
-                  className={cn(
-                    "text-sm tracking-wider transition-colors",
-                    isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
-                  )}
-                  activeClassName="font-semibold"
-                >
-                  {t('nav.reviews')}
-                </NavLink>
-              </div>
+            {/* Email Icon */}
+            <a 
+              href="mailto:info@oberkogler-alm.at" 
+              className={cn(
+                "transition-colors hidden sm:block",
+                isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+              )}
+              aria-label="Email"
+            >
+              <Mail size={20} strokeWidth={1.5} />
+            </a>
 
-              {/* Shop Button */}
-              <NavLink to="/shop">
-                <Button 
-                  variant="default" 
-                  size="sm" 
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 text-sm tracking-wider"
-                >
-                  Shop
-                </Button>
+            {/* Phone Icon */}
+            <a 
+              href="tel:+4336873575" 
+              className={cn(
+                "transition-colors hidden sm:block",
+                isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+              )}
+              aria-label="Phone"
+            >
+              <Phone size={20} strokeWidth={1.5} />
+            </a>
+          </div>
+
+          {/* Center - Logo Text (clickable to scroll to top) */}
+          <button 
+            onClick={scrollToTop}
+            className={cn(
+              "absolute left-1/2 -translate-x-1/2 text-xl md:text-2xl font-heading tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-80",
+              isScrolled ? "opacity-100 text-primary" : "opacity-0 md:opacity-0"
+            )}
+          >
+            Oberkogler Alm
+          </button>
+
+          {/* Right Section - Nav Links + Shop Button + Cart */}
+          <div className="flex items-center">
+            {/* Desktop Nav Links */}
+            <div className="hidden lg:flex items-center gap-6 pr-6">
+              <NavLink 
+                to="/menu" 
+                className={cn(
+                  "text-sm tracking-wider transition-colors",
+                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+                )}
+                activeClassName="font-semibold"
+              >
+                {t('nav.menu')}
               </NavLink>
-
-              {/* Cart */}
-              <div className={cn(
-                isScrolled ? "text-foreground" : "text-white"
-              )}>
-                <CartSheet />
-              </div>
+              <button 
+                onClick={scrollToContact}
+                className={cn(
+                  "text-sm tracking-wider transition-colors",
+                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+                )}
+              >
+                {language === 'de' ? 'Öffnungszeiten' : 'Opening Hours'}
+              </button>
             </div>
+
+            {/* Cart */}
+            <div className={cn(
+              "pr-4",
+              isScrolled ? "text-foreground" : "text-white"
+            )}>
+              <CartSheet />
+            </div>
+
+            {/* Shop Button - Full height corner */}
+            <NavLink 
+              to="/shop"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 md:px-12 py-6 text-sm tracking-wider font-medium transition-colors flex items-center justify-center h-full min-h-[72px]"
+            >
+              Shop
+            </NavLink>
           </div>
         </div>
       </nav>
@@ -234,14 +225,12 @@ const Navigation = () => {
               >
                 — Shop
               </NavLink>
-              <NavLink 
-                to="/reviews" 
-                onClick={closeSidebar}
-                className="block text-muted-foreground hover:text-primary transition-colors text-sm"
-                activeClassName="text-primary font-medium"
+              <button 
+                onClick={scrollToContact}
+                className="block text-muted-foreground hover:text-primary transition-colors text-sm text-left"
               >
-                — {t('nav.reviews')}
-              </NavLink>
+                — {language === 'de' ? 'Öffnungszeiten' : 'Opening Hours'}
+              </button>
               <button 
                 onClick={scrollToContact}
                 className="block text-muted-foreground hover:text-primary transition-colors text-sm text-left"
@@ -274,13 +263,12 @@ const Navigation = () => {
             >
               {language === 'de' ? 'Hofladen' : 'Farm Shop'}
             </NavLink>
-            <NavLink 
-              to="/reviews" 
-              onClick={closeSidebar}
-              className="block font-heading text-2xl text-foreground hover:text-primary transition-colors"
+            <button 
+              onClick={scrollToContact}
+              className="block font-heading text-2xl text-foreground hover:text-primary transition-colors text-left w-full"
             >
-              {t('nav.reviews')}
-            </NavLink>
+              {language === 'de' ? 'Öffnungszeiten' : 'Opening Hours'}
+            </button>
             <button 
               onClick={scrollToContact}
               className="block font-heading text-2xl text-foreground hover:text-primary transition-colors text-left w-full"

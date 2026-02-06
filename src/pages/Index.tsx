@@ -108,32 +108,15 @@ const Index = () => {
           </CarouselContent>
         </Carousel>
         
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-24">
           <img 
             src={oberkoglerLogo} 
             alt="Oberkogler Alm" 
-            className="w-48 md:w-64 mx-auto mb-6 drop-shadow-2xl"
+            className="w-64 md:w-80 lg:w-96 mx-auto mb-8 drop-shadow-2xl"
           />
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-in-up drop-shadow-lg font-medium text-white" style={{ animationDelay: '200ms' }}>
+          <p className="text-xl md:text-2xl max-w-2xl mx-auto animate-fade-in-up drop-shadow-lg font-medium text-white" style={{ animationDelay: '200ms' }}>
             {t('hero.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
-            <Link to="/shop">
-              <Button size="lg" className="text-lg hover-lift bg-alpine-brown hover:bg-alpine-brown/90 text-white border-0">
-                {t('hero.toShop')}
-              </Button>
-            </Link>
-            <Link to="/menu">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="text-lg hover-lift border-2"
-                style={{ backgroundColor: 'rgba(201, 168, 76, 0.9)', borderColor: '#c9a84c', color: 'white' }}
-              >
-                {t('hero.toMenu')}
-              </Button>
-            </Link>
-          </div>
         </div>
 
         {/* Scroll Indicator */}
