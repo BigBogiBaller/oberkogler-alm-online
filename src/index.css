@@ -211,4 +211,14 @@ All colors MUST be HSL.
   .card-hover:hover img {
     @apply scale-110;
   }
+
+  /* Hero Carousel - Force single slide visibility */
+  .hero-carousel [data-embla-container] {
+    backface-visibility: hidden;
+  }
+  
+  .hero-carousel .embla__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
 }
