@@ -1,125 +1,326 @@
 import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Instagram, Facebook } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, Mail, Phone } from "lucide-react";
+import { useState, useEffect } from "react";
 import CartSheet from "@/components/CartSheet";
 import { useLanguage } from "@/contexts/LanguageContext";
-import logo from "@/assets/logo.png";
+import { cn } from "@/lib/utils";
 
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
-    setIsMenuOpen(false);
+    setIsSidebarOpen(false);
   };
 
+  const closeSidebar = () => setIsSidebarOpen(false);
+
+  const navItems = [
+    { to: "/", label: t('nav.home'), hasSubmenu: true },
+    { to: "/menu", label: t('nav.menu') },
+    { to: "/shop", label: t('nav.shop') },
+    { to: "/reviews", label: t('nav.reviews') },
+  ];
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
-          <NavLink to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Oberkogler Alm Logo" className="h-12 w-auto" />
-            <span className="text-2xl font-bold text-primary">Oberkogler Alm</span>
-          </NavLink>
+    <>
+      {/* Main Navigation Bar */}
+      <nav className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+      )}>
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            {/* Left Section - Hamburger + Language + Icons */}
+            <div className="flex items-center gap-4 md:gap-6">
+              {/* Hamburger Menu */}
+              <button 
+                className={cn(
+                  "p-2 transition-colors",
+                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+                )}
+                onClick={() => setIsSidebarOpen(true)}
+                aria-label="Open menu"
+              >
+                <Menu size={24} strokeWidth={1.5} />
+              </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            <NavLink to="/" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">
-              {t('nav.home')}
-            </NavLink>
-            <NavLink to="/menu" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">
-              {t('nav.menu')}
-            </NavLink>
-            <NavLink to="/shop" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">
-              {t('nav.shop')}
-            </NavLink>
-            <NavLink to="/reviews" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">
-              {t('nav.reviews')}
-            </NavLink>
-            <Button variant="default" size="sm" onClick={scrollToContact}>
-              {t('nav.contact')}
-            </Button>
-            <div className="flex items-center gap-3">
-              <a href="https://www.instagram.com/oberkogler_alm/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
+              {/* Language Toggle */}
+              <button 
+                onClick={() => setLanguage(language === 'de' ? 'en' : 'de')}
+                className={cn(
+                  "text-sm font-medium tracking-wider transition-colors",
+                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+                )}
+              >
+                {language.toUpperCase()}
+              </button>
+
+              {/* Email Icon */}
+              <a 
+                href="mailto:info@oberkogler-alm.at" 
+                className={cn(
+                  "transition-colors hidden sm:block",
+                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+                )}
+                aria-label="Email"
+              >
+                <Mail size={20} strokeWidth={1.5} />
               </a>
-              <a href="https://www.facebook.com/OberKogler/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="https://www.tiktok.com/@oberkogler_alm" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="TikTok">
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                </svg>
+
+              {/* Phone Icon */}
+              <a 
+                href="tel:+4336873575" 
+                className={cn(
+                  "transition-colors hidden sm:block",
+                  isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+                )}
+                aria-label="Phone"
+              >
+                <Phone size={20} strokeWidth={1.5} />
               </a>
             </div>
-            <div className="flex gap-2">
-              <Button variant={language === 'de' ? 'default' : 'ghost'} size="sm" onClick={() => setLanguage('de')}>
-                DE
-              </Button>
-              <Button variant={language === 'en' ? 'default' : 'ghost'} size="sm" onClick={() => setLanguage('en')}>
-                EN
-              </Button>
+
+            {/* Center - Logo Text (shown when scrolled or on mobile) */}
+            <NavLink 
+              to="/" 
+              className={cn(
+                "absolute left-1/2 -translate-x-1/2 text-xl md:text-2xl font-heading tracking-[0.2em] uppercase transition-all duration-300",
+                isScrolled ? "opacity-100 text-primary" : "opacity-0 md:opacity-0"
+              )}
+            >
+              Oberkogler Alm
+            </NavLink>
+
+            {/* Right Section - Nav Links + Shop Button + Cart */}
+            <div className="flex items-center gap-4 md:gap-6">
+              {/* Desktop Nav Links */}
+              <div className="hidden lg:flex items-center gap-6">
+                <NavLink 
+                  to="/menu" 
+                  className={cn(
+                    "text-sm tracking-wider transition-colors",
+                    isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+                  )}
+                  activeClassName="font-semibold"
+                >
+                  {t('nav.menu')}
+                </NavLink>
+                <NavLink 
+                  to="/reviews" 
+                  className={cn(
+                    "text-sm tracking-wider transition-colors",
+                    isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
+                  )}
+                  activeClassName="font-semibold"
+                >
+                  {t('nav.reviews')}
+                </NavLink>
+              </div>
+
+              {/* Shop Button */}
+              <NavLink to="/shop">
+                <Button 
+                  variant="default" 
+                  size="sm" 
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 text-sm tracking-wider"
+                >
+                  Shop
+                </Button>
+              </NavLink>
+
+              {/* Cart */}
+              <div className={cn(
+                isScrolled ? "text-foreground" : "text-white"
+              )}>
+                <CartSheet />
+              </div>
             </div>
-            <CartSheet />
           </div>
+        </div>
+      </nav>
 
-          {/* Mobile Menu Button and Cart */}
-          <div className="md:hidden flex items-center gap-2">
-            <CartSheet />
-            <button className="text-foreground" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      {/* Sidebar Overlay */}
+      <div 
+        className={cn(
+          "fixed inset-0 bg-black/50 z-[60] transition-opacity duration-300",
+          isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+        onClick={closeSidebar}
+      />
+
+      {/* Sidebar */}
+      <aside className={cn(
+        "fixed top-0 left-0 h-full w-full sm:w-[500px] bg-background z-[70] transform transition-transform duration-500 ease-out overflow-y-auto",
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
+        {/* Sidebar Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+          <button 
+            onClick={closeSidebar}
+            className="p-2 text-foreground hover:text-primary transition-colors"
+            aria-label="Close menu"
+          >
+            <X size={24} strokeWidth={1.5} />
+          </button>
+
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => setLanguage(language === 'de' ? 'en' : 'de')}
+              className="text-sm font-medium tracking-wider text-foreground hover:text-primary transition-colors"
+            >
+              {language.toUpperCase()}
             </button>
+            <a 
+              href="mailto:info@oberkogler-alm.at" 
+              className="text-foreground hover:text-primary transition-colors"
+              aria-label="Email"
+            >
+              <Mail size={20} strokeWidth={1.5} />
+            </a>
+            <a 
+              href="tel:+4336873575" 
+              className="text-foreground hover:text-primary transition-colors"
+              aria-label="Phone"
+            >
+              <Phone size={20} strokeWidth={1.5} />
+            </a>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 flex flex-col gap-4">
-            <NavLink to="/" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold" onClick={() => setIsMenuOpen(false)}>
-              {t('nav.home')}
+        {/* Sidebar Content */}
+        <div className="px-8 py-10">
+          {/* Main Navigation Section */}
+          <div className="mb-10">
+            <h3 className="text-primary font-heading text-xl mb-4 underline underline-offset-4 decoration-1">
+              Oberkogler Alm
+            </h3>
+            <nav className="space-y-3 ml-4">
+              <NavLink 
+                to="/" 
+                onClick={closeSidebar}
+                className="block text-muted-foreground hover:text-primary transition-colors text-sm"
+                activeClassName="text-primary font-medium"
+              >
+                — {t('nav.home')}
+              </NavLink>
+              <NavLink 
+                to="/menu" 
+                onClick={closeSidebar}
+                className="block text-muted-foreground hover:text-primary transition-colors text-sm"
+                activeClassName="text-primary font-medium"
+              >
+                — {t('nav.menu')}
+              </NavLink>
+              <NavLink 
+                to="/shop" 
+                onClick={closeSidebar}
+                className="block text-muted-foreground hover:text-primary transition-colors text-sm"
+                activeClassName="text-primary font-medium"
+              >
+                — Shop
+              </NavLink>
+              <NavLink 
+                to="/reviews" 
+                onClick={closeSidebar}
+                className="block text-muted-foreground hover:text-primary transition-colors text-sm"
+                activeClassName="text-primary font-medium"
+              >
+                — {t('nav.reviews')}
+              </NavLink>
+              <button 
+                onClick={scrollToContact}
+                className="block text-muted-foreground hover:text-primary transition-colors text-sm text-left"
+              >
+                — {t('nav.contact')}
+              </button>
+            </nav>
+          </div>
+
+          {/* Category Links */}
+          <nav className="space-y-6">
+            <NavLink 
+              to="/" 
+              onClick={closeSidebar}
+              className="block font-heading text-2xl text-foreground hover:text-primary transition-colors"
+            >
+              {language === 'de' ? 'Willkommen' : 'Welcome'}
             </NavLink>
-            <NavLink to="/menu" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold" onClick={() => setIsMenuOpen(false)}>
+            <NavLink 
+              to="/menu" 
+              onClick={closeSidebar}
+              className="block font-heading text-2xl text-foreground hover:text-primary transition-colors"
+            >
               {t('nav.menu')}
             </NavLink>
-            <NavLink to="/shop" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold" onClick={() => setIsMenuOpen(false)}>
-              {t('nav.shop')}
+            <NavLink 
+              to="/shop" 
+              onClick={closeSidebar}
+              className="block font-heading text-2xl text-foreground hover:text-primary transition-colors"
+            >
+              {language === 'de' ? 'Hofladen' : 'Farm Shop'}
             </NavLink>
-            <NavLink to="/reviews" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold" onClick={() => setIsMenuOpen(false)}>
+            <NavLink 
+              to="/reviews" 
+              onClick={closeSidebar}
+              className="block font-heading text-2xl text-foreground hover:text-primary transition-colors"
+            >
               {t('nav.reviews')}
             </NavLink>
-            <Button variant="default" size="sm" onClick={scrollToContact}>
+            <button 
+              onClick={scrollToContact}
+              className="block font-heading text-2xl text-foreground hover:text-primary transition-colors text-left w-full"
+            >
               {t('nav.contact')}
-            </Button>
-            <div className="flex items-center gap-4">
-              <a href="https://www.instagram.com/oberkogler_alm/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
+            </button>
+          </nav>
+
+          {/* Social Links */}
+          <div className="mt-12 pt-8 border-t border-border">
+            <div className="flex gap-6">
+              <a 
+                href="https://www.instagram.com/oberkogler_alm/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-muted-foreground hover:text-primary transition-colors text-sm"
+              >
+                Instagram
               </a>
-              <a href="https://www.facebook.com/OberKogler/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
+              <a 
+                href="https://www.facebook.com/OberKogler/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-muted-foreground hover:text-primary transition-colors text-sm"
+              >
+                Facebook
               </a>
-              <a href="https://www.tiktok.com/@oberkogler_alm" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="TikTok">
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                </svg>
+              <a 
+                href="https://www.tiktok.com/@oberkogler_alm" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-muted-foreground hover:text-primary transition-colors text-sm"
+              >
+                TikTok
               </a>
-            </div>
-            <div className="flex gap-2">
-              <Button variant={language === 'de' ? 'default' : 'ghost'} size="sm" onClick={() => setLanguage('de')}>
-                DE
-              </Button>
-              <Button variant={language === 'en' ? 'default' : 'ghost'} size="sm" onClick={() => setLanguage('en')}>
-                EN
-              </Button>
             </div>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      </aside>
+    </>
   );
 };
 
