@@ -105,6 +105,19 @@ const Index = () => {
       
       {/* Hero Section with Ken Burns Effect */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        {/* Traditional Picture Frame */}
+        <div className="absolute inset-0 z-20 pointer-events-none">
+          {/* Outer frame border */}
+          <div className="absolute inset-4 md:inset-8 lg:inset-12 border-[12px] md:border-[20px] lg:border-[28px] rounded-sm" style={{ borderColor: 'hsl(20 45% 28% / 0.85)', boxShadow: 'inset 0 0 30px rgba(0,0,0,0.5)' }} />
+          {/* Inner gold accent */}
+          <div className="absolute inset-[28px] md:inset-[52px] lg:inset-[76px] border-[3px] md:border-[4px]" style={{ borderColor: 'hsl(30 40% 55% / 0.6)' }} />
+          {/* Corner ornaments */}
+          <div className="absolute top-4 left-4 md:top-8 md:left-8 lg:top-12 lg:left-12 w-8 h-8 md:w-12 md:h-12 border-t-4 border-l-4 border-primary/70" />
+          <div className="absolute top-4 right-4 md:top-8 md:right-8 lg:top-12 lg:right-12 w-8 h-8 md:w-12 md:h-12 border-t-4 border-r-4 border-primary/70" />
+          <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 lg:bottom-12 lg:left-12 w-8 h-8 md:w-12 md:h-12 border-b-4 border-l-4 border-primary/70" />
+          <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 w-8 h-8 md:w-12 md:h-12 border-b-4 border-r-4 border-primary/70" />
+        </div>
+
         <Carousel className="absolute inset-0" plugins={[Autoplay({
         delay: 6000
       })]} opts={{
