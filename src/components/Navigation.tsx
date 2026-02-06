@@ -97,11 +97,15 @@ const Navigation = () => {
           <button 
             onClick={goToHome}
             className={cn(
-              "absolute left-1/2 -translate-x-1/2 text-xs sm:text-base md:text-2xl font-heading tracking-[0.1em] sm:tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-80 max-w-[120px] sm:max-w-none truncate",
+              "absolute left-1/2 -translate-x-1/2 font-heading uppercase transition-all duration-300 hover:opacity-80",
               isScrolled ? "opacity-100 text-primary" : "opacity-0 md:opacity-0"
             )}
           >
-            Oberkogler Alm
+            <span className="hidden sm:inline text-base md:text-2xl tracking-[0.2em]">Oberkogler Alm</span>
+            <span className="sm:hidden flex flex-col items-center leading-tight text-[10px] tracking-[0.15em]">
+              <span>Oberkogler</span>
+              <span>Alm</span>
+            </span>
           </button>
 
           {/* Right Section - Nav Links + Shop Button + Cart */}
