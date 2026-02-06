@@ -1,4 +1,5 @@
 import { NavLink } from "@/components/NavLink";
+import { useNavigate } from "react-router-dom";
 import { Menu, X, Mail, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import CartSheet from "@/components/CartSheet";
@@ -9,6 +10,7 @@ const Navigation = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +20,8 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToTop = () => {
+  const goToHome = () => {
+    navigate('/');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -92,7 +95,7 @@ const Navigation = () => {
 
           {/* Center - Logo Text (clickable to scroll to top) */}
           <button 
-            onClick={scrollToTop}
+            onClick={goToHome}
             className={cn(
               "absolute left-1/2 -translate-x-1/2 text-xl md:text-2xl font-heading tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-80",
               isScrolled ? "opacity-100 text-primary" : "opacity-0 md:opacity-0"
