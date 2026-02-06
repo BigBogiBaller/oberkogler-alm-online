@@ -4,8 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Mountain, ExternalLink, Heart, Utensils, ShoppingBag, Dog, Leaf } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import HeroSlideshow from "@/components/HeroSlideshow";
 import { useScrollAnimation, useStaggerAnimation } from "@/hooks/useScrollAnimation";
 import MenuQRPopup from "@/components/MenuQRPopup";
 import hero2 from "@/assets/hero-2.jpg";
@@ -103,32 +102,10 @@ const Index = () => {
       <Navigation />
       <MenuQRPopup />
       
-      {/* Hero Section with Ken Burns Effect */}
+      {/* Hero Section with Ken Burns Effect - Fade Slideshow */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Left edge barrier - blocks any visible adjacent slides */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 bg-black z-[5]" />
-        {/* Right edge barrier - blocks any visible adjacent slides */}
-        <div className="absolute right-0 top-0 bottom-0 w-8 bg-black z-[5]" />
-        
-        <Carousel className="absolute inset-0 overflow-hidden" plugins={[Autoplay({
-        delay: 6000
-      })]} opts={{
-        loop: true,
-        align: "start",
-        containScroll: "trimSnaps"
-      }}>
-          <CarouselContent className="ml-0 h-full">
-            {heroImages.map((image, index) => <CarouselItem key={index} className="pl-0 min-w-full" style={{ flex: '0 0 100%', minWidth: '100%' }}>
-                <div className="h-screen w-full overflow-hidden">
-                  <div 
-                    className="h-full w-full bg-cover bg-center bg-no-repeat animate-ken-burns scale-[1.4]" 
-                    style={{ backgroundImage: `url(${image})` }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
-                </div>
-              </CarouselItem>)}
-          </CarouselContent>
-        </Carousel>
+        {/* Fade-based image slideshow */}
+        <HeroSlideshow images={heroImages} />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-8">
           <img src={oberkoglerLogo} alt="Oberkogler Alm" className="w-64 md:w-80 lg:w-96 mx-auto mb-8 drop-shadow-2xl" />
