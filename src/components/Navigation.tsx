@@ -157,9 +157,9 @@ const Navigation = () => {
                 </div>
               </div>
             </div>
-            <button onClick={scrollToContact} className="block font-heading text-2xl text-foreground hover:text-primary transition-colors text-left w-full">
-              {t('nav.contact')}
-            </button>
+            <NavLink to="/reviews" onClick={closeSidebar} className="block font-heading text-2xl text-foreground hover:text-primary transition-colors">
+              {language === 'de' ? 'Rezensionen' : 'Reviews'}
+            </NavLink>
           </nav>
 
           {/* Contact & Social Links */}
