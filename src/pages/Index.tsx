@@ -252,15 +252,15 @@ const Index = () => {
             >
               {/* Curved bow line going down */}
               <path 
-                d="M10 5 Q-10 50, 40 90" 
+                d="M10 5 Q-10 50, 40 85" 
                 stroke="currentColor" 
                 strokeWidth="2.5" 
                 strokeLinecap="round"
                 fill="none"
               />
-              {/* Arrow head pointing down */}
+              {/* Arrow head pointing down-right following curve direction */}
               <path 
-                d="M30 80 L40 95 L50 82" 
+                d="M28 78 L40 90 L45 73" 
                 stroke="currentColor" 
                 strokeWidth="2.5" 
                 strokeLinecap="round" 
