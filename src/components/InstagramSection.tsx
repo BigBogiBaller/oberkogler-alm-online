@@ -1,42 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Instagram, ChevronLeft, ChevronRight } from "lucide-react";
 import instagramVideo1 from "@/assets/instagram-video-1.mp4";
 import instagramVideo2 from "@/assets/instagram-video-2.mp4";
 import instagramVideo3 from "@/assets/instagram-video-3.mp4";
+import instagramVideo4 from "@/assets/instagram-video-4.mp4";
 
 interface InstagramPost {
-  type: 'video' | 'embed';
   src: string;
-  link?: string;
+  link: string;
 }
 
 const InstagramSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Load Instagram embed script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = '//www.instagram.com/embed.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Process embeds when script loads
-    script.onload = () => {
-      if ((window as any).instgrm) {
-        (window as any).instgrm.Embeds.process();
-      }
-    };
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   const instagramPosts: InstagramPost[] = [
-    { type: 'video', src: instagramVideo1, link: 'https://www.instagram.com/p/DLelUmZo5ID/' },
-    { type: 'video', src: instagramVideo2, link: 'https://www.instagram.com/p/DMbAuEwIQh0/' },
-    { type: 'video', src: instagramVideo3, link: 'https://www.instagram.com/p/DL6wiPtIVZ1/' },
-    { type: 'embed', src: 'https://www.instagram.com/reel/DL1mtTsIrHo/embed' },
+    { src: instagramVideo1, link: 'https://www.instagram.com/p/DLelUmZo5ID/' },
+    { src: instagramVideo2, link: 'https://www.instagram.com/p/DMbAuEwIQh0/' },
+    { src: instagramVideo3, link: 'https://www.instagram.com/p/DL6wiPtIVZ1/' },
+    { src: instagramVideo4, link: 'https://www.instagram.com/p/DL1mtTsIrHo/' },
   ];
 
   const visibleCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 2 : 4;
@@ -100,32 +81,21 @@ const InstagramSection = () => {
                   className="flex-shrink-0 relative group"
                   style={{ width: `calc(${100 / visibleCount}% - ${(visibleCount - 1) * 16 / visibleCount}px)` }}
                 >
-                  {post.type === 'video' ? (
-                    <a 
-                      href={post.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-black cursor-pointer"
-                    >
-                      <video 
-                        src={post.src}
-                        className="w-full h-full object-cover"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                      />
-                    </a>
-                  ) : (
-                    <div className="aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-white">
-                      <iframe 
-                        src={post.src} 
-                        className="w-full h-full" 
-                        allowFullScreen 
-                        title={`Instagram Reel ${index + 1}`}
-                      />
-                    </div>
-                  )}
+                  <a 
+                    href={post.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-black cursor-pointer"
+                  >
+                    <video 
+                      src={post.src}
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  </a>
                   {/* Instagram Icon Overlay */}
                   <div className="absolute top-3 left-3 pointer-events-none">
                     <Instagram className="w-5 h-5 text-white drop-shadow-lg" />
