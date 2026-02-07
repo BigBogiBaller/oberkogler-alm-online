@@ -1,8 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Instagram, ChevronLeft, ChevronRight } from "lucide-react";
 
 const InstagramSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Load Instagram embed script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '//www.instagram.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Process embeds when script loads
+    script.onload = () => {
+      if ((window as any).instgrm) {
+        (window as any).instgrm.Embeds.process();
+      }
+    };
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   const instagramReels = [
     "https://www.instagram.com/reel/DLelUmZo5ID/embed",
