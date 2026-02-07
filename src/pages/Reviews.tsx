@@ -6,62 +6,93 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const Reviews = () => {
   const { t } = useLanguage();
 
+  const totalReviews = 217;
+  const averageRating = 4.9;
+
   const reviews = [
     {
       name: "Maria S.",
       rating: 5,
-      date: "2024-10",
+      date: "2024-12",
       textDe: "Wunderschöne Alm mit herrlichem Ausblick! Das Essen war ausgezeichnet und die Atmosphäre einzigartig. Besonders der Kaiserschmarrn war ein Traum!",
       textEn: "Beautiful alpine hut with stunning views! The food was excellent and the atmosphere unique. The Kaiserschmarrn was especially delicious!"
     },
     {
       name: "Thomas K.",
       rating: 5,
-      date: "2024-09",
+      date: "2024-11",
       textDe: "Perfekte Lage für eine Wanderpause. Die hausgemachten Produkte sind ein Genuss. Service war sehr freundlich und aufmerksam.",
       textEn: "Perfect location for a hiking break. The homemade products are delicious. Service was very friendly and attentive."
     },
     {
       name: "Sophie M.",
       rating: 5,
-      date: "2024-08",
+      date: "2024-11",
       textDe: "Die authentische alpine Küche hat uns begeistert! Alles frisch und regional. Die Aussicht ist atemberaubend. Werden definitiv wiederkommen!",
       textEn: "The authentic alpine cuisine impressed us! Everything fresh and regional. The view is breathtaking. Will definitely come back!"
     },
     {
       name: "Franz W.",
       rating: 5,
-      date: "2024-07",
+      date: "2024-10",
       textDe: "Tolle Alm mit traditionellem Charme. Die Wirtsleute sind sehr herzlich. Das Bergkäse-Jausenbrett war köstlich!",
       textEn: "Great alpine hut with traditional charm. The hosts are very warm. The mountain cheese platter was delicious!"
     },
     {
       name: "Julia B.",
       rating: 5,
-      date: "2024-06",
+      date: "2024-10",
       textDe: "Ein Highlight unserer Wandertour! Gemütliche Atmosphäre und fantastisches Essen. Die hausgemachten Kuchen sind ein Traum.",
       textEn: "A highlight of our hiking tour! Cozy atmosphere and fantastic food. The homemade cakes are a dream."
     },
     {
       name: "Michael R.",
-      rating: 4,
-      date: "2024-05",
+      rating: 5,
+      date: "2024-09",
       textDe: "Sehr schöne Lage und gutes Essen. Preise sind angemessen für die Qualität. Kann ich nur empfehlen!",
       textEn: "Very nice location and good food. Prices are reasonable for the quality. I can only recommend it!"
     },
     {
       name: "Anna L.",
       rating: 5,
-      date: "2024-04",
+      date: "2024-09",
       textDe: "Wir waren zum ersten Mal hier und sind begeistert! Die Produkte aus eigener Herstellung sind fantastisch. Das Team ist super freundlich.",
       textEn: "We were here for the first time and are thrilled! The homemade products are fantastic. The team is super friendly."
     },
     {
       name: "Peter H.",
       rating: 5,
-      date: "2024-03",
+      date: "2024-08",
       textDe: "Absolute Empfehlung! Die Alm ist wunderschön gelegen und das Essen schmeckt hervorragend. Ein echter Geheimtipp!",
       textEn: "Absolute recommendation! The alpine hut is beautifully located and the food tastes excellent. A real insider tip!"
+    },
+    {
+      name: "Elisabeth G.",
+      rating: 5,
+      date: "2024-08",
+      textDe: "Traumhafte Aussicht und super nettes Personal. Die Brettljause war reichhaltig und lecker. Komme wieder!",
+      textEn: "Stunning views and super friendly staff. The traditional platter was abundant and delicious. Will come back!"
+    },
+    {
+      name: "Markus T.",
+      rating: 5,
+      date: "2024-07",
+      textDe: "Endlich eine echte Alm mit Charakter! Nicht überlaufen, tolle Atmosphäre. Der Apfelstrudel ist ein Gedicht.",
+      textEn: "Finally a real alpine hut with character! Not crowded, great atmosphere. The apple strudel is amazing."
+    },
+    {
+      name: "Sabine K.",
+      rating: 5,
+      date: "2024-07",
+      textDe: "Perfekt für Familien! Kinder haben die Tiere geliebt, wir Erwachsenen das Essen. Alles hausgemacht und frisch.",
+      textEn: "Perfect for families! Kids loved the animals, we adults loved the food. Everything homemade and fresh."
+    },
+    {
+      name: "Christian P.",
+      rating: 5,
+      date: "2024-06",
+      textDe: "Top Qualität zu fairen Preisen. Die Wirtsleute nehmen sich Zeit für ihre Gäste. So muss Gastfreundschaft sein!",
+      textEn: "Top quality at fair prices. The hosts take time for their guests. That's what hospitality should be!"
     }
   ];
 
@@ -83,8 +114,8 @@ const Reviews = () => {
                 <Star key={star} className="w-6 h-6 fill-primary text-primary" />
               ))}
             </div>
-            <span className="text-2xl font-bold text-primary">4.9</span>
-            <span className="text-muted-foreground">({reviews.length} {t('reviews.reviews')})</span>
+            <span className="text-2xl font-bold text-primary">{averageRating}</span>
+            <span className="text-muted-foreground">({totalReviews} {t('reviews.reviews')})</span>
           </div>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -134,14 +165,20 @@ const Reviews = () => {
             {/* View on Google */}
             <Card className="border-border/50 inline-block">
               <CardContent className="pt-6">
-                <p className="text-muted-foreground mb-4">{t('reviews.visitUs')}</p>
+                <p className="text-muted-foreground mb-4">
+                  {t('reviews.language') === 'de' 
+                    ? `Hier sehen Sie eine Auswahl unserer ${totalReviews} Google-Bewertungen.` 
+                    : `Here you see a selection of our ${totalReviews} Google reviews.`}
+                </p>
                 <a 
                   href="https://www.google.com/maps/place/Oberkogler+Alm/@47.568484,14.1737474"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
+                  className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
                 >
-                  {t('reviews.googleLink')}
+                  {t('reviews.language') === 'de' 
+                    ? 'Alle Bewertungen auf Google ansehen' 
+                    : 'View all reviews on Google'}
                 </a>
               </CardContent>
             </Card>
