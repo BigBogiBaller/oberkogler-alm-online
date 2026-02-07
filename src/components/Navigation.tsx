@@ -1,6 +1,6 @@
 import { NavLink } from "@/components/NavLink";
 import { useNavigate } from "react-router-dom";
-import { Menu, X, Mail, Phone, Instagram } from "lucide-react";
+import { Menu, X, Mail, Phone, Instagram, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import CartSheet from "@/components/CartSheet";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 const Navigation = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHoursOpen, setIsHoursOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
   
@@ -82,7 +83,7 @@ const Navigation = () => {
 
             {/* Phone Icon */}
             <a 
-              href="tel:+4336873575" 
+              href="tel:+436645014429" 
               className={cn(
                 "transition-colors hidden sm:block",
                 isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80"
@@ -191,7 +192,7 @@ const Navigation = () => {
               <Mail size={20} strokeWidth={1.5} />
             </a>
             <a 
-              href="tel:+4336873575" 
+              href="tel:+436645014429" 
               className="text-foreground hover:text-primary transition-colors"
               aria-label="Phone"
             >
@@ -285,12 +286,26 @@ const Navigation = () => {
             >
               {language === 'de' ? 'Galerie' : 'Gallery'}
             </NavLink>
-            <button 
-              onClick={scrollToContact}
-              className="block font-heading text-2xl text-foreground hover:text-primary transition-colors text-left w-full"
-            >
-              {language === 'de' ? 'Öffnungszeiten' : 'Opening Hours'}
-            </button>
+            <div>
+              <button 
+                onClick={() => setIsHoursOpen(!isHoursOpen)}
+                className="flex items-center gap-2 font-heading text-2xl text-foreground hover:text-primary transition-colors text-left w-full"
+              >
+                {language === 'de' ? 'Öffnungszeiten' : 'Opening Hours'}
+                <ChevronDown className={cn("w-5 h-5 transition-transform", isHoursOpen && "rotate-180")} />
+              </button>
+              <div className={cn(
+                "overflow-hidden transition-all duration-300 ease-out",
+                isHoursOpen ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0"
+              )}>
+                <div className="pl-4 space-y-2 text-muted-foreground text-sm">
+                  <p><span className="text-primary font-medium">{language === 'de' ? 'Montag' : 'Monday'}:</span> {language === 'de' ? 'Ruhetag' : 'Closed'}</p>
+                  <p><span className="text-primary font-medium">{language === 'de' ? 'Dienstag bis Sonntag' : 'Tuesday to Sunday'}:</span> 10:00 - 18:00</p>
+                  <p className="pt-2"><span className="text-primary font-medium">{language === 'de' ? 'Küche geöffnet' : 'Kitchen open'}:</span></p>
+                  <p>10:00 - 17:00</p>
+                </div>
+              </div>
+            </div>
             <button 
               onClick={scrollToContact}
               className="block font-heading text-2xl text-foreground hover:text-primary transition-colors text-left w-full"
@@ -304,11 +319,11 @@ const Navigation = () => {
             {/* Contact Info */}
             <div className="space-y-2">
               <a 
-                href="tel:+4336873575" 
+                href="tel:+436645014429" 
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm"
               >
                 <span className="text-primary font-medium">Tel:</span>
-                <span className="underline underline-offset-2">+43 3687 3575</span>
+                <span className="underline underline-offset-2">+43 664 5014429</span>
               </a>
               <a 
                 href="mailto:info@oberkogler-alm.at" 
