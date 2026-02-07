@@ -262,7 +262,7 @@ const Navigation = () => {
               onClick={closeSidebar}
               className="block font-heading text-2xl text-foreground hover:text-primary transition-colors"
             >
-              {language === 'de' ? 'Willkommen' : 'Welcome'}
+              {language === 'de' ? 'Über Uns' : 'About Us'}
             </NavLink>
             <NavLink 
               to="/menu" 
