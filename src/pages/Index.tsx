@@ -14,7 +14,7 @@ import hero5 from "@/assets/hero-5.jpg";
 import hero6 from "@/assets/hero-6.jpg";
 import heroAlm from "@/assets/hero-alm.jpg";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
-// Gallery images
+// Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
 import galleryDekoration from "@/assets/gallery-dekoration.jpg";
@@ -25,6 +25,17 @@ import galleryTeich from "@/assets/gallery-teich.jpg";
 import gallerySonnenuntergang from "@/assets/gallery-sonnenuntergang.jpg";
 import galleryHausWinter from "@/assets/gallery-haus-winter.jpg";
 import galleryBerg from "@/assets/gallery-berg.jpg";
+// Gallery images batch 2
+import gallerySchild from "@/assets/gallery-schild.jpg";
+import galleryBier from "@/assets/gallery-bier.jpg";
+import galleryBlumen from "@/assets/gallery-blumen.jpg";
+import galleryBerge from "@/assets/gallery-berge.jpg";
+import galleryWinterSonnenuntergang from "@/assets/gallery-winter-sonnenuntergang.jpg";
+import galleryHuette from "@/assets/gallery-huette.jpg";
+import galleryBierAussicht from "@/assets/gallery-bier-aussicht.jpg";
+import galleryTerrasse from "@/assets/gallery-terrasse.jpg";
+import galleryBrettljause from "@/assets/gallery-brettljause.jpg";
+import galleryPferd from "@/assets/gallery-pferd.jpg";
 // Animated Section Component
 const AnimatedSection = ({
   children,
@@ -48,10 +59,11 @@ const Index = () => {
     t
   } = useLanguage();
   const heroImages = [hero2, hero3, hero4, hero5, hero6];
-  const galleryImages = [
+  // Show only first 12 images on homepage
+  const galleryPreviewImages = [
     hero2, hero3, hero4, hero5, hero6,
     galleryKuchen, galleryWaldweg, galleryDekoration, galleryGarten, galleryKuehe,
-    galleryWinterWolken, galleryTeich, gallerySonnenuntergang, galleryHausWinter, galleryBerg
+    galleryWinterWolken, galleryTeich
   ];
 
   // Stagger animations for team and animals
@@ -425,7 +437,7 @@ const Index = () => {
           </AnimatedSection>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {galleryImages.map((image, index) => <AnimatedSection key={index} animation="scale-in">
+            {galleryPreviewImages.map((image, index) => <AnimatedSection key={index} animation="scale-in">
                 <Card className="overflow-hidden border-border/50 shadow-sm card-hover group">
                   <CardContent className="p-0">
                     <div className="aspect-square overflow-hidden">
@@ -435,6 +447,14 @@ const Index = () => {
                 </Card>
               </AnimatedSection>)}
           </div>
+
+          <AnimatedSection className="text-center mt-12">
+            <Link to="/gallery">
+              <Button size="lg" variant="default" className="text-lg hover-lift">
+                {t('gallery.button')}
+              </Button>
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
 

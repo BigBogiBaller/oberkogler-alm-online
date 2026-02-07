@@ -232,6 +232,14 @@ const Navigation = () => {
               >
                 — Shop
               </NavLink>
+              <NavLink 
+                to="/gallery" 
+                onClick={closeSidebar}
+                className="block text-muted-foreground hover:text-primary transition-colors text-sm"
+                activeClassName="text-primary font-medium"
+              >
+                — {language === 'de' ? 'Galerie' : 'Gallery'}
+              </NavLink>
               <button 
                 onClick={scrollToContact}
                 className="block text-muted-foreground hover:text-primary transition-colors text-sm text-left"
@@ -269,6 +277,13 @@ const Navigation = () => {
               className="block font-heading text-2xl text-foreground hover:text-primary transition-colors"
             >
               {language === 'de' ? 'Hofladen' : 'Farm Shop'}
+            </NavLink>
+            <NavLink 
+              to="/gallery" 
+              onClick={closeSidebar}
+              className="block font-heading text-2xl text-foreground hover:text-primary transition-colors"
+            >
+              {language === 'de' ? 'Galerie' : 'Gallery'}
             </NavLink>
             <button 
               onClick={scrollToContact}
