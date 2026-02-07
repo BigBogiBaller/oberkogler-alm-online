@@ -226,7 +226,8 @@ const Index = () => {
           <div ref={teamStagger.containerRef} className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {teamMembers.map((member, index) => {
             const Icon = member.icon;
-            return <Card key={member.key} className={`border-border/50 shadow-sm card-hover transition-all duration-700 ${teamStagger.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            const slideDirection = index % 2 === 0 ? '-translate-x-12' : 'translate-x-12';
+            return <Card key={member.key} className={`border-border/50 shadow-sm card-hover transition-all duration-700 ease-out ${teamStagger.visibleItems[index] ? 'opacity-100 translate-x-0' : `opacity-0 ${slideDirection}`}`}>
                   <CardContent className="pt-6 text-center">
                     <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <Icon className="w-12 h-12 text-primary" />
@@ -273,7 +274,8 @@ const Index = () => {
           <div ref={animalsStagger.containerRef} className="grid md:grid-cols-3 gap-8">
             {animals.map((animal, index) => {
             const Icon = animal.icon;
-            return <Card key={animal.key} className={`border-border/50 shadow-lg card-hover overflow-hidden transition-all duration-700 ${animalsStagger.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            const slideDirection = index % 2 === 0 ? '-translate-x-12' : 'translate-x-12';
+            return <Card key={animal.key} className={`border-border/50 shadow-lg card-hover overflow-hidden transition-all duration-700 ease-out ${animalsStagger.visibleItems[index] ? 'opacity-100 translate-x-0' : `opacity-0 ${slideDirection}`}`}>
                   <div className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
                     <Icon className="w-20 h-20 text-primary/50" />
                   </div>
