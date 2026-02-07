@@ -14,6 +14,17 @@ import hero5 from "@/assets/hero-5.jpg";
 import hero6 from "@/assets/hero-6.jpg";
 import heroAlm from "@/assets/hero-alm.jpg";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
+// Gallery images
+import galleryKuchen from "@/assets/gallery-kuchen.jpg";
+import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
+import galleryDekoration from "@/assets/gallery-dekoration.jpg";
+import galleryGarten from "@/assets/gallery-garten.jpg";
+import galleryKuehe from "@/assets/gallery-kuehe.jpg";
+import galleryWinterWolken from "@/assets/gallery-winter-wolken.jpg";
+import galleryTeich from "@/assets/gallery-teich.jpg";
+import gallerySonnenuntergang from "@/assets/gallery-sonnenuntergang.jpg";
+import galleryHausWinter from "@/assets/gallery-haus-winter.jpg";
+import galleryBerg from "@/assets/gallery-berg.jpg";
 // Animated Section Component
 const AnimatedSection = ({
   children,
@@ -37,6 +48,11 @@ const Index = () => {
     t
   } = useLanguage();
   const heroImages = [hero2, hero3, hero4, hero5, hero6];
+  const galleryImages = [
+    hero2, hero3, hero4, hero5, hero6,
+    galleryKuchen, galleryWaldweg, galleryDekoration, galleryGarten, galleryKuehe,
+    galleryWinterWolken, galleryTeich, gallerySonnenuntergang, galleryHausWinter, galleryBerg
+  ];
 
   // Stagger animations for team and animals
   const teamStagger = useStaggerAnimation(5, 150);
@@ -408,8 +424,8 @@ const Index = () => {
             </p>
           </AnimatedSection>
           
-          <div className="grid md:grid-cols-3 gap-4">
-            {heroImages.map((image, index) => <AnimatedSection key={index} animation="scale-in">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {galleryImages.map((image, index) => <AnimatedSection key={index} animation="scale-in">
                 <Card className="overflow-hidden border-border/50 shadow-sm card-hover group">
                   <CardContent className="p-0">
                     <div className="aspect-square overflow-hidden">
