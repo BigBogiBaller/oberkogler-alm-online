@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
 import { Instagram, ChevronLeft, ChevronRight } from "lucide-react";
+import instagramVideo1 from "@/assets/instagram-video-1.mp4";
+
+interface InstagramPost {
+  type: 'video' | 'embed';
+  src: string;
+  link?: string;
+}
 
 const InstagramSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,16 +30,15 @@ const InstagramSection = () => {
     };
   }, []);
 
-  const instagramReels = [
-    "https://www.instagram.com/reel/DLelUmZo5ID/embed",
-    "https://www.instagram.com/reel/DMbAuEwIQh0/embed",
-    "https://www.instagram.com/reel/DL6wiPtIVZ1/embed",
-    "https://www.instagram.com/reel/DL1mtTsIrHo/embed",
-    "https://www.instagram.com/reel/DLelUmZo5ID/embed",
+  const instagramPosts: InstagramPost[] = [
+    { type: 'video', src: instagramVideo1, link: 'https://www.instagram.com/p/DLelUmZo5ID/' },
+    { type: 'embed', src: 'https://www.instagram.com/reel/DMbAuEwIQh0/embed' },
+    { type: 'embed', src: 'https://www.instagram.com/reel/DL6wiPtIVZ1/embed' },
+    { type: 'embed', src: 'https://www.instagram.com/reel/DL1mtTsIrHo/embed' },
   ];
 
   const visibleCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 2 : 4;
-  const maxIndex = Math.max(0, instagramReels.length - visibleCount);
+  const maxIndex = Math.max(0, instagramPosts.length - visibleCount);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
@@ -86,20 +92,38 @@ const InstagramSection = () => {
               className="flex gap-4 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${currentIndex * (100 / visibleCount)}%)` }}
             >
-              {instagramReels.map((url, index) => (
+              {instagramPosts.map((post, index) => (
                 <div
                   key={index}
                   className="flex-shrink-0 relative group"
                   style={{ width: `calc(${100 / visibleCount}% - ${(visibleCount - 1) * 16 / visibleCount}px)` }}
                 >
-                  <div className="aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-white">
-                    <iframe 
-                      src={url} 
-                      className="w-full h-full" 
-                      allowFullScreen 
-                      title={`Instagram Reel ${index + 1}`}
-                    />
-                  </div>
+                  {post.type === 'video' ? (
+                    <a 
+                      href={post.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-black cursor-pointer"
+                    >
+                      <video 
+                        src={post.src}
+                        className="w-full h-full object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                    </a>
+                  ) : (
+                    <div className="aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-white">
+                      <iframe 
+                        src={post.src} 
+                        className="w-full h-full" 
+                        allowFullScreen 
+                        title={`Instagram Reel ${index + 1}`}
+                      />
+                    </div>
+                  )}
                   {/* Instagram Icon Overlay */}
                   <div className="absolute top-3 left-3 pointer-events-none">
                     <Instagram className="w-5 h-5 text-white drop-shadow-lg" />
