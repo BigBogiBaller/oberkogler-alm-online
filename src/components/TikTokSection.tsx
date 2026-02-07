@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import instagramVideo1 from "@/assets/instagram-video-1.mp4";
+import instagramVideo2 from "@/assets/instagram-video-2.mp4";
+import instagramVideo3 from "@/assets/instagram-video-3.mp4";
+import instagramVideo4 from "@/assets/instagram-video-4.mp4";
+import instagramVideo5 from "@/assets/instagram-video-5.mp4";
+import instagramVideo6 from "@/assets/instagram-video-6.mp4";
 
 // TikTok Icon Component
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -8,18 +14,25 @@ const TikTokIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+interface TikTokPost {
+  src: string;
+  link: string;
+}
+
 const TikTokSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const tiktokVideos = [
-    "https://www.tiktok.com/embed/v2/7493827615282866449",
-    "https://www.tiktok.com/embed/v2/7489579638741757201",
-    "https://www.tiktok.com/embed/v2/7481987437543210257",
-    "https://www.tiktok.com/embed/v2/7479023399863350545",
+  const tiktokPosts: TikTokPost[] = [
+    { src: instagramVideo1, link: 'https://www.tiktok.com/@oberkogler_alm' },
+    { src: instagramVideo2, link: 'https://www.tiktok.com/@oberkogler_alm' },
+    { src: instagramVideo3, link: 'https://www.tiktok.com/@oberkogler_alm' },
+    { src: instagramVideo4, link: 'https://www.tiktok.com/@oberkogler_alm' },
+    { src: instagramVideo5, link: 'https://www.tiktok.com/@oberkogler_alm' },
+    { src: instagramVideo6, link: 'https://www.tiktok.com/@oberkogler_alm' },
   ];
 
   const visibleCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 2 : 4;
-  const maxIndex = Math.max(0, tiktokVideos.length - visibleCount);
+  const maxIndex = Math.max(0, tiktokPosts.length - visibleCount);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
@@ -30,7 +43,7 @@ const TikTokSection = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-[#e6f0f5]">
+    <section className="py-20 px-4 bg-[#f5e6e0]">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
           {/* Rotating TikTok Badge */}
@@ -47,7 +60,7 @@ const TikTokSection = () => {
                     d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"
                   />
                 </defs>
-                <text className="fill-[#010101] text-[13px] uppercase tracking-[0.3em] font-medium">
+                <text className="fill-primary text-[13px] uppercase tracking-[0.3em] font-medium">
                   <textPath href="#circlePathTikTok">
                     · Oberkogler Alm @ TikTok · folge uns ·
                   </textPath>
@@ -58,11 +71,9 @@ const TikTokSection = () => {
                 href="https://www.tiktok.com/@oberkogler_alm" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="absolute inset-0 flex items-center justify-center"
+                className="absolute inset-0 flex items-center justify-center hover:scale-110 transition-transform"
               >
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-lg border-2 border-[#010101] flex items-center justify-center hover:bg-black/10 transition-colors">
-                  <TikTokIcon className="w-8 h-8 md:w-10 md:h-10 text-[#010101]" />
-                </div>
+                <TikTokIcon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
               </a>
             </div>
           </div>
@@ -73,20 +84,27 @@ const TikTokSection = () => {
               className="flex gap-4 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${currentIndex * (100 / visibleCount)}%)` }}
             >
-              {tiktokVideos.map((url, index) => (
+              {tiktokPosts.map((post, index) => (
                 <div
                   key={index}
                   className="flex-shrink-0 relative group"
                   style={{ width: `calc(${100 / visibleCount}% - ${(visibleCount - 1) * 16 / visibleCount}px)` }}
                 >
-                  <div className="aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-white">
-                    <iframe 
-                      src={url} 
-                      className="w-full h-full" 
-                      allowFullScreen 
-                      title={`TikTok Video ${index + 1}`}
+                  <a 
+                    href={post.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-black cursor-pointer"
+                  >
+                    <video 
+                      src={post.src}
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
                     />
-                  </div>
+                  </a>
                   {/* TikTok Icon Overlay */}
                   <div className="absolute top-3 left-3 pointer-events-none">
                     <TikTokIcon className="w-5 h-5 text-white drop-shadow-lg" />
@@ -102,7 +120,7 @@ const TikTokSection = () => {
           <button 
             onClick={handlePrev}
             disabled={currentIndex === 0}
-            className="p-2 text-[#010101] hover:text-black/70 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="p-2 text-primary hover:text-primary/70 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             aria-label="Previous"
           >
             <ChevronLeft className="w-8 h-8" strokeWidth={1.5} />
@@ -110,7 +128,7 @@ const TikTokSection = () => {
           <button 
             onClick={handleNext}
             disabled={currentIndex >= maxIndex}
-            className="p-2 text-[#010101] hover:text-black/70 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="p-2 text-primary hover:text-primary/70 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             aria-label="Next"
           >
             <ChevronRight className="w-8 h-8" strokeWidth={1.5} />

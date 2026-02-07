@@ -64,11 +64,9 @@ const InstagramSection = () => {
                 href="https://www.instagram.com/oberkogler_alm/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="absolute inset-0 flex items-center justify-center"
+                className="absolute inset-0 flex items-center justify-center hover:scale-110 transition-transform"
               >
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-lg border-2 border-primary flex items-center justify-center hover:bg-primary/10 transition-colors">
-                  <Instagram className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-                </div>
+                <Instagram className="w-10 h-10 md:w-12 md:h-12 text-primary" />
               </a>
             </div>
           </div>
