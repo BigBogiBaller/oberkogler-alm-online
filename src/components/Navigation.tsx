@@ -164,6 +164,14 @@ const Navigation = () => {
 
           {/* Contact & Social Links */}
           <div className="mt-12 pt-8 border-t border-border space-y-4">
+            {/* Address */}
+            <div className="text-sm text-muted-foreground">
+              <p className="text-primary font-medium mb-1">Oberkogler Alm</p>
+              <p>Wörschachberg 63</p>
+              <p>8942 Wörschach</p>
+              <p>Österreich</p>
+            </div>
+
             {/* Contact Info */}
             <div className="space-y-2">
               <a href="tel:+436645014429" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm">
