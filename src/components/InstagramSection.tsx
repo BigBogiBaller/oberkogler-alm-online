@@ -4,6 +4,7 @@ import instagramVideo1 from "@/assets/instagram-video-1.mp4";
 import instagramVideo2 from "@/assets/instagram-video-2.mp4";
 import instagramVideo3 from "@/assets/instagram-video-3.mp4";
 import instagramVideo4 from "@/assets/instagram-video-4.mp4";
+import instagramVideo5 from "@/assets/instagram-video-5.mp4";
 
 interface InstagramPost {
   src: string;
@@ -18,6 +19,7 @@ const InstagramSection = () => {
     { src: instagramVideo2, link: 'https://www.instagram.com/p/DMbAuEwIQh0/' },
     { src: instagramVideo3, link: 'https://www.instagram.com/p/DL6wiPtIVZ1/' },
     { src: instagramVideo4, link: 'https://www.instagram.com/p/DL1mtTsIrHo/' },
+    { src: instagramVideo5, link: 'https://www.instagram.com/p/DLrjG0sI77e/' },
   ];
 
   const visibleCount = typeof window !== 'undefined' && window.innerWidth < 768 ? 2 : 4;
