@@ -16,7 +16,7 @@ import hero5 from "@/assets/hero-5.jpg";
 import hero6 from "@/assets/hero-6.jpg";
 import heroAlm from "@/assets/hero-alm.jpg";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
-import teamVideoThumbnail from "@/assets/team-video-thumbnail.png";
+import teamVideo from "@/assets/team-video.mp4";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
@@ -276,17 +276,15 @@ const Index = () => {
               rel="noopener noreferrer"
               className="block max-w-sm rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300"
             >
-              <div className="aspect-[9/16] relative">
-                <img 
-                  src={teamVideoThumbnail} 
-                  alt="Team Video" 
+              <div className="aspect-[9/16] relative bg-black">
+                <video 
+                  src={teamVideo}
                   className="w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                 />
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
-                    <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-primary border-b-8 border-b-transparent ml-1" />
-                  </div>
-                </div>
               </div>
             </a>
           </AnimatedSection>
