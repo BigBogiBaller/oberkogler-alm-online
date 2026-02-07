@@ -65,11 +65,7 @@ const Index = () => {
   } = useLanguage();
   const heroImages = [hero2, hero3, hero4, hero5, hero6];
   // Show only first 12 images on homepage
-  const galleryPreviewImages = [
-    hero2, hero3, hero4, hero5, hero6,
-    galleryKuchen, galleryWaldweg, galleryDekoration, galleryGarten, galleryKuehe,
-    galleryWinterWolken, galleryTeich
-  ];
+  const galleryPreviewImages = [hero2, hero3, hero4, hero5, hero6, galleryKuchen, galleryWaldweg, galleryDekoration, galleryGarten, galleryKuehe, galleryWinterWolken, galleryTeich];
 
   // Stagger animations for team and animals
   const teamStagger = useStaggerAnimation(5, 150);
@@ -161,14 +157,7 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="fade-in-left">
               <div className="relative overflow-hidden rounded-lg shadow-xl">
-                <video 
-                  src={aboutVideo} 
-                  className="w-full h-[500px] object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
+                <video src={aboutVideo} className="w-full h-[500px] object-cover" autoPlay muted loop playsInline />
               </div>
             </AnimatedSection>
             
@@ -252,30 +241,14 @@ const Index = () => {
 
           {/* Curved Arrow pointing down to Team Video */}
           <AnimatedSection className="flex flex-col items-center mt-16">
-            <img 
-              src={curvedArrow} 
-              alt="Arrow pointing to video" 
-              className="w-20 h-auto"
-            />
+            <img src={curvedArrow} alt="Arrow pointing to video" className="w-20 h-auto" />
           </AnimatedSection>
 
           {/* Team Video */}
           <AnimatedSection className="mt-8 flex justify-center">
-            <a 
-              href="https://www.instagram.com/oberkogler_alm/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block max-w-sm rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300"
-            >
+            <a href="https://www.instagram.com/oberkogler_alm/" target="_blank" rel="noopener noreferrer" className="block max-w-sm rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300">
               <div className="aspect-[9/16] relative bg-black">
-                <video 
-                  src={teamVideo}
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
+                <video src={teamVideo} className="w-full h-full object-cover" autoPlay muted loop playsInline />
               </div>
             </a>
           </AnimatedSection>
@@ -447,9 +420,7 @@ const Index = () => {
       <section className="pt-20 pb-0 px-4 bg-muted/30">
         <div className="container mx-auto max-w-6xl">
           <AnimatedSection className="text-center mb-8">
-            <span className="text-sm uppercase tracking-widest text-primary font-medium">
-              Social Media
-            </span>
+            
             <h2 className="text-4xl md:text-5xl font-bold text-primary mt-4 mb-4">
               {t('social.title')}
             </h2>
