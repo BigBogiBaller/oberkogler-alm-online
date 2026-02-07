@@ -404,6 +404,20 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Social Media Section */}
+      <section className="pt-20 pb-0 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <AnimatedSection className="text-center mb-8">
+            <span className="text-sm uppercase tracking-widest text-primary font-medium">
+              Social Media
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mt-4 mb-4">
+              {t('social.title')}
+            </h2>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Instagram Section */}
       <InstagramSection />
 
