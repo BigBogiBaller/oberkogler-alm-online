@@ -104,6 +104,7 @@ const translations = {
     'gallery.badge': 'Impressionen',
     'gallery.title': 'Eindrücke von der Alm',
     'gallery.subtitle': 'Entdecken Sie die Schönheit der Oberkogler Alm',
+    'gallery.button': 'Alle Bilder ansehen',
     
     // Social Media
     'social.title': 'Folgen Sie uns auf Social Media',
@@ -256,6 +257,7 @@ const translations = {
     'gallery.badge': 'Impressions',
     'gallery.title': 'Impressions from the Alm',
     'gallery.subtitle': 'Discover the beauty of Oberkogler Alm',
+    'gallery.button': 'View All Photos',
     
     // Social Media
     'social.title': 'Follow Us on Social Media',
