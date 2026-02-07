@@ -242,25 +242,25 @@ const Index = () => {
           })}
           </div>
 
-          {/* Curved Bow Arrow pointing to Team Video */}
+          {/* Curved Bow Arrow pointing down to Team Video */}
           <AnimatedSection className="flex flex-col items-center mt-16">
             <svg 
-              className="w-32 h-24 text-primary" 
-              viewBox="0 0 120 80" 
+              className="w-20 h-28 text-primary" 
+              viewBox="0 0 80 100" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* Curved bow line */}
+              {/* Curved bow line going down */}
               <path 
-                d="M10 10 Q60 70, 110 10" 
+                d="M10 5 Q-10 50, 40 90" 
                 stroke="currentColor" 
                 strokeWidth="2.5" 
                 strokeLinecap="round"
                 fill="none"
               />
-              {/* Arrow head at the end */}
+              {/* Arrow head pointing down */}
               <path 
-                d="M100 5 L110 10 L100 18" 
+                d="M30 80 L40 95 L50 82" 
                 stroke="currentColor" 
                 strokeWidth="2.5" 
                 strokeLinecap="round" 
