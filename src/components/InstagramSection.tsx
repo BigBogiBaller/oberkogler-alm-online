@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Instagram, ChevronLeft, ChevronRight } from "lucide-react";
 import instagramVideo1 from "@/assets/instagram-video-1.mp4";
 import instagramVideo2 from "@/assets/instagram-video-2.mp4";
+import instagramVideo3 from "@/assets/instagram-video-3.mp4";
 
 interface InstagramPost {
   type: 'video' | 'embed';
@@ -34,7 +35,7 @@ const InstagramSection = () => {
   const instagramPosts: InstagramPost[] = [
     { type: 'video', src: instagramVideo1, link: 'https://www.instagram.com/p/DLelUmZo5ID/' },
     { type: 'video', src: instagramVideo2, link: 'https://www.instagram.com/p/DMbAuEwIQh0/' },
-    { type: 'embed', src: 'https://www.instagram.com/reel/DL6wiPtIVZ1/embed' },
+    { type: 'video', src: instagramVideo3, link: 'https://www.instagram.com/p/DL6wiPtIVZ1/' },
     { type: 'embed', src: 'https://www.instagram.com/reel/DL1mtTsIrHo/embed' },
   ];
 
