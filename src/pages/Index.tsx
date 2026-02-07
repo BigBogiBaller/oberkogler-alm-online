@@ -16,6 +16,7 @@ import hero5 from "@/assets/hero-5.jpg";
 import hero6 from "@/assets/hero-6.jpg";
 import heroAlm from "@/assets/hero-alm.jpg";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
+import teamVideoThumbnail from "@/assets/team-video-thumbnail.png";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
@@ -240,6 +241,55 @@ const Index = () => {
                 </Card>;
           })}
           </div>
+
+          {/* Curved Arrow pointing to Team Video */}
+          <AnimatedSection className="flex flex-col items-center mt-16">
+            <svg 
+              className="w-24 h-32 text-primary animate-bounce" 
+              viewBox="0 0 100 140" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path 
+                d="M50 0 C50 40, 20 60, 20 100 C20 110, 30 120, 50 120 C70 120, 80 110, 80 100 C80 60, 50 40, 50 0" 
+                stroke="currentColor" 
+                strokeWidth="3" 
+                strokeLinecap="round"
+                fill="none"
+              />
+              <path 
+                d="M35 105 L50 130 L65 105" 
+                stroke="currentColor" 
+                strokeWidth="3" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                fill="none"
+              />
+            </svg>
+          </AnimatedSection>
+
+          {/* Team Video */}
+          <AnimatedSection className="mt-8 flex justify-center">
+            <a 
+              href="https://www.instagram.com/oberkogler_alm/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block max-w-sm rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300"
+            >
+              <div className="aspect-[9/16] relative">
+                <img 
+                  src={teamVideoThumbnail} 
+                  alt="Team Video" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
+                    <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-primary border-b-8 border-b-transparent ml-1" />
+                  </div>
+                </div>
+              </div>
+            </a>
+          </AnimatedSection>
         </div>
       </section>
 
