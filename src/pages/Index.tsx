@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import InstagramSection from "@/components/InstagramSection";
+import TikTokSection from "@/components/TikTokSection";
 import { useScrollAnimation, useStaggerAnimation } from "@/hooks/useScrollAnimation";
 import MenuQRPopup from "@/components/MenuQRPopup";
 import hero2 from "@/assets/hero-2.jpg";
@@ -405,6 +406,9 @@ const Index = () => {
 
       {/* Instagram Section */}
       <InstagramSection />
+
+      {/* TikTok Section */}
+      <TikTokSection />
 
       {/* Gallery Section */}
       <section className="section-padding px-4 bg-background">
