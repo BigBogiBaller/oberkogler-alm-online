@@ -110,7 +110,28 @@ const Reviews = () => {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center space-y-6">
+            {/* Write a Review Button */}
+            <Card className="border-primary/30 bg-primary/5 inline-block">
+              <CardContent className="pt-6">
+                <p className="text-foreground font-medium mb-4">
+                  {t('reviews.language') === 'de' 
+                    ? 'Waren Sie bei uns? Teilen Sie Ihre Erfahrung!' 
+                    : 'Have you visited us? Share your experience!'}
+                </p>
+                <a 
+                  href="https://search.google.com/local/writereview?placeid=ChIJK8eP5GHvbUcRZDLk7TqxJak"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition-colors font-medium"
+                >
+                  <Star className="w-5 h-5" />
+                  {t('reviews.language') === 'de' ? 'Bewertung schreiben' : 'Write a Review'}
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* View on Google */}
             <Card className="border-border/50 inline-block">
               <CardContent className="pt-6">
                 <p className="text-muted-foreground mb-4">{t('reviews.visitUs')}</p>
