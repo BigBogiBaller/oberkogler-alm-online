@@ -15,6 +15,7 @@ import hero4 from "@/assets/hero-4.jpg";
 import hero5 from "@/assets/hero-5.jpg";
 import hero6 from "@/assets/hero-6.jpg";
 import heroAlm from "@/assets/hero-alm.jpg";
+import aboutVideo from "@/assets/about-video.mp4";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
 import teamVideo from "@/assets/team-video.mp4";
 // Gallery images batch 1
@@ -159,8 +160,14 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="fade-in-left">
               <div className="relative overflow-hidden rounded-lg shadow-xl">
-                <img src={heroAlm} alt="Oberkogler Alm" className="w-full h-[500px] object-cover hover-scale" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <video 
+                  src={aboutVideo} 
+                  className="w-full h-[500px] object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
               </div>
             </AnimatedSection>
             
