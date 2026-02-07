@@ -43,7 +43,7 @@ const TikTokSection = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-[#f5e6e0]">
+    <section className="py-20 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
           {/* Rotating TikTok Badge */}
