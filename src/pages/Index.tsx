@@ -18,6 +18,7 @@ import heroAlm from "@/assets/hero-alm.jpg";
 import aboutVideo from "@/assets/about-video.mp4";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
 import teamVideo from "@/assets/team-video.mp4";
+import curvedArrow from "@/assets/curved-arrow.png";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
@@ -249,32 +250,13 @@ const Index = () => {
           })}
           </div>
 
-          {/* Curved Bow Arrow pointing down to Team Video */}
+          {/* Curved Arrow pointing down to Team Video */}
           <AnimatedSection className="flex flex-col items-center mt-16">
-            <svg 
-              className="w-16 h-24 text-primary" 
-              viewBox="0 0 50 80" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Simple curved arrow */}
-              <path 
-                d="M40 5 C45 25, 35 45, 25 65" 
-                stroke="currentColor" 
-                strokeWidth="2.5" 
-                strokeLinecap="round"
-                fill="none"
-              />
-              {/* Arrow head */}
-              <path 
-                d="M18 55 L25 68 L32 57" 
-                stroke="currentColor" 
-                strokeWidth="2.5" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-                fill="none"
-              />
-            </svg>
+            <img 
+              src={curvedArrow} 
+              alt="Arrow pointing to video" 
+              className="w-20 h-auto"
+            />
           </AnimatedSection>
 
           {/* Team Video */}
