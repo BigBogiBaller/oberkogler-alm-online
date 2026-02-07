@@ -5,6 +5,7 @@ import { MapPin, Phone, Mail, Mountain, ExternalLink, Heart, Utensils, ShoppingB
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import HeroSlideshow from "@/components/HeroSlideshow";
+import InstagramSection from "@/components/InstagramSection";
 import { useScrollAnimation, useStaggerAnimation } from "@/hooks/useScrollAnimation";
 import MenuQRPopup from "@/components/MenuQRPopup";
 import hero2 from "@/assets/hero-2.jpg";
@@ -399,27 +400,11 @@ const Index = () => {
             </Button>
           </div>
 
-          {/* Social Media Videos */}
-          <div className="mt-20">
-            <AnimatedSection className="text-center mb-12">
-              <h3 className="text-2xl font-bold text-primary">
-                {t('social.title')}
-              </h3>
-            </AnimatedSection>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {["https://www.instagram.com/reel/DLelUmZo5ID/embed", "https://www.instagram.com/reel/DMbAuEwIQh0/embed", "https://www.instagram.com/reel/DL6wiPtIVZ1/embed", "https://www.instagram.com/reel/DL1mtTsIrHo/embed"].map((url, index) => <AnimatedSection key={index} animation="scale-in">
-                  <Card className="overflow-hidden border-border/50 shadow-sm card-hover">
-                    <CardContent className="p-0">
-                      <div className="aspect-[9/16]">
-                        <iframe src={url} className="w-full h-full" allowFullScreen title={`Instagram Video ${index + 1}`} />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </AnimatedSection>)}
-            </div>
-          </div>
         </div>
       </section>
+
+      {/* Instagram Section */}
+      <InstagramSection />
 
       {/* Gallery Section */}
       <section className="section-padding px-4 bg-background">
