@@ -245,22 +245,22 @@ const Index = () => {
           {/* Curved Bow Arrow pointing down to Team Video */}
           <AnimatedSection className="flex flex-col items-center mt-16">
             <svg 
-              className="w-28 h-36 text-primary" 
-              viewBox="0 0 100 130" 
+              className="w-24 h-32 text-primary" 
+              viewBox="0 0 80 110" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* Handwritten style curved swooping arrow */}
+              {/* Smooth curved line like in reference */}
               <path 
-                d="M75 5 C90 25, 85 60, 55 95 C45 108, 35 115, 30 120" 
+                d="M65 8 Q72 45, 45 75 Q30 92, 25 100" 
                 stroke="currentColor" 
                 strokeWidth="3" 
                 strokeLinecap="round"
                 fill="none"
               />
-              {/* Arrow head pointing down-left */}
+              {/* Arrow head */}
               <path 
-                d="M20 105 L28 122 L42 112" 
+                d="M15 90 L25 102 L35 92" 
                 stroke="currentColor" 
                 strokeWidth="3" 
                 strokeLinecap="round" 
