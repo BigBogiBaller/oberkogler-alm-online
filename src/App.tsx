@@ -10,18 +10,15 @@ import Reviews from "./pages/Reviews";
 import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
-
 const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
+const App = () => <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <LanguageProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route path="/" element={<Index />} className="" />
             <Route path="/menu" element={<Menu />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/gallery" element={<Gallery />} />
@@ -32,7 +29,5 @@ const App = () => (
         </BrowserRouter>
       </LanguageProvider>
     </TooltipProvider>
-  </QueryClientProvider>
-);
-
+  </QueryClientProvider>;
 export default App;
