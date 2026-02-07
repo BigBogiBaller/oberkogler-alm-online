@@ -18,7 +18,7 @@ const App = () => <QueryClientProvider client={queryClient}>
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} className="" />
+            <Route path="/" element={<Index />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/gallery" element={<Gallery />} />
