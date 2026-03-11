@@ -10,7 +10,7 @@ const AGB = () => {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navigation />
       <main className="pt-32 pb-20 px-4">
-        <div className="container mx-auto max-w-3xl">
+        <div className="container mx-auto max-w-3xl break-words">
           <h1 className="text-3xl md:text-4xl font-heading text-foreground mb-8">
             {language === 'de' ? 'Allgemeine Geschäftsbedingungen' : 'Terms & Conditions'}
           </h1>
@@ -29,8 +29,8 @@ const AGB = () => {
               <h2 className="text-xl font-heading text-foreground">{language === 'de' ? '2. Vertragspartner' : '2. Contracting Party'}</h2>
               <p>
                 Oberkogler Alm<br />
-                Oberkogler 1<br />
-                4575 Rossleithen<br />
+                Wörschachberg 63<br />
+                8942 Wörschach<br />
                 Österreich
               </p>
             </section>

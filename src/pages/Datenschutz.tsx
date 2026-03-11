@@ -10,7 +10,7 @@ const Datenschutz = () => {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navigation />
       <main className="pt-32 pb-20 px-4">
-        <div className="container mx-auto max-w-3xl">
+        <div className="container mx-auto max-w-3xl break-words">
           <h1 className="text-3xl md:text-4xl font-heading text-foreground mb-8">
             {language === 'de' ? 'Datenschutzerklärung' : 'Privacy Policy'}
           </h1>
@@ -20,10 +20,10 @@ const Datenschutz = () => {
               <h2 className="text-xl font-heading text-foreground">{language === 'de' ? 'Verantwortlicher' : 'Controller'}</h2>
               <p>
                 Oberkogler Alm<br />
-                Oberkogler 1<br />
-                4575 Rossleithen<br />
+                Wörschachberg 63<br />
+                8942 Wörschach<br />
                 Österreich<br />
-                E-Mail: office@oberkogleralm.at
+                E-Mail: info@oberkogler-alm.at
               </p>
             </section>
 
@@ -58,8 +58,8 @@ const Datenschutz = () => {
               <h2 className="text-xl font-heading text-foreground">{language === 'de' ? 'Kontakt' : 'Contact'}</h2>
               <p>
                 {language === 'de'
-                  ? 'Bei Fragen zum Datenschutz kontaktieren Sie uns bitte unter: office@oberkogleralm.at'
-                  : 'For questions about data protection, please contact us at: office@oberkogleralm.at'}
+                  ? 'Bei Fragen zum Datenschutz kontaktieren Sie uns bitte unter: info@oberkogler-alm.at'
+                  : 'For questions about data protection, please contact us at: info@oberkogler-alm.at'}
               </p>
             </section>
           </div>
