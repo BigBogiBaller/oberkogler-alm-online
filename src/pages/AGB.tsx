@@ -7,7 +7,7 @@ const AGB = () => {
   const { t, language } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <Navigation />
       <main className="pt-32 pb-20 px-4">
         <div className="container mx-auto max-w-3xl">
