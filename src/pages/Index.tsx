@@ -558,9 +558,28 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-8 px-4">
-        <div className="container mx-auto text-center">
-          <p className="text-sm">
+      <footer className="bg-muted/50 border-t border-border py-10 px-4">
+        <div className="container mx-auto max-w-6xl">
+          {/* Logo */}
+          <div className="flex justify-center mb-8">
+            <img src={logo} alt="Oberkogler Alm" className="h-16 opacity-70" />
+          </div>
+          
+          {/* Links */}
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-8">
+            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4">
+              {t('footer.impressum')}
+            </a>
+            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4">
+              {t('footer.datenschutz')}
+            </a>
+            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4">
+              {t('footer.agb')}
+            </a>
+          </div>
+
+          {/* Copyright */}
+          <p className="text-center text-xs text-muted-foreground">
             © 2026 Oberkogler Alm. {t('footer.rights')}
           </p>
         </div>

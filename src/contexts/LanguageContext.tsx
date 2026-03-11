@@ -317,6 +317,9 @@ const translations = {
     
     // Footer
     'footer.rights': 'All rights reserved.',
+    'footer.impressum': 'Imprint',
+    'footer.datenschutz': 'Privacy Policy',
+    'footer.agb': 'Terms & Conditions',
   },
 };
 
