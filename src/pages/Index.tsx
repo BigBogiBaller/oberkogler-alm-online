@@ -154,14 +154,8 @@ const Index = () => {
       {/* Welcome Section - Two Column Layout */}
       <section id="about" className="section-padding px-4 bg-background">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <AnimatedSection animation="fade-in-left">
-              <div className="relative overflow-hidden rounded-lg shadow-xl">
-                <video src={aboutVideo} className="w-full h-[500px] object-cover" autoPlay muted loop playsInline />
-              </div>
-            </AnimatedSection>
-            
-            <AnimatedSection animation="fade-in-right" className="space-y-6">
+      <div className="space-y-12">
+            <AnimatedSection animation="fade-in-up" className="text-center space-y-6 max-w-3xl mx-auto">
               <span className="text-sm uppercase tracking-widest text-primary font-medium">
                 {t('about.badge')}
               </span>
@@ -174,15 +168,34 @@ const Index = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {t('about.text2')}
               </p>
-              <div className="flex gap-4 pt-4">
+              <div className="flex justify-center gap-4 pt-4">
                 <Button variant="default" size="lg" onClick={() => {
-                const contactSection = document.getElementById('contact');
-                contactSection?.scrollIntoView({
-                  behavior: 'smooth'
-                });
-              }} className="hover-lift">
+                  const contactSection = document.getElementById('contact');
+                  contactSection?.scrollIntoView({ behavior: 'smooth' });
+                }} className="hover-lift">
                   {t('about.visitButton')}
                 </Button>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection animation="fade-in-up">
+              <div className="relative max-w-3xl mx-auto">
+                {/* Arrow + "mehr über uns" */}
+                <div className="flex items-center gap-3 mb-4 justify-end pr-4">
+                  <span className="text-primary font-medium text-sm uppercase tracking-wider">Mehr über uns</span>
+                  <img src={curvedArrow} alt="" className="w-10 h-10 rotate-90 opacity-70" />
+                </div>
+                <a
+                  href="https://www.instagram.com/p/DMbAuEwIQh0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative overflow-hidden rounded-lg shadow-xl group cursor-pointer"
+                >
+                  <video src={aboutVideo} className="w-full h-[400px] md:h-[500px] object-cover group-hover:scale-105 transition-transform duration-500" autoPlay muted loop playsInline />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <ExternalLink className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+                  </div>
+                </a>
               </div>
             </AnimatedSection>
           </div>
