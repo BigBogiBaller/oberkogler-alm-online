@@ -260,7 +260,7 @@ const Index = () => {
 
           {/* Team Video */}
           <AnimatedSection className="mt-8 flex justify-center">
-            <a href="https://www.instagram.com/oberkogler_alm/" target="_blank" rel="noopener noreferrer" className="block max-w-sm rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300">
+            <a href="https://www.instagram.com/p/DLelUmZo5ID/" target="_blank" rel="noopener noreferrer" className="block max-w-sm rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300">
               <div className="aspect-[9/16] relative bg-black">
                 <video src={teamVideo} className="w-full h-full object-cover" autoPlay muted loop playsInline />
               </div>
