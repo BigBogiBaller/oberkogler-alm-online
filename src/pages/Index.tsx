@@ -508,9 +508,9 @@ const Index = () => {
                         +43 664 5014429
                       </a>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
                       <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                      <a href="mailto:maximilian_schwaiger@hotmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                      <a href="mailto:maximilian_schwaiger@hotmail.com" className="text-muted-foreground hover:text-primary transition-colors truncate text-sm sm:text-base">
                         maximilian_schwaiger@hotmail.com
                       </a>
                     </div>
@@ -548,7 +548,7 @@ const Index = () => {
           <AnimatedSection>
             <Card className="border-border/50 overflow-hidden shadow-lg">
               <CardContent className="p-0">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2691.9642510758026!2d14.17117247626381!3d47.56848397118633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47716d88a3786ecd%3A0x8b4f23744d2c760a!2sOberkogler%20Alm!5e0!3m2!1sen!2srs!4v1763413665846!5m2!1sen!2srs" width="100%" height="450" style={{
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2691.9642510758026!2d14.17117247626381!3d47.56848397118633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47716d88a3786ecd%3A0x8b4f23744d2c760a!2sOberkogler%20Alm!5e0!3m2!1sen!2srs!4v1763413665846!5m2!1sen!2srs" className="w-full h-[300px] sm:h-[450px]" style={{
                 border: 0
               }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Oberkogler Alm Location" />
               </CardContent>
