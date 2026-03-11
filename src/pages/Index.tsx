@@ -575,20 +575,20 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <img src={oberkoglerLogo} alt="Oberkogler Alm" className="h-16 opacity-70" />
+            <img src={oberkoglerLogo} alt="Oberkogler Alm" className="h-16 opacity-70 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
           </div>
           
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-8">
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4">
+            <Link to="/impressum" className="text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4">
               {t('footer.impressum')}
-            </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4">
+            </Link>
+            <Link to="/datenschutz" className="text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4">
               {t('footer.datenschutz')}
-            </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4">
+            </Link>
+            <Link to="/agb" className="text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4">
               {t('footer.agb')}
-            </a>
+            </Link>
           </div>
 
           {/* Copyright */}
