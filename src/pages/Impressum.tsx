@@ -10,7 +10,7 @@ const Impressum = () => {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navigation />
       <main className="pt-32 pb-20 px-4">
-        <div className="container mx-auto max-w-3xl">
+        <div className="container mx-auto max-w-3xl break-words">
           <h1 className="text-3xl md:text-4xl font-heading text-foreground mb-8">
             {language === 'de' ? 'Impressum' : 'Imprint'}
           </h1>
@@ -20,8 +20,8 @@ const Impressum = () => {
               <h2 className="text-xl font-heading text-foreground">{language === 'de' ? 'Angaben gemäß § 5 ECG' : 'Information according to § 5 ECG'}</h2>
               <p>
                 Oberkogler Alm<br />
-                Oberkogler 1<br />
-                4575 Rossleithen<br />
+                Wörschachberg 63<br />
+                8942 Wörschach<br />
                 Österreich
               </p>
             </section>
@@ -29,8 +29,8 @@ const Impressum = () => {
             <section>
               <h2 className="text-xl font-heading text-foreground">{language === 'de' ? 'Kontakt' : 'Contact'}</h2>
               <p>
-                {language === 'de' ? 'Telefon' : 'Phone'}: +43 660 73 44 150<br />
-                E-Mail: office@oberkogleralm.at
+                {language === 'de' ? 'Telefon' : 'Phone'}: +43 664 5014429<br />
+                E-Mail: info@oberkogler-alm.at
               </p>
             </section>
 
@@ -55,7 +55,6 @@ const Impressum = () => {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="bg-muted/50 border-t border-border py-10 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="flex justify-center mb-8">
