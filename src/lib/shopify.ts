@@ -333,6 +333,8 @@ function isCartNotFoundError(userErrors: Array<{ field: string[] | null; message
   return userErrors.some(e => e.message.toLowerCase().includes('cart not found') || e.message.toLowerCase().includes('does not exist'));
 }
 
+export type DeliveryMethod = 'pickup' | 'delivery';
+
 export interface CartItem {
   lineId: string | null;
   product: ShopifyProduct;
@@ -341,6 +343,7 @@ export interface CartItem {
   price: { amount: string; currencyCode: string };
   quantity: number;
   selectedOptions: Array<{ name: string; value: string }>;
+  deliveryMethod: DeliveryMethod;
 }
 
 export async function createShopifyCart(item: CartItem): Promise<{ cartId: string; checkoutUrl: string; lineId: string } | null> {
