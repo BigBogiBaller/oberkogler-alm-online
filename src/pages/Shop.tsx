@@ -34,18 +34,17 @@ const Shop = () => {
   });
 
   const handleAddToCart = async (product: ShopifyProduct) => {
-    const isGutschein = product.node.handle === 'oberkogler-alm-gutschein';
     const variant = product.node.variants.edges[0]?.node;
     if (!variant) return;
 
-    const amount = isGutschein ? getGutscheinAmount(product.node.id) : getQuantity(product.node.id);
+    const isGutschein = product.node.handle === 'oberkogler-alm-gutschein';
 
     await addItem({
       product,
       variantId: variant.id,
-      variantTitle: isGutschein ? `Gutschein ${amount}€` : variant.title,
+      variantTitle: variant.title,
       price: variant.price,
-      quantity: amount,
+      quantity: isGutschein ? 1 : getQuantity(product.node.id),
       selectedOptions: variant.selectedOptions,
       deliveryMethod: getDeliveryMethod(product.node.id),
     });
