@@ -135,6 +135,28 @@ const Shop = () => {
                         onChange={(method) => setDeliveryMethod(product.node.id, method)}
                         compact
                       />
+                      <div className="flex items-center gap-2 w-full" onClick={(e) => e.stopPropagation()}>
+                        <span className="text-sm font-medium text-foreground">Anzahl:</span>
+                        <div className="flex items-center gap-1">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-8 w-8"
+                            onClick={() => setQuantity(product.node.id, getQuantity(product.node.id) - 1)}
+                          >
+                            <Minus className="h-3.5 w-3.5" />
+                          </Button>
+                          <span className="w-8 text-center text-sm font-medium">{getQuantity(product.node.id)}</span>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-8 w-8"
+                            onClick={() => setQuantity(product.node.id, getQuantity(product.node.id) + 1)}
+                          >
+                            <Plus className="h-3.5 w-3.5" />
+                          </Button>
+                        </div>
+                      </div>
                       <Button
                         className="w-full"
                         onClick={(e) => {
