@@ -1,5 +1,5 @@
 import { NavLink } from "@/components/NavLink";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Mail, Phone, Instagram, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import CartSheet from "@/components/CartSheet";
