@@ -368,7 +368,7 @@ export async function createShopifyCart(item: CartItem): Promise<{ cartId: strin
 export async function addLineToShopifyCart(cartId: string, item: CartItem): Promise<{ success: boolean; lineId?: string; cartNotFound?: boolean }> {
   const data = await storefrontApiRequest(CART_LINES_ADD_MUTATION, {
     cartId,
-    lines: [{ quantity: item.quantity, merchandiseId: item.variantId }],
+    lines: [{ quantity: item.quantity, merchandiseId: item.variantId, attributes: [{ key: 'Lieferart', value: item.deliveryMethod === 'pickup' ? 'Abholung' : 'Lieferung' }] }],
   });
 
   const userErrors = data?.data?.cartLinesAdd?.userErrors || [];
