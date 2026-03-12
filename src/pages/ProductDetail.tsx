@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getProductByHandle, formatPrice, type ShopifyProduct } from "@/lib/shopify";
+import { getProductByHandle, formatPrice, type ShopifyProduct, type DeliveryMethod } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import Navigation from "@/components/Navigation";
+import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, ArrowLeft, Loader2 } from "lucide-react";
