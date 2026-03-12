@@ -93,7 +93,7 @@ const Navigation = () => {
             </div>
 
             {/* Shop Button - Full height corner */}
-            <NavLink to="/shop" className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 sm:px-14 md:px-20 py-6 text-sm tracking-wider font-medium transition-colors flex items-center justify-center h-full min-h-[72px]">
+            <NavLink to="/shop" className="bg-primary hover:bg-primary/90 text-primary-foreground px-14 sm:px-16 md:px-24 py-6 text-sm tracking-wider font-medium transition-colors flex items-center justify-center h-full min-h-[72px]">
               Shop
             </NavLink>
           </div>
