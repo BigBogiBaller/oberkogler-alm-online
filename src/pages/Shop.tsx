@@ -30,6 +30,11 @@ const Shop = () => {
     setDeliveryMethods(prev => ({ ...prev, [productId]: method }));
   };
 
+  const getGutscheinAmount = (productId: string): number => gutscheinAmounts[productId] || 25;
+  const setGutscheinAmount = (productId: string, amount: number) => {
+    setGutscheinAmounts(prev => ({ ...prev, [productId]: amount }));
+  };
+
   const { data: products, isLoading, error } = useQuery({
     queryKey: ['shopify-products'],
     queryFn: () => getProducts(),
