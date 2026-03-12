@@ -13,6 +13,7 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const { addItem, isLoading: cartLoading } = useCartStore();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
@@ -22,7 +23,7 @@ const ProductDetail = () => {
 
   const handleAddToCart = async () => {
     if (!product) return;
-    const variant = product.variants.edges[0]?.node;
+    const variant = product.variants.edges[selectedVariantIndex]?.node;
     if (!variant) return;
 
     const shopifyProduct: ShopifyProduct = { node: product };
@@ -70,8 +71,11 @@ const ProductDetail = () => {
   }
 
   const images = product.images.edges;
-  const variant = product.variants.edges[0]?.node;
-  const price = variant?.price || product.priceRange.minVariantPrice;
+  const variants = product.variants.edges;
+  const selectedVariant = variants[selectedVariantIndex]?.node;
+  const price = selectedVariant?.price || product.priceRange.minVariantPrice;
+  const hasMultipleVariants = variants.length > 1;
+  const optionName = product.options?.[0]?.name || 'Variante';
 
   return (
     <div className="min-h-screen bg-background">
@@ -119,20 +123,43 @@ const ProductDetail = () => {
               <p className="text-3xl font-bold text-primary">
                 {formatPrice(price.amount, price.currencyCode)}
               </p>
-              <p className="text-muted-foreground leading-relaxed">{product.description}</p>
+
+              {hasMultipleVariants && (
+                <div className="space-y-3">
+                  <label className="text-sm font-medium text-foreground">{optionName}</label>
+                  <div className="flex flex-wrap gap-2">
+                    {variants.map((v, idx) => (
+                      <button
+                        key={v.node.id}
+                        onClick={() => setSelectedVariantIndex(idx)}
+                        className={`px-4 py-2 rounded-md border-2 text-sm font-medium transition-colors ${
+                          idx === selectedVariantIndex
+                            ? 'border-primary bg-primary text-primary-foreground'
+                            : 'border-border bg-background text-foreground hover:border-primary/50'
+                        } ${!v.node.availableForSale ? 'opacity-50 line-through' : ''}`}
+                        disabled={!v.node.availableForSale}
+                      >
+                        {v.node.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{product.description}</p>
 
               <Button
                 size="lg"
                 className="w-full"
                 onClick={handleAddToCart}
-                disabled={!variant?.availableForSale || cartLoading}
+                disabled={!selectedVariant?.availableForSale || cartLoading}
               >
                 {cartLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
                 ) : (
                   <ShoppingCart className="w-4 h-4 mr-2" />
                 )}
-                {variant?.availableForSale ? 'In den Warenkorb' : 'Ausverkauft'}
+                {selectedVariant?.availableForSale ? 'In den Warenkorb' : 'Ausverkauft'}
               </Button>
             </div>
           </div>

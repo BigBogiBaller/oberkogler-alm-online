@@ -81,6 +81,27 @@ const FALLBACK_IMAGES_BY_HANDLE: Record<string, ShopifyImageNode[]> = {
     { url: '/products/cremehonig-2.jpg', altText: 'Almhonig mit Alpenrosen' },
     { url: '/products/cremehonig.jpg', altText: 'Almhonig mit Alpenrosen' },
   ],
+  'oberkogler-alm-gutschein': [
+    { url: '/products/gutschein.jpg', altText: 'Oberkogler Alm Gutschein' },
+  ],
+  'hartwurstl': [
+    { url: '/products/hartwuerstl.jpg', altText: 'Hartwürstl' },
+  ],
+  'oberkogler-alm-trinkflasche-glas': [
+    { url: '/products/trinkflasche.jpg', altText: 'Oberkogler Alm Trinkflasche' },
+  ],
+  'arnika-ol': [
+    { url: '/products/arnika-oel.jpg', altText: 'Arnika Öl' },
+  ],
+  'oberkogler-alm-notizbuch': [
+    { url: '/products/notizbuch.jpg', altText: 'Oberkogler Alm Notizbuch' },
+  ],
+  'johanniskraut-ol': [
+    { url: '/products/johanniskraut-oel.jpg', altText: 'Johanniskraut Öl' },
+  ],
+  'oberkogler-alm-kappe': [
+    { url: '/products/trinkflasche.jpg', altText: 'Oberkogler Alm Kappe' },
+  ],
 };
 
 function applyFallbackImages(product: ShopifyProduct['node']): ShopifyProduct['node'] {
