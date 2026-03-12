@@ -36,6 +36,7 @@ const ProductDetail = () => {
       price: variant.price,
       quantity: 1,
       selectedOptions: variant.selectedOptions,
+      deliveryMethod,
     });
   };
 
