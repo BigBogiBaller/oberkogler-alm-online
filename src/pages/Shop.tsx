@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, Loader2, Plus, Minus } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts, formatPrice, type ShopifyProduct, type DeliveryMethod } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -18,7 +17,6 @@ const Shop = () => {
   const navigate = useNavigate();
   const [deliveryMethods, setDeliveryMethods] = useState<Record<string, DeliveryMethod>>({});
   const [quantities, setQuantities] = useState<Record<string, number>>({});
-  const [gutscheinAmounts, setGutscheinAmounts] = useState<Record<string, number>>({});
 
   const getQuantity = (productId: string): number => quantities[productId] || 1;
   const setQuantity = (productId: string, qty: number) => {
@@ -30,29 +28,23 @@ const Shop = () => {
     setDeliveryMethods(prev => ({ ...prev, [productId]: method }));
   };
 
-  const getGutscheinAmount = (productId: string): number => gutscheinAmounts[productId] || 25;
-  const setGutscheinAmount = (productId: string, amount: number) => {
-    setGutscheinAmounts(prev => ({ ...prev, [productId]: amount }));
-  };
-
   const { data: products, isLoading, error } = useQuery({
     queryKey: ['shopify-products'],
     queryFn: () => getProducts(),
   });
 
   const handleAddToCart = async (product: ShopifyProduct) => {
-    const isGutschein = product.node.handle === 'oberkogler-alm-gutschein';
     const variant = product.node.variants.edges[0]?.node;
     if (!variant) return;
 
-    const amount = isGutschein ? getGutscheinAmount(product.node.id) : getQuantity(product.node.id);
+    const isGutschein = product.node.handle === 'oberkogler-alm-gutschein';
 
     await addItem({
       product,
       variantId: variant.id,
-      variantTitle: isGutschein ? `Gutschein ${amount}€` : variant.title,
+      variantTitle: variant.title,
       price: variant.price,
-      quantity: amount,
+      quantity: isGutschein ? 1 : getQuantity(product.node.id),
       selectedOptions: variant.selectedOptions,
       deliveryMethod: getDeliveryMethod(product.node.id),
     });
@@ -136,15 +128,9 @@ const Shop = () => {
                       <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                         {product.node.description}
                       </p>
-                      {isGutschein ? (
-                        <p className="text-2xl font-bold text-primary">
-                          {getGutscheinAmount(product.node.id)}€
-                        </p>
-                      ) : (
-                        <p className="text-2xl font-bold text-primary">
-                          {formatPrice(price.amount, price.currencyCode)}
-                        </p>
-                      )}
+                      <p className="text-2xl font-bold text-primary">
+                        {isGutschein ? 'ab ' : ''}{formatPrice(price.amount, price.currencyCode)}
+                      </p>
                     </CardContent>
                     <CardFooter className="flex flex-col gap-3">
                       <DeliveryMethodPicker
@@ -152,24 +138,7 @@ const Shop = () => {
                         onChange={(method) => setDeliveryMethod(product.node.id, method)}
                         compact
                       />
-                      {isGutschein ? (
-                        <div className="flex items-center gap-2 w-full" onClick={(e) => e.stopPropagation()}>
-                          <span className="text-sm font-medium text-foreground">Betrag €:</span>
-                          <Input
-                            type="number"
-                            min={1}
-                            max={500}
-                            value={getGutscheinAmount(product.node.id)}
-                            onChange={(e) => {
-                              const val = parseInt(e.target.value, 10);
-                              if (!isNaN(val) && val >= 1 && val <= 500) {
-                                setGutscheinAmount(product.node.id, val);
-                              }
-                            }}
-                            className="w-24 h-8 text-sm"
-                          />
-                        </div>
-                      ) : (
+                      {!isGutschein && (
                         <div className="flex items-center gap-2 w-full" onClick={(e) => e.stopPropagation()}>
                           <span className="text-sm font-medium text-foreground">Anzahl:</span>
                           <div className="flex items-center gap-1">
