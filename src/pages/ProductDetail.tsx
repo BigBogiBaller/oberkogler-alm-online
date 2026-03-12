@@ -6,7 +6,6 @@ import Navigation from "@/components/Navigation";
 import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Input } from "@/components/ui/input";
 import { ShoppingCart, ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
@@ -18,7 +17,7 @@ const ProductDetail = () => {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
   const [quantity, setQuantity] = useState(1);
-  const [gutscheinAmountInput, setGutscheinAmountInput] = useState("25");
+  const [gutscheinVariantIndex, setGutscheinVariantIndex] = useState(2); // default 25€
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
@@ -32,21 +31,16 @@ const ProductDetail = () => {
     if (!product) return;
 
     if (isGutschein) {
-      const amount = Number.parseInt(gutscheinAmountInput, 10);
-      if (!Number.isFinite(amount) || amount < 1 || amount > 500) return;
-
-      const oneEuroVariant = product.variants.edges.find((edge) => parseFloat(edge.node.price.amount) === 1)?.node;
-      const fallbackVariant = product.variants.edges[0]?.node;
-      const variant = oneEuroVariant ?? fallbackVariant;
+      const variant = product.variants.edges[gutscheinVariantIndex]?.node;
       if (!variant) return;
 
       const shopifyProduct: ShopifyProduct = { node: product };
       await addItem({
         product: shopifyProduct,
         variantId: variant.id,
-        variantTitle: `Gutschein ${amount}€`,
+        variantTitle: variant.title,
         price: variant.price,
-        quantity: oneEuroVariant ? amount : 1,
+        quantity: 1,
         selectedOptions: variant.selectedOptions,
         deliveryMethod,
       });
@@ -155,20 +149,25 @@ const ProductDetail = () => {
               {isGutschein ? (
                 <>
                   <p className="text-3xl font-bold text-primary">
-                    {formatPrice((Number.parseInt(gutscheinAmountInput || "0", 10) || 0).toString(), "EUR")}
+                    {variants[gutscheinVariantIndex]
+                      ? formatPrice(variants[gutscheinVariantIndex].node.price.amount, variants[gutscheinVariantIndex].node.price.currencyCode)
+                      : ''}
                   </p>
                   <div className="space-y-3">
-                    <label className="text-sm font-medium text-foreground">Betrag frei wählen (€)</label>
-                    <Input
-                      type="number"
-                      inputMode="numeric"
-                      min={1}
-                      max={500}
-                      step={1}
-                      value={gutscheinAmountInput}
-                      onChange={(e) => setGutscheinAmountInput(e.target.value.replace(/[^0-9]/g, ''))}
-                      className="max-w-[220px]"
-                    />
+                    <label className="text-sm font-medium text-foreground">Betrag wählen</label>
+                    <div className="flex flex-wrap gap-2">
+                      {variants.map((v, idx) => (
+                        <Button
+                          key={v.node.id}
+                          variant={gutscheinVariantIndex === idx ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setGutscheinVariantIndex(idx)}
+                          disabled={!v.node.availableForSale}
+                        >
+                          {v.node.title}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
                 </>
               ) : (
@@ -237,7 +236,7 @@ const ProductDetail = () => {
                 size="lg"
                 className="w-full"
                 onClick={handleAddToCart}
-                disabled={cartLoading || (isGutschein && (!Number.isFinite(Number.parseInt(gutscheinAmountInput, 10)) || Number.parseInt(gutscheinAmountInput, 10) < 1 || Number.parseInt(gutscheinAmountInput, 10) > 500))}
+                disabled={cartLoading}
               >
                 {cartLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
