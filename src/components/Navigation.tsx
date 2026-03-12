@@ -89,10 +89,12 @@ const Navigation = () => {
               </button>
             </div>
 
-            {/* Cart */}
-            <div className={cn("mr-6", isScrolled ? "text-foreground" : "text-white")}>
-              <CartSheet />
-            </div>
+            {/* Cart - only on shop/product pages */}
+            {showCart && (
+              <div className={cn("mr-6", isScrolled ? "text-foreground" : "text-white")}>
+                <CartSheet />
+              </div>
+            )}
 
             {/* Shop Button - Full height corner */}
             <NavLink to="/shop" className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 sm:px-14 md:px-20 py-6 text-sm tracking-wider font-medium transition-colors flex items-center justify-center h-full min-h-[72px]">
