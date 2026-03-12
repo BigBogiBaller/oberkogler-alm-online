@@ -149,20 +149,25 @@ const ProductDetail = () => {
               {isGutschein ? (
                 <>
                   <p className="text-3xl font-bold text-primary">
-                    {formatPrice((Number.parseInt(gutscheinAmountInput || "0", 10) || 0).toString(), "EUR")}
+                    {variants[gutscheinVariantIndex]
+                      ? formatPrice(variants[gutscheinVariantIndex].node.price.amount, variants[gutscheinVariantIndex].node.price.currencyCode)
+                      : ''}
                   </p>
                   <div className="space-y-3">
-                    <label className="text-sm font-medium text-foreground">Betrag frei wählen (€)</label>
-                    <Input
-                      type="number"
-                      inputMode="numeric"
-                      min={1}
-                      max={500}
-                      step={1}
-                      value={gutscheinAmountInput}
-                      onChange={(e) => setGutscheinAmountInput(e.target.value.replace(/[^0-9]/g, ''))}
-                      className="max-w-[220px]"
-                    />
+                    <label className="text-sm font-medium text-foreground">Betrag wählen</label>
+                    <div className="flex flex-wrap gap-2">
+                      {variants.map((v, idx) => (
+                        <Button
+                          key={v.node.id}
+                          variant={gutscheinVariantIndex === idx ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setGutscheinVariantIndex(idx)}
+                          disabled={!v.node.availableForSale}
+                        >
+                          {v.node.title}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
                 </>
               ) : (
