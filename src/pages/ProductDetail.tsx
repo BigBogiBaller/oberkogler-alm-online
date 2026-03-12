@@ -136,32 +136,21 @@ const ProductDetail = () => {
               {isGutschein ? (
                 <>
                   <p className="text-3xl font-bold text-primary">
-                    {gutscheinAmount}€
+                    {selectedVariant ? formatPrice(selectedVariant.price.amount, selectedVariant.price.currencyCode) : ''}
                   </p>
                   <div className="space-y-3">
-                    <label className="text-sm font-medium text-foreground">Betrag wählen (€)</label>
-                    <Input
-                      type="number"
-                      min={1}
-                      max={500}
-                      value={gutscheinAmount}
-                      onChange={(e) => {
-                        const val = parseInt(e.target.value, 10);
-                        if (!isNaN(val) && val >= 1 && val <= 500) {
-                          setGutscheinAmount(val);
-                        }
-                      }}
-                      className="max-w-[200px] text-lg"
-                    />
+                    <label className="text-sm font-medium text-foreground">Betrag wählen</label>
                     <div className="flex flex-wrap gap-2">
-                      {[10, 25, 50, 100].map((amt) => (
+                      {variants.map((v, idx) => (
                         <Button
-                          key={amt}
-                          variant={gutscheinAmount === amt ? 'default' : 'outline'}
+                          key={v.node.id}
+                          variant={gutscheinVariantIndex === idx ? 'default' : 'outline'}
                           size="sm"
-                          onClick={() => setGutscheinAmount(amt)}
+                          onClick={() => setGutscheinVariantIndex(idx)}
+                          disabled={!v.node.availableForSale}
+                          className={!v.node.availableForSale ? 'opacity-50 line-through' : ''}
                         >
-                          {amt}€
+                          {v.node.title}
                         </Button>
                       ))}
                     </div>
