@@ -18,7 +18,7 @@ const ProductDetail = () => {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
   const [quantity, setQuantity] = useState(1);
-  const [gutscheinAmount, setGutscheinAmount] = useState<number>(25);
+  const [gutscheinVariantIndex, setGutscheinVariantIndex] = useState(2); // default to 25€
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
@@ -30,20 +30,18 @@ const ProductDetail = () => {
 
   const handleAddToCart = async () => {
     if (!product) return;
-    const variant = isGutschein
-      ? product.variants.edges[0]?.node
-      : product.variants.edges[selectedVariantIndex]?.node;
+    const variantIdx = isGutschein ? gutscheinVariantIndex : selectedVariantIndex;
+    const variant = product.variants.edges[variantIdx]?.node;
     if (!variant) return;
 
     const shopifyProduct: ShopifyProduct = { node: product };
-    const cartQuantity = isGutschein ? gutscheinAmount : quantity;
 
     await addItem({
       product: shopifyProduct,
       variantId: variant.id,
-      variantTitle: isGutschein ? `Gutschein ${gutscheinAmount}€` : variant.title,
+      variantTitle: variant.title,
       price: variant.price,
-      quantity: cartQuantity,
+      quantity: 1,
       selectedOptions: variant.selectedOptions,
       deliveryMethod,
     });
