@@ -18,7 +18,7 @@ const ProductDetail = () => {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
   const [quantity, setQuantity] = useState(1);
-  const [gutscheinVariantIndex, setGutscheinVariantIndex] = useState(2); // default to 25€
+  const [gutscheinAmountInput, setGutscheinAmountInput] = useState("25");
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
@@ -30,18 +30,39 @@ const ProductDetail = () => {
 
   const handleAddToCart = async () => {
     if (!product) return;
-    const variantIdx = isGutschein ? gutscheinVariantIndex : selectedVariantIndex;
-    const variant = product.variants.edges[variantIdx]?.node;
+
+    if (isGutschein) {
+      const amount = Number.parseInt(gutscheinAmountInput, 10);
+      if (!Number.isFinite(amount) || amount < 1 || amount > 500) return;
+
+      const oneEuroVariant = product.variants.edges.find((edge) => parseFloat(edge.node.price.amount) === 1)?.node;
+      const fallbackVariant = product.variants.edges[0]?.node;
+      const variant = oneEuroVariant ?? fallbackVariant;
+      if (!variant) return;
+
+      const shopifyProduct: ShopifyProduct = { node: product };
+      await addItem({
+        product: shopifyProduct,
+        variantId: variant.id,
+        variantTitle: `Gutschein ${amount}€`,
+        price: variant.price,
+        quantity: oneEuroVariant ? amount : 1,
+        selectedOptions: variant.selectedOptions,
+        deliveryMethod,
+      });
+      return;
+    }
+
+    const variant = product.variants.edges[selectedVariantIndex]?.node;
     if (!variant) return;
 
     const shopifyProduct: ShopifyProduct = { node: product };
-
     await addItem({
       product: shopifyProduct,
       variantId: variant.id,
       variantTitle: variant.title,
       price: variant.price,
-      quantity: 1,
+      quantity,
       selectedOptions: variant.selectedOptions,
       deliveryMethod,
     });
