@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Input } from "@/components/ui/input";
 import { ShoppingCart, ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
