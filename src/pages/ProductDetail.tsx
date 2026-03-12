@@ -7,7 +7,8 @@ import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
-import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { useState, useMemo } from "react";
 
 const ProductDetail = () => {
   const { handle } = useParams<{ handle: string }>();
@@ -17,7 +18,7 @@ const ProductDetail = () => {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
   const [quantity, setQuantity] = useState(1);
-  const [gutscheinVariantIndex, setGutscheinVariantIndex] = useState(2); // default 25€
+  const [gutscheinAmount, setGutscheinAmount] = useState('25');
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
@@ -27,12 +28,37 @@ const ProductDetail = () => {
 
   const isGutschein = handle === 'oberkogler-alm-gutschein';
 
+  // Find the best matching variant for the entered gutschein amount
+  const matchedGutscheinVariant = useMemo(() => {
+    if (!isGutschein || !product) return null;
+    const amount = parseFloat(gutscheinAmount);
+    if (isNaN(amount) || amount <= 0) return null;
+    
+    const availableVariants = product.variants.edges
+      .filter(v => v.node.availableForSale)
+      .map(v => ({ ...v, price: parseFloat(v.node.price.amount) }));
+    
+    // Find exact match
+    const exact = availableVariants.find(v => v.price === amount);
+    if (exact) return exact;
+    
+    // Find closest available variant
+    const sorted = [...availableVariants].sort(
+      (a, b) => Math.abs(a.price - amount) - Math.abs(b.price - amount)
+    );
+    return sorted[0] || null;
+  }, [isGutschein, product, gutscheinAmount]);
+
+  const gutscheinAmountNum = parseFloat(gutscheinAmount);
+  const isExactMatch = matchedGutscheinVariant && 
+    parseFloat(matchedGutscheinVariant.node.price.amount) === gutscheinAmountNum;
+
   const handleAddToCart = async () => {
     if (!product) return;
 
     if (isGutschein) {
-      const variant = product.variants.edges[gutscheinVariantIndex]?.node;
-      if (!variant) return;
+      if (!matchedGutscheinVariant || !isExactMatch) return;
+      const variant = matchedGutscheinVariant.node;
 
       const shopifyProduct: ShopifyProduct = { node: product };
       await addItem({
@@ -149,25 +175,42 @@ const ProductDetail = () => {
               {isGutschein ? (
                 <>
                   <p className="text-3xl font-bold text-primary">
-                    {variants[gutscheinVariantIndex]
-                      ? formatPrice(variants[gutscheinVariantIndex].node.price.amount, variants[gutscheinVariantIndex].node.price.currencyCode)
-                      : ''}
+                    {isExactMatch && matchedGutscheinVariant
+                      ? formatPrice(matchedGutscheinVariant.node.price.amount, matchedGutscheinVariant.node.price.currencyCode)
+                      : gutscheinAmountNum > 0 ? `${gutscheinAmountNum} €` : ''}
                   </p>
                   <div className="space-y-3">
-                    <label className="text-sm font-medium text-foreground">Betrag wählen</label>
+                    <label className="text-sm font-medium text-foreground">Betrag eingeben (€)</label>
+                    <Input
+                      type="number"
+                      min="1"
+                      max="500"
+                      value={gutscheinAmount}
+                      onChange={(e) => setGutscheinAmount(e.target.value)}
+                      placeholder="z.B. 50"
+                      className="text-lg font-medium max-w-[200px]"
+                    />
                     <div className="flex flex-wrap gap-2">
-                      {variants.map((v, idx) => (
-                        <Button
-                          key={v.node.id}
-                          variant={gutscheinVariantIndex === idx ? 'default' : 'outline'}
-                          size="sm"
-                          onClick={() => setGutscheinVariantIndex(idx)}
-                          disabled={!v.node.availableForSale}
-                        >
-                          {v.node.title}
-                        </Button>
-                      ))}
+                      {variants.filter(v => v.node.availableForSale).map((v) => {
+                        const vAmount = parseFloat(v.node.price.amount);
+                        const isSelected = gutscheinAmountNum === vAmount;
+                        return (
+                          <Button
+                            key={v.node.id}
+                            variant={isSelected ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => setGutscheinAmount(vAmount.toString())}
+                          >
+                            {v.node.title}
+                          </Button>
+                        );
+                      })}
                     </div>
+                    {gutscheinAmountNum > 0 && !isExactMatch && (
+                      <p className="text-sm text-destructive">
+                        Bitte wählen Sie einen der verfügbaren Beträge: {variants.filter(v => v.node.availableForSale).map(v => v.node.title).join(', ')}
+                      </p>
+                    )}
                   </div>
                 </>
               ) : (
@@ -236,7 +279,7 @@ const ProductDetail = () => {
                 size="lg"
                 className="w-full"
                 onClick={handleAddToCart}
-                disabled={cartLoading}
+                disabled={cartLoading || (isGutschein && !isExactMatch)}
               >
                 {cartLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
