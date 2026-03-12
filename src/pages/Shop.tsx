@@ -18,6 +18,7 @@ const Shop = () => {
   const navigate = useNavigate();
   const [deliveryMethods, setDeliveryMethods] = useState<Record<string, DeliveryMethod>>({});
   const [quantities, setQuantities] = useState<Record<string, number>>({});
+  const [gutscheinAmounts, setGutscheinAmounts] = useState<Record<string, number>>({});
 
   const getQuantity = (productId: string): number => quantities[productId] || 1;
   const setQuantity = (productId: string, qty: number) => {
