@@ -123,7 +123,12 @@ const Shop = () => {
                         {formatPrice(price.amount, price.currencyCode)}
                       </p>
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="flex flex-col gap-3">
+                      <DeliveryMethodPicker
+                        value={getDeliveryMethod(product.node.id)}
+                        onChange={(method) => setDeliveryMethod(product.node.id, method)}
+                        compact
+                      />
                       <Button
                         className="w-full"
                         onClick={(e) => {
