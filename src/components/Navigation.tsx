@@ -15,6 +15,8 @@ const Navigation = () => {
     t
   } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
+  const showCart = location.pathname === '/shop' || location.pathname.startsWith('/product');
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
