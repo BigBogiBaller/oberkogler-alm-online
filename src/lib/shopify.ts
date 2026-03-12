@@ -333,6 +333,8 @@ function isCartNotFoundError(userErrors: Array<{ field: string[] | null; message
   return userErrors.some(e => e.message.toLowerCase().includes('cart not found') || e.message.toLowerCase().includes('does not exist'));
 }
 
+export type DeliveryMethod = 'pickup' | 'delivery';
+
 export interface CartItem {
   lineId: string | null;
   product: ShopifyProduct;
@@ -341,11 +343,12 @@ export interface CartItem {
   price: { amount: string; currencyCode: string };
   quantity: number;
   selectedOptions: Array<{ name: string; value: string }>;
+  deliveryMethod: DeliveryMethod;
 }
 
 export async function createShopifyCart(item: CartItem): Promise<{ cartId: string; checkoutUrl: string; lineId: string } | null> {
   const data = await storefrontApiRequest(CART_CREATE_MUTATION, {
-    input: { lines: [{ quantity: item.quantity, merchandiseId: item.variantId }] },
+    input: { lines: [{ quantity: item.quantity, merchandiseId: item.variantId, attributes: [{ key: 'Lieferart', value: item.deliveryMethod === 'pickup' ? 'Abholung' : 'Lieferung' }] }] },
   });
 
   if (data?.data?.cartCreate?.userErrors?.length > 0) {
@@ -365,7 +368,7 @@ export async function createShopifyCart(item: CartItem): Promise<{ cartId: strin
 export async function addLineToShopifyCart(cartId: string, item: CartItem): Promise<{ success: boolean; lineId?: string; cartNotFound?: boolean }> {
   const data = await storefrontApiRequest(CART_LINES_ADD_MUTATION, {
     cartId,
-    lines: [{ quantity: item.quantity, merchandiseId: item.variantId }],
+    lines: [{ quantity: item.quantity, merchandiseId: item.variantId, attributes: [{ key: 'Lieferart', value: item.deliveryMethod === 'pickup' ? 'Abholung' : 'Lieferung' }] }],
   });
 
   const userErrors = data?.data?.cartLinesAdd?.userErrors || [];
