@@ -1,5 +1,5 @@
 import { NavLink } from "@/components/NavLink";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Mail, Phone, Instagram, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import CartSheet from "@/components/CartSheet";
@@ -15,6 +15,8 @@ const Navigation = () => {
     t
   } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
+  const showCart = location.pathname === '/shop' || location.pathname.startsWith('/product');
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -87,10 +89,12 @@ const Navigation = () => {
               </button>
             </div>
 
-            {/* Cart */}
-            <div className={cn("mr-6", isScrolled ? "text-foreground" : "text-white")}>
-              <CartSheet />
-            </div>
+            {/* Cart - only on shop/product pages */}
+            {showCart && (
+              <div className={cn("mr-6", isScrolled ? "text-foreground" : "text-white")}>
+                <CartSheet />
+              </div>
+            )}
 
             {/* Shop Button - Full height corner */}
             <NavLink to="/shop" className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 sm:px-14 md:px-20 py-6 text-sm tracking-wider font-medium transition-colors flex items-center justify-center h-full min-h-[72px]">
