@@ -46,12 +46,12 @@ const Navigation = () => {
           {/* Left Section - Hamburger + Language + Icons */}
           <div className="flex items-center gap-4 md:gap-6 px-4 py-4">
             {/* Hamburger Menu */}
-            <button className="p-2 transition-colors text-primary hover:text-primary/80" onClick={() => setIsSidebarOpen(true)} aria-label="Open menu">
+            <button className={cn("p-2 transition-colors", isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80")} onClick={() => setIsSidebarOpen(true)} aria-label="Open menu">
               <Menu size={24} strokeWidth={1.5} />
             </button>
 
             {/* Language Toggle */}
-            <button onClick={() => setLanguage(language === 'de' ? 'en' : 'de')} className="text-sm font-medium tracking-wider transition-colors text-primary hover:text-primary/80">
+            <button onClick={() => setLanguage(language === 'de' ? 'en' : 'de')} className={cn("text-sm font-medium tracking-wider transition-colors", isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80")}>
               {language.toUpperCase()}
             </button>
 
@@ -93,7 +93,7 @@ const Navigation = () => {
             </div>
 
             {/* Shop Button - Full height corner */}
-            <NavLink to="/shop" className="bg-primary hover:bg-primary/90 text-primary-foreground px-14 sm:px-16 md:px-24 py-6 text-sm tracking-wider font-medium transition-colors flex items-center justify-center h-full min-h-[72px]">
+            <NavLink to="/shop" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 sm:px-12 md:px-20 py-6 text-sm tracking-wider font-medium transition-colors flex items-center justify-center h-full min-h-[72px]">
               Shop
             </NavLink>
           </div>
