@@ -153,7 +153,21 @@ const ProductDetail = () => {
                 )}
               </div>
             </div>
-
+              {images.length > 1 && (
+                <div className="flex gap-2 overflow-x-auto">
+                  {images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedImageIndex(idx)}
+                      className={`w-20 h-20 rounded-md overflow-hidden flex-shrink-0 border-2 transition-colors ${
+                        idx === selectedImageIndex ? 'border-primary' : 'border-transparent'
+                      }`}
+                    >
+                      <img src={img.node.url} alt={img.node.altText || ''} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
             <div className="space-y-6">
               <h1 className="text-3xl md:text-4xl font-bold text-foreground">{product.title}</h1>
 
