@@ -236,7 +236,7 @@ const ProductDetail = () => {
                 size="lg"
                 className="w-full"
                 onClick={handleAddToCart}
-                disabled={cartLoading || (isGutschein && (!Number.isFinite(Number.parseInt(gutscheinAmountInput, 10)) || Number.parseInt(gutscheinAmountInput, 10) < 1 || Number.parseInt(gutscheinAmountInput, 10) > 500))}
+                disabled={cartLoading}
               >
                 {cartLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
