@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, X, Plus, Minus, ExternalLink, Loader2 } from "lucide-react";
+import { ShoppingCart, X, Plus, Minus, ExternalLink, Loader2, Package, Truck } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/lib/shopify";
 import { Badge } from "@/components/ui/badge";
