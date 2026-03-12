@@ -279,7 +279,7 @@ const ProductDetail = () => {
                 size="lg"
                 className="w-full"
                 onClick={handleAddToCart}
-                disabled={cartLoading}
+                disabled={cartLoading || (isGutschein && !isExactMatch)}
               >
                 {cartLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
