@@ -218,13 +218,18 @@ const PRODUCT_BY_HANDLE_QUERY = `
 export async function getProducts(query?: string): Promise<ShopifyProduct[]> {
   const data = await storefrontApiRequest(STOREFRONT_QUERY, { first: 20, query });
   if (!data) return [];
-  return data.data.products.edges;
+
+  return data.data.products.edges.map((edge: ShopifyProduct) => ({
+    ...edge,
+    node: applyFallbackImages(edge.node),
+  }));
 }
 
 export async function getProductByHandle(handle: string): Promise<ShopifyProduct['node'] | null> {
   const data = await storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle });
-  if (!data) return null;
-  return data.data.productByHandle;
+  if (!data || !data.data.productByHandle) return null;
+
+  return applyFallbackImages(data.data.productByHandle);
 }
 
 export function formatPrice(amount: string, currencyCode: string): string {
