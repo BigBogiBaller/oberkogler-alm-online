@@ -66,6 +66,13 @@ const CartSheet = () => {
                     {item.variantTitle !== "Default Title" && (
                       <p className="text-xs text-muted-foreground">{item.variantTitle}</p>
                     )}
+                    <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                      {item.deliveryMethod === 'pickup' ? (
+                        <><Package className="w-3 h-3" /> Abholung</>
+                      ) : (
+                        <><Truck className="w-3 h-3" /> Lieferung</>
+                      )}
+                    </p>
                     <p className="text-sm font-medium text-primary mt-1">
                       {formatPrice(item.price.amount, item.price.currencyCode)}
                     </p>
