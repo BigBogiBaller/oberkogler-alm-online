@@ -180,7 +180,10 @@ export const useCartStore = create<CartStore>()(
         }
       },
 
-      getTotalItems: () => get().items.reduce((sum, item) => sum + item.quantity, 0),
+      getTotalItems: () => get().items.reduce((sum, item) => {
+        const isFlexibleVoucher = item.product.node.handle === 'oberkogler-alm-gutschein' && parseFloat(item.price.amount) === 1;
+        return sum + (isFlexibleVoucher ? 1 : item.quantity);
+      }, 0),
 
       getTotalPrice: () => {
         const items = get().items;
