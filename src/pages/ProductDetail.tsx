@@ -15,6 +15,7 @@ const ProductDetail = () => {
   const { addItem, isLoading: cartLoading } = useCartStore();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
