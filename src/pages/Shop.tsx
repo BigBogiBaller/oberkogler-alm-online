@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, Loader2, Plus, Minus } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts, formatPrice, type ShopifyProduct, type DeliveryMethod } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
