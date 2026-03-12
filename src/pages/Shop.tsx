@@ -16,6 +16,12 @@ const Shop = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [deliveryMethods, setDeliveryMethods] = useState<Record<string, DeliveryMethod>>({});
+  const [quantities, setQuantities] = useState<Record<string, number>>({});
+
+  const getQuantity = (productId: string): number => quantities[productId] || 1;
+  const setQuantity = (productId: string, qty: number) => {
+    setQuantities(prev => ({ ...prev, [productId]: Math.max(1, qty) }));
+  };
 
   const getDeliveryMethod = (productId: string): DeliveryMethod => deliveryMethods[productId] || 'pickup';
   const setDeliveryMethod = (productId: string, method: DeliveryMethod) => {
