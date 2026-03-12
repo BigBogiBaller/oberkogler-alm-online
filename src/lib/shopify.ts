@@ -49,6 +49,45 @@ export interface ShopifyProduct {
   };
 }
 
+type ShopifyImageNode = {
+  url: string;
+  altText: string | null;
+};
+
+const FALLBACK_IMAGES_BY_HANDLE: Record<string, ShopifyImageNode[]> = {
+  'ringelblumen-salbe': [
+    { url: '/products/ringelblumensalbe.jpg', altText: 'Ringelblumen Salbe' },
+    { url: '/products/ringelblumensalbe-2.jpg', altText: 'Ringelblumen Salbe Nahaufnahme' },
+  ],
+  'selbstgemachte-marmelade': [
+    { url: '/products/marmelade-sortiment.jpg', altText: 'Selbstgemachte Marmelade Sortiment' },
+    { url: '/products/marille.jpg', altText: 'Marillenmarmelade' },
+    { url: '/products/marille-geschenk.jpg', altText: 'Marmelade Geschenkset' },
+    { url: '/products/brombeer.jpg', altText: 'Brombeermarmelade' },
+  ],
+  honig: [
+    { url: '/products/sommerhonig.jpg', altText: 'Sommerhonig' },
+    { url: '/products/cremehonig.jpg', altText: 'Cremehonig' },
+  ],
+  'almhonig-mit-alpenrosen': [
+    { url: '/products/cremehonig.jpg', altText: 'Almhonig mit Alpenrosen' },
+  ],
+};
+
+function applyFallbackImages(product: ShopifyProduct['node']): ShopifyProduct['node'] {
+  if (product.images?.edges?.length) return product;
+
+  const fallbackImages = FALLBACK_IMAGES_BY_HANDLE[product.handle];
+  if (!fallbackImages?.length) return product;
+
+  return {
+    ...product,
+    images: {
+      edges: fallbackImages.map((image) => ({ node: image })),
+    },
+  };
+}
+
 // Storefront API helper
 export async function storefrontApiRequest(query: string, variables: Record<string, unknown> = {}) {
   const response = await fetch(SHOPIFY_STOREFRONT_URL, {
