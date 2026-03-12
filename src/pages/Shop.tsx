@@ -162,21 +162,34 @@ const Shop = () => {
                           </div>
                         </div>
                       )}
-                      <Button
-                        className="w-full"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleAddToCart(product);
-                        }}
-                        disabled={(!isGutschein && !variant?.availableForSale) || cartLoading}
-                      >
-                        {cartLoading ? (
-                          <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                        ) : (
-                          <ShoppingCart className="w-4 h-4 mr-2" />
-                        )}
-                        {(isGutschein || variant?.availableForSale) ? t('shop.addToCart') : t('shop.soldOut')}
-                      </Button>
+                      {isGutschein ? (
+                        <Button
+                          className="w-full"
+                          variant="outline"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/product/${product.node.handle}`);
+                          }}
+                        >
+                          Betrag wählen
+                        </Button>
+                      ) : (
+                        <Button
+                          className="w-full"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(product);
+                          }}
+                          disabled={!variant?.availableForSale || cartLoading}
+                        >
+                          {cartLoading ? (
+                            <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                          ) : (
+                            <ShoppingCart className="w-4 h-4 mr-2" />
+                          )}
+                          {variant?.availableForSale ? t('shop.addToCart') : t('shop.soldOut')}
+                        </Button>
+                      )}
                     </CardFooter>
                   </Card>
                 );
