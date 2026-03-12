@@ -56,8 +56,6 @@ type ShopifyImageNode = {
 
 const FALLBACK_IMAGES_BY_HANDLE: Record<string, ShopifyImageNode[]> = {
   'ringelblumen-salbe': [
-    { url: '/products/ringelblumensalbe-4.jpg', altText: 'Ringelblumen Salbe' },
-    { url: '/products/ringelblumensalbe-3.jpg', altText: 'Ringelblumen Salbe gestapelt' },
     { url: '/products/ringelblumensalbe.jpg', altText: 'Ringelblumen Salbe Nahaufnahme' },
     { url: '/products/ringelblumensalbe-2.jpg', altText: 'Ringelblumen Salbe Detail' },
   ],
