@@ -61,7 +61,7 @@ const FALLBACK_IMAGES_BY_HANDLE: Record<string, ShopifyImageNode[]> = {
     { url: '/products/ringelblumensalbe.jpg', altText: 'Ringelblumen Salbe Nahaufnahme' },
     { url: '/products/ringelblumensalbe-2.jpg', altText: 'Ringelblumen Salbe Detail' },
   ],
-  'selbstgemachte-marmelade': [],
+  
   honig: [
     { url: '/products/sommerhonig-2.jpg', altText: 'Sommerhonig' },
     { url: '/products/cremehonig-2.jpg', altText: 'Cremehonig' },
