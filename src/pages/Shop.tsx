@@ -199,14 +199,14 @@ const Shop = () => {
                           e.stopPropagation();
                           handleAddToCart(product);
                         }}
-                        disabled={!variant?.availableForSale || cartLoading}
+                        disabled={(!isGutschein && !variant?.availableForSale) || cartLoading}
                       >
                         {cartLoading ? (
                           <Loader2 className="w-4 h-4 animate-spin mr-2" />
                         ) : (
                           <ShoppingCart className="w-4 h-4 mr-2" />
                         )}
-                        {variant?.availableForSale ? t('shop.addToCart') : t('shop.soldOut')}
+                        {(isGutschein || variant?.availableForSale) ? t('shop.addToCart') : t('shop.soldOut')}
                       </Button>
                     </CardFooter>
                   </Card>
