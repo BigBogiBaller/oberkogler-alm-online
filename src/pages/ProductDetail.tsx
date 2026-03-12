@@ -6,7 +6,7 @@ import Navigation from "@/components/Navigation";
 import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ShoppingCart, ArrowLeft, Loader2 } from "lucide-react";
+import { ShoppingCart, ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
 const ProductDetail = () => {
@@ -16,6 +16,7 @@ const ProductDetail = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
+  const [quantity, setQuantity] = useState(1);
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
@@ -34,7 +35,7 @@ const ProductDetail = () => {
       variantId: variant.id,
       variantTitle: variant.title,
       price: variant.price,
-      quantity: 1,
+      quantity,
       selectedOptions: variant.selectedOptions,
       deliveryMethod,
     });
@@ -150,6 +151,29 @@ const ProductDetail = () => {
               )}
 
               <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{product.description}</p>
+
+              <div className="space-y-3">
+                <label className="text-sm font-medium text-foreground">Anzahl</label>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-10 w-10"
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <span className="w-12 text-center text-lg font-medium">{quantity}</span>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-10 w-10"
+                    onClick={() => setQuantity(quantity + 1)}
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
 
               <div className="space-y-3">
                 <label className="text-sm font-medium text-foreground">Lieferart</label>

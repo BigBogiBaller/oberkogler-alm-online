@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ShoppingCart, Loader2 } from "lucide-react";
+import { ShoppingCart, Loader2, Plus, Minus } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts, formatPrice, type ShopifyProduct, type DeliveryMethod } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -16,6 +16,12 @@ const Shop = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [deliveryMethods, setDeliveryMethods] = useState<Record<string, DeliveryMethod>>({});
+  const [quantities, setQuantities] = useState<Record<string, number>>({});
+
+  const getQuantity = (productId: string): number => quantities[productId] || 1;
+  const setQuantity = (productId: string, qty: number) => {
+    setQuantities(prev => ({ ...prev, [productId]: Math.max(1, qty) }));
+  };
 
   const getDeliveryMethod = (productId: string): DeliveryMethod => deliveryMethods[productId] || 'pickup';
   const setDeliveryMethod = (productId: string, method: DeliveryMethod) => {
@@ -36,7 +42,7 @@ const Shop = () => {
       variantId: variant.id,
       variantTitle: variant.title,
       price: variant.price,
-      quantity: 1,
+      quantity: getQuantity(product.node.id),
       selectedOptions: variant.selectedOptions,
       deliveryMethod: getDeliveryMethod(product.node.id),
     });
@@ -129,6 +135,28 @@ const Shop = () => {
                         onChange={(method) => setDeliveryMethod(product.node.id, method)}
                         compact
                       />
+                      <div className="flex items-center gap-2 w-full" onClick={(e) => e.stopPropagation()}>
+                        <span className="text-sm font-medium text-foreground">Anzahl:</span>
+                        <div className="flex items-center gap-1">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-8 w-8"
+                            onClick={() => setQuantity(product.node.id, getQuantity(product.node.id) - 1)}
+                          >
+                            <Minus className="h-3.5 w-3.5" />
+                          </Button>
+                          <span className="w-8 text-center text-sm font-medium">{getQuantity(product.node.id)}</span>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-8 w-8"
+                            onClick={() => setQuantity(product.node.id, getQuantity(product.node.id) + 1)}
+                          >
+                            <Plus className="h-3.5 w-3.5" />
+                          </Button>
+                        </div>
+                      </div>
                       <Button
                         className="w-full"
                         onClick={(e) => {
