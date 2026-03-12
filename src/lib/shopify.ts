@@ -61,9 +61,13 @@ const FALLBACK_IMAGES_BY_HANDLE: Record<string, ShopifyImageNode[]> = {
     { url: '/products/ringelblumensalbe.jpg', altText: 'Ringelblumen Salbe Nahaufnahme' },
     { url: '/products/ringelblumensalbe-2.jpg', altText: 'Ringelblumen Salbe Detail' },
   ],
-  
+  'selbstgemachte-marmelade': [
+    { url: '/products/marille-2.jpg', altText: 'Selbstgemachte Marmelade Detail' },
+    { url: '/products/marille-3.jpg', altText: 'Selbstgemachte Marmelade Glas' },
+    { url: '/products/brombeer-2.jpg', altText: 'Selbstgemachte Marmelade Brombeer-Variante' },
+    { url: '/products/marmelade-sortiment-2.jpg', altText: 'Selbstgemachte Marmelade Auswahl' },
+  ],
   honig: [
-    { url: '/products/sommerhonig-2.jpg', altText: 'Sommerhonig' },
     { url: '/products/cremehonig-2.jpg', altText: 'Cremehonig' },
     { url: '/products/sommerhonig.jpg', altText: 'Sommerhonig' },
     { url: '/products/cremehonig.jpg', altText: 'Cremehonig' },
