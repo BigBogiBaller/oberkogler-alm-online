@@ -7,7 +7,8 @@ import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
-import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { useState, useMemo } from "react";
 
 const ProductDetail = () => {
   const { handle } = useParams<{ handle: string }>();
@@ -17,7 +18,7 @@ const ProductDetail = () => {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
   const [quantity, setQuantity] = useState(1);
-  const [gutscheinVariantIndex, setGutscheinVariantIndex] = useState(2); // default 25€
+  const [gutscheinAmount, setGutscheinAmount] = useState('25');
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
