@@ -28,12 +28,37 @@ const ProductDetail = () => {
 
   const isGutschein = handle === 'oberkogler-alm-gutschein';
 
+  // Find the best matching variant for the entered gutschein amount
+  const matchedGutscheinVariant = useMemo(() => {
+    if (!isGutschein || !product) return null;
+    const amount = parseFloat(gutscheinAmount);
+    if (isNaN(amount) || amount <= 0) return null;
+    
+    const availableVariants = product.variants.edges
+      .filter(v => v.node.availableForSale)
+      .map(v => ({ ...v, price: parseFloat(v.node.price.amount) }));
+    
+    // Find exact match
+    const exact = availableVariants.find(v => v.price === amount);
+    if (exact) return exact;
+    
+    // Find closest available variant
+    const sorted = [...availableVariants].sort(
+      (a, b) => Math.abs(a.price - amount) - Math.abs(b.price - amount)
+    );
+    return sorted[0] || null;
+  }, [isGutschein, product, gutscheinAmount]);
+
+  const gutscheinAmountNum = parseFloat(gutscheinAmount);
+  const isExactMatch = matchedGutscheinVariant && 
+    parseFloat(matchedGutscheinVariant.node.price.amount) === gutscheinAmountNum;
+
   const handleAddToCart = async () => {
     if (!product) return;
 
     if (isGutschein) {
-      const variant = product.variants.edges[gutscheinVariantIndex]?.node;
-      if (!variant) return;
+      if (!matchedGutscheinVariant || !isExactMatch) return;
+      const variant = matchedGutscheinVariant.node;
 
       const shopifyProduct: ShopifyProduct = { node: product };
       await addItem({
