@@ -89,9 +89,9 @@ const Navigation = () => {
               </button>
             </div>
 
-            {/* Shop Button OR Cart Button depending on route */}
+            {/* Shop Button OR Cart on shop/product pages */}
             {showCart ? (
-              <div className={cn("bg-primary hover:bg-primary/90 text-primary-foreground px-10 sm:px-14 md:px-20 py-6 flex items-center justify-center h-full min-h-[72px]")}>
+              <div className={cn("px-4 py-4", isScrolled ? "text-foreground" : "text-white")}>
                 <CartSheet />
               </div>
             ) : (
