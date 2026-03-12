@@ -46,12 +46,12 @@ const Navigation = () => {
           {/* Left Section - Hamburger + Language + Icons */}
           <div className="flex items-center gap-4 md:gap-6 px-4 py-4">
             {/* Hamburger Menu */}
-            <button className={cn("p-2 transition-colors", isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80")} onClick={() => setIsSidebarOpen(true)} aria-label="Open menu">
+            <button className="p-2 transition-colors text-primary hover:text-primary/80" onClick={() => setIsSidebarOpen(true)} aria-label="Open menu">
               <Menu size={24} strokeWidth={1.5} />
             </button>
 
             {/* Language Toggle */}
-            <button onClick={() => setLanguage(language === 'de' ? 'en' : 'de')} className={cn("text-sm font-medium tracking-wider transition-colors", isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80")}>
+            <button onClick={() => setLanguage(language === 'de' ? 'en' : 'de')} className="text-sm font-medium tracking-wider transition-colors text-primary hover:text-primary/80">
               {language.toUpperCase()}
             </button>
 
