@@ -67,7 +67,6 @@ const FALLBACK_IMAGES_BY_HANDLE: Record<string, ShopifyImageNode[]> = {
   ],
   honig: [
     { url: '/products/sommerhonig-2.jpg', altText: 'Sommerhonig' },
-    { url: '/products/sommerhonig.jpg', altText: 'Sommerhonig' },
     { url: '/products/cremehonig-2.jpg', altText: 'Cremehonig' },
   ],
   'almhonig-mit-alpenrosen': [
