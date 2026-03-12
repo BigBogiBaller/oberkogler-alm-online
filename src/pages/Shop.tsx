@@ -1,13 +1,15 @@
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getProducts, formatPrice, type ShopifyProduct } from "@/lib/shopify";
+import { getProducts, formatPrice, type ShopifyProduct, type DeliveryMethod } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
+import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 
 const Shop = () => {
   const { addItem, isLoading: cartLoading } = useCartStore();
