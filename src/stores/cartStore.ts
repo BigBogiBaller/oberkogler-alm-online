@@ -41,30 +41,51 @@ export const useCartStore = create<CartStore>()(
 
       addItem: async (item) => {
         const { items, cartId, clearCart } = get();
-        const existingItem = items.find(i => i.variantId === item.variantId);
+        const existingItem = items.find(
+          (i) =>
+            i.variantId === item.variantId &&
+            i.variantTitle === item.variantTitle &&
+            i.deliveryMethod === item.deliveryMethod
+        );
+
+        const createFreshCartWithItem = async () => {
+          const result = await createShopifyCart({ ...item, lineId: null });
+          if (!result) return false;
+
+          set({
+            cartId: result.cartId,
+            checkoutUrl: result.checkoutUrl,
+            items: [{ ...item, lineId: result.lineId }],
+          });
+          toast.success(`${item.product.node.title} wurde zum Warenkorb hinzugefügt`);
+          return true;
+        };
 
         set({ isLoading: true });
         try {
           if (!cartId) {
-            const result = await createShopifyCart({ ...item, lineId: null });
-            if (result) {
-              set({
-                cartId: result.cartId,
-                checkoutUrl: result.checkoutUrl,
-                items: [{ ...item, lineId: result.lineId }],
-              });
-              toast.success(`${item.product.node.title} wurde zum Warenkorb hinzugefügt`);
-            }
+            await createFreshCartWithItem();
           } else if (existingItem) {
             const newQuantity = existingItem.quantity + item.quantity;
-            if (!existingItem.lineId) return;
+            if (!existingItem.lineId) {
+              await createFreshCartWithItem();
+              return;
+            }
+
             const result = await updateShopifyCartLine(cartId, existingItem.lineId, newQuantity);
             if (result.success) {
               const currentItems = get().items;
-              set({ items: currentItems.map(i => i.variantId === item.variantId ? { ...i, quantity: newQuantity } : i) });
+              set({
+                items: currentItems.map((i) =>
+                  i.variantId === item.variantId && i.variantTitle === item.variantTitle
+                    ? { ...i, quantity: newQuantity }
+                    : i
+                ),
+              });
               toast.success(`${item.product.node.title} wurde zum Warenkorb hinzugefügt`);
             } else if (result.cartNotFound) {
               clearCart();
+              await createFreshCartWithItem();
             }
           } else {
             const result = await addLineToShopifyCart(cartId, { ...item, lineId: null });
@@ -74,6 +95,7 @@ export const useCartStore = create<CartStore>()(
               toast.success(`${item.product.node.title} wurde zum Warenkorb hinzugefügt`);
             } else if (result.cartNotFound) {
               clearCart();
+              await createFreshCartWithItem();
             }
           }
         } catch (error) {
