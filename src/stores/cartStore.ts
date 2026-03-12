@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 import {
   type CartItem,
   type ShopifyProduct,
+  type DeliveryMethod,
   createShopifyCart,
   addLineToShopifyCart,
   updateShopifyCartLine,
