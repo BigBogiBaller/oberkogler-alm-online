@@ -190,7 +190,6 @@ const Shop = () => {
                           {variant?.availableForSale ? t('shop.addToCart') : t('shop.soldOut')}
                         </Button>
                       )}
-                      </Button>
                     </CardFooter>
                   </Card>
                 );
