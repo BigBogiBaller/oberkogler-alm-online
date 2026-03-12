@@ -66,7 +66,7 @@ const FALLBACK_IMAGES_BY_HANDLE: Record<string, ShopifyImageNode[]> = {
     { url: '/products/marmelade-sortiment-2.jpg', altText: 'Selbstgemachte Marmelade Auswahl' },
   ],
   honig: [
-    { url: '/products/cremehonig-2.jpg', altText: 'Cremehonig' },
+    { url: '/products/sommerhonig-2.jpg', altText: 'Sommerhonig' },
     { url: '/products/sommerhonig.jpg', altText: 'Sommerhonig' },
     { url: '/products/cremehonig.jpg', altText: 'Cremehonig' },
   ],
