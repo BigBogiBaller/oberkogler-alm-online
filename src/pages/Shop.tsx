@@ -106,6 +106,7 @@ const Shop = () => {
                 const image = product.node.images.edges[0]?.node;
                 const variant = product.node.variants.edges[0]?.node;
                 const price = variant?.price || product.node.priceRange.minVariantPrice;
+                const isGutschein = product.node.handle === 'oberkogler-alm-gutschein';
 
                 return (
                   <Card
@@ -135,9 +136,15 @@ const Shop = () => {
                       <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                         {product.node.description}
                       </p>
-                      <p className="text-2xl font-bold text-primary">
-                        {formatPrice(price.amount, price.currencyCode)}
-                      </p>
+                      {isGutschein ? (
+                        <p className="text-2xl font-bold text-primary">
+                          {getGutscheinAmount(product.node.id)}€
+                        </p>
+                      ) : (
+                        <p className="text-2xl font-bold text-primary">
+                          {formatPrice(price.amount, price.currencyCode)}
+                        </p>
+                      )}
                     </CardContent>
                     <CardFooter className="flex flex-col gap-3">
                       <DeliveryMethodPicker
@@ -145,28 +152,47 @@ const Shop = () => {
                         onChange={(method) => setDeliveryMethod(product.node.id, method)}
                         compact
                       />
-                      <div className="flex items-center gap-2 w-full" onClick={(e) => e.stopPropagation()}>
-                        <span className="text-sm font-medium text-foreground">Anzahl:</span>
-                        <div className="flex items-center gap-1">
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8"
-                            onClick={() => setQuantity(product.node.id, getQuantity(product.node.id) - 1)}
-                          >
-                            <Minus className="h-3.5 w-3.5" />
-                          </Button>
-                          <span className="w-8 text-center text-sm font-medium">{getQuantity(product.node.id)}</span>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8"
-                            onClick={() => setQuantity(product.node.id, getQuantity(product.node.id) + 1)}
-                          >
-                            <Plus className="h-3.5 w-3.5" />
-                          </Button>
+                      {isGutschein ? (
+                        <div className="flex items-center gap-2 w-full" onClick={(e) => e.stopPropagation()}>
+                          <span className="text-sm font-medium text-foreground">Betrag €:</span>
+                          <Input
+                            type="number"
+                            min={1}
+                            max={500}
+                            value={getGutscheinAmount(product.node.id)}
+                            onChange={(e) => {
+                              const val = parseInt(e.target.value, 10);
+                              if (!isNaN(val) && val >= 1 && val <= 500) {
+                                setGutscheinAmount(product.node.id, val);
+                              }
+                            }}
+                            className="w-24 h-8 text-sm"
+                          />
                         </div>
-                      </div>
+                      ) : (
+                        <div className="flex items-center gap-2 w-full" onClick={(e) => e.stopPropagation()}>
+                          <span className="text-sm font-medium text-foreground">Anzahl:</span>
+                          <div className="flex items-center gap-1">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-8 w-8"
+                              onClick={() => setQuantity(product.node.id, getQuantity(product.node.id) - 1)}
+                            >
+                              <Minus className="h-3.5 w-3.5" />
+                            </Button>
+                            <span className="w-8 text-center text-sm font-medium">{getQuantity(product.node.id)}</span>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-8 w-8"
+                              onClick={() => setQuantity(product.node.id, getQuantity(product.node.id) + 1)}
+                            >
+                              <Plus className="h-3.5 w-3.5" />
+                            </Button>
+                          </div>
+                        </div>
+                      )}
                       <Button
                         className="w-full"
                         onClick={(e) => {
