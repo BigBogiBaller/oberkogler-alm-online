@@ -152,7 +152,6 @@ const ProductDetail = () => {
                   </div>
                 )}
               </div>
-            </div>
               {images.length > 1 && (
                 <div className="flex gap-2 overflow-x-auto">
                   {images.map((img, idx) => (
@@ -168,6 +167,7 @@ const ProductDetail = () => {
                   ))}
                 </div>
               )}
+            </div>
             <div className="space-y-6">
               <h1 className="text-3xl md:text-4xl font-bold text-foreground">{product.title}</h1>
 
