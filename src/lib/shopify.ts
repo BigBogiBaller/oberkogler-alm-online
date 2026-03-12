@@ -1,6 +1,6 @@
 const SHOPIFY_STOREFRONT_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 const SHOPIFY_STORE_DOMAIN = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN;
-const SHOPIFY_API_VERSION = '2025-01';
+const SHOPIFY_API_VERSION = '2025-07';
 
 export interface ShopifyProduct {
   id: string;
