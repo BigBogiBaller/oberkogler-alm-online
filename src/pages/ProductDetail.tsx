@@ -175,25 +175,42 @@ const ProductDetail = () => {
               {isGutschein ? (
                 <>
                   <p className="text-3xl font-bold text-primary">
-                    {variants[gutscheinVariantIndex]
-                      ? formatPrice(variants[gutscheinVariantIndex].node.price.amount, variants[gutscheinVariantIndex].node.price.currencyCode)
-                      : ''}
+                    {isExactMatch && matchedGutscheinVariant
+                      ? formatPrice(matchedGutscheinVariant.node.price.amount, matchedGutscheinVariant.node.price.currencyCode)
+                      : gutscheinAmountNum > 0 ? `${gutscheinAmountNum} €` : ''}
                   </p>
                   <div className="space-y-3">
-                    <label className="text-sm font-medium text-foreground">Betrag wählen</label>
+                    <label className="text-sm font-medium text-foreground">Betrag eingeben (€)</label>
+                    <Input
+                      type="number"
+                      min="1"
+                      max="500"
+                      value={gutscheinAmount}
+                      onChange={(e) => setGutscheinAmount(e.target.value)}
+                      placeholder="z.B. 50"
+                      className="text-lg font-medium max-w-[200px]"
+                    />
                     <div className="flex flex-wrap gap-2">
-                      {variants.map((v, idx) => (
-                        <Button
-                          key={v.node.id}
-                          variant={gutscheinVariantIndex === idx ? 'default' : 'outline'}
-                          size="sm"
-                          onClick={() => setGutscheinVariantIndex(idx)}
-                          disabled={!v.node.availableForSale}
-                        >
-                          {v.node.title}
-                        </Button>
-                      ))}
+                      {variants.filter(v => v.node.availableForSale).map((v) => {
+                        const vAmount = parseFloat(v.node.price.amount);
+                        const isSelected = gutscheinAmountNum === vAmount;
+                        return (
+                          <Button
+                            key={v.node.id}
+                            variant={isSelected ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => setGutscheinAmount(vAmount.toString())}
+                          >
+                            {v.node.title}
+                          </Button>
+                        );
+                      })}
                     </div>
+                    {gutscheinAmountNum > 0 && !isExactMatch && (
+                      <p className="text-sm text-destructive">
+                        Bitte wählen Sie einen der verfügbaren Beträge: {variants.filter(v => v.node.availableForSale).map(v => v.node.title).join(', ')}
+                      </p>
+                    )}
                   </div>
                 </>
               ) : (
