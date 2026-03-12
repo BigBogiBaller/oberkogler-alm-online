@@ -91,7 +91,12 @@ const Navigation = () => {
 
             {/* Shop Button OR Cart on shop/product pages */}
             {showCart ? (
-              <div className={cn("px-4 py-4", isScrolled ? "text-foreground" : "text-white")}>
+              <div className={cn(
+                "px-4 py-4 [&_button]:border-2 [&_button]:transition-colors",
+                isScrolled 
+                  ? "[&_button]:border-foreground/30 [&_button]:text-foreground [&_button]:hover:bg-accent" 
+                  : "[&_button]:border-white [&_button]:text-white [&_button]:bg-white/10 [&_button]:hover:bg-white/20"
+              )}>
                 <CartSheet />
               </div>
             ) : (
