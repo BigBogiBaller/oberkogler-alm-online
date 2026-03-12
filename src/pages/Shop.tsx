@@ -17,7 +17,6 @@ const Shop = () => {
   const navigate = useNavigate();
   const [deliveryMethods, setDeliveryMethods] = useState<Record<string, DeliveryMethod>>({});
   const [quantities, setQuantities] = useState<Record<string, number>>({});
-  const [gutscheinAmounts, setGutscheinAmounts] = useState<Record<string, number>>({});
 
   const getQuantity = (productId: string): number => quantities[productId] || 1;
   const setQuantity = (productId: string, qty: number) => {
@@ -27,11 +26,6 @@ const Shop = () => {
   const getDeliveryMethod = (productId: string): DeliveryMethod => deliveryMethods[productId] || 'pickup';
   const setDeliveryMethod = (productId: string, method: DeliveryMethod) => {
     setDeliveryMethods(prev => ({ ...prev, [productId]: method }));
-  };
-
-  const getGutscheinAmount = (productId: string): number => gutscheinAmounts[productId] || 25;
-  const setGutscheinAmount = (productId: string, amount: number) => {
-    setGutscheinAmounts(prev => ({ ...prev, [productId]: amount }));
   };
 
   const { data: products, isLoading, error } = useQuery({
