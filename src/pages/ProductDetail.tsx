@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Input } from "@/components/ui/input";
 import { ShoppingCart, ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
@@ -17,6 +18,7 @@ const ProductDetail = () => {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
   const [quantity, setQuantity] = useState(1);
+  const [gutscheinAmount, setGutscheinAmount] = useState<number>(25);
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
@@ -24,18 +26,24 @@ const ProductDetail = () => {
     enabled: !!handle,
   });
 
+  const isGutschein = handle === 'oberkogler-alm-gutschein';
+
   const handleAddToCart = async () => {
     if (!product) return;
-    const variant = product.variants.edges[selectedVariantIndex]?.node;
+    const variant = isGutschein
+      ? product.variants.edges[0]?.node
+      : product.variants.edges[selectedVariantIndex]?.node;
     if (!variant) return;
 
     const shopifyProduct: ShopifyProduct = { node: product };
+    const cartQuantity = isGutschein ? gutscheinAmount : quantity;
+
     await addItem({
       product: shopifyProduct,
       variantId: variant.id,
-      variantTitle: variant.title,
+      variantTitle: isGutschein ? `Gutschein ${gutscheinAmount}€` : variant.title,
       price: variant.price,
-      quantity,
+      quantity: cartQuantity,
       selectedOptions: variant.selectedOptions,
       deliveryMethod,
     });
@@ -76,9 +84,9 @@ const ProductDetail = () => {
 
   const images = product.images.edges;
   const variants = product.variants.edges;
-  const selectedVariant = variants[selectedVariantIndex]?.node;
+  const selectedVariant = isGutschein ? variants[0]?.node : variants[selectedVariantIndex]?.node;
   const price = selectedVariant?.price || product.priceRange.minVariantPrice;
-  const hasMultipleVariants = variants.length > 1;
+  const hasMultipleVariants = !isGutschein && variants.length > 1;
   const optionName = product.options?.[0]?.name || 'Variante';
 
   return (
@@ -124,56 +132,97 @@ const ProductDetail = () => {
 
             <div className="space-y-6">
               <h1 className="text-3xl md:text-4xl font-bold text-foreground">{product.title}</h1>
-              <p className="text-3xl font-bold text-primary">
-                {formatPrice(price.amount, price.currencyCode)}
-              </p>
 
-              {hasMultipleVariants && (
-                <div className="space-y-3">
-                  <label className="text-sm font-medium text-foreground">{optionName}</label>
-                  <div className="flex flex-wrap gap-2">
-                    {variants.map((v, idx) => (
-                      <button
-                        key={v.node.id}
-                        onClick={() => setSelectedVariantIndex(idx)}
-                        className={`px-4 py-2 rounded-md border-2 text-sm font-medium transition-colors ${
-                          idx === selectedVariantIndex
-                            ? 'border-primary bg-primary text-primary-foreground'
-                            : 'border-border bg-background text-foreground hover:border-primary/50'
-                        } ${!v.node.availableForSale ? 'opacity-50 line-through' : ''}`}
-                        disabled={!v.node.availableForSale}
-                      >
-                        {v.node.title}
-                      </button>
-                    ))}
+              {isGutschein ? (
+                <>
+                  <p className="text-3xl font-bold text-primary">
+                    {gutscheinAmount}€
+                  </p>
+                  <div className="space-y-3">
+                    <label className="text-sm font-medium text-foreground">Betrag wählen (€)</label>
+                    <Input
+                      type="number"
+                      min={1}
+                      max={500}
+                      value={gutscheinAmount}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value, 10);
+                        if (!isNaN(val) && val >= 1 && val <= 500) {
+                          setGutscheinAmount(val);
+                        }
+                      }}
+                      className="max-w-[200px] text-lg"
+                    />
+                    <div className="flex flex-wrap gap-2">
+                      {[10, 25, 50, 100].map((amt) => (
+                        <Button
+                          key={amt}
+                          variant={gutscheinAmount === amt ? 'default' : 'outline'}
+                          size="sm"
+                          onClick={() => setGutscheinAmount(amt)}
+                        >
+                          {amt}€
+                        </Button>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-3xl font-bold text-primary">
+                    {formatPrice(price.amount, price.currencyCode)}
+                  </p>
+
+                  {hasMultipleVariants && (
+                    <div className="space-y-3">
+                      <label className="text-sm font-medium text-foreground">{optionName}</label>
+                      <div className="flex flex-wrap gap-2">
+                        {variants.map((v, idx) => (
+                          <button
+                            key={v.node.id}
+                            onClick={() => setSelectedVariantIndex(idx)}
+                            className={`px-4 py-2 rounded-md border-2 text-sm font-medium transition-colors ${
+                              idx === selectedVariantIndex
+                                ? 'border-primary bg-primary text-primary-foreground'
+                                : 'border-border bg-background text-foreground hover:border-primary/50'
+                            } ${!v.node.availableForSale ? 'opacity-50 line-through' : ''}`}
+                            disabled={!v.node.availableForSale}
+                          >
+                            {v.node.title}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
               )}
 
               <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{product.description}</p>
 
-              <div className="space-y-3">
-                <label className="text-sm font-medium text-foreground">Anzahl</label>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-10 w-10"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                  <span className="w-12 text-center text-lg font-medium">{quantity}</span>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-10 w-10"
-                    onClick={() => setQuantity(quantity + 1)}
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
+              {!isGutschein && (
+                <div className="space-y-3">
+                  <label className="text-sm font-medium text-foreground">Anzahl</label>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-10 w-10"
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    >
+                      <Minus className="h-4 w-4" />
+                    </Button>
+                    <span className="w-12 text-center text-lg font-medium">{quantity}</span>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-10 w-10"
+                      onClick={() => setQuantity(quantity + 1)}
+                    >
+                      <Plus className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="space-y-3">
                 <label className="text-sm font-medium text-foreground">Lieferart</label>
@@ -184,14 +233,14 @@ const ProductDetail = () => {
                 size="lg"
                 className="w-full"
                 onClick={handleAddToCart}
-                disabled={!selectedVariant?.availableForSale || cartLoading}
+                disabled={cartLoading}
               >
                 {cartLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
                 ) : (
                   <ShoppingCart className="w-4 h-4 mr-2" />
                 )}
-                {selectedVariant?.availableForSale ? 'In den Warenkorb' : 'Ausverkauft'}
+                In den Warenkorb
               </Button>
             </div>
           </div>
