@@ -42,7 +42,7 @@ const Shop = () => {
       variantId: variant.id,
       variantTitle: variant.title,
       price: variant.price,
-      quantity: 1,
+      quantity: getQuantity(product.node.id),
       selectedOptions: variant.selectedOptions,
       deliveryMethod: getDeliveryMethod(product.node.id),
     });
