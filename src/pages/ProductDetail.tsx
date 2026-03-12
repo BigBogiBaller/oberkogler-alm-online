@@ -103,9 +103,7 @@ const ProductDetail = () => {
 
   const images = product.images.edges;
   const variants = product.variants.edges;
-  const selectedVariant = isGutschein 
-    ? variants[gutscheinVariantIndex]?.node 
-    : variants[selectedVariantIndex]?.node;
+  const selectedVariant = variants[selectedVariantIndex]?.node;
   const price = selectedVariant?.price || product.priceRange.minVariantPrice;
   const hasMultipleVariants = !isGutschein && variants.length > 1;
   const optionName = product.options?.[0]?.name || 'Variante';
