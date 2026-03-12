@@ -151,6 +151,11 @@ const ProductDetail = () => {
 
               <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{product.description}</p>
 
+              <div className="space-y-3">
+                <label className="text-sm font-medium text-foreground">Lieferart</label>
+                <DeliveryMethodPicker value={deliveryMethod} onChange={setDeliveryMethod} />
+              </div>
+
               <Button
                 size="lg"
                 className="w-full"

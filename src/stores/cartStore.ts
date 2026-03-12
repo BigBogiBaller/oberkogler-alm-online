@@ -12,7 +12,7 @@ import {
   fetchCart,
 } from '@/lib/shopify';
 
-export type { CartItem, ShopifyProduct };
+export type { CartItem, ShopifyProduct, DeliveryMethod };
 
 interface CartStore {
   items: CartItem[];
