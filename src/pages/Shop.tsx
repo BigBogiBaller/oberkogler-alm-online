@@ -15,6 +15,12 @@ const Shop = () => {
   const { addItem, isLoading: cartLoading } = useCartStore();
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const [deliveryMethods, setDeliveryMethods] = useState<Record<string, DeliveryMethod>>({});
+
+  const getDeliveryMethod = (productId: string): DeliveryMethod => deliveryMethods[productId] || 'pickup';
+  const setDeliveryMethod = (productId: string, method: DeliveryMethod) => {
+    setDeliveryMethods(prev => ({ ...prev, [productId]: method }));
+  };
 
   const { data: products, isLoading, error } = useQuery({
     queryKey: ['shopify-products'],
