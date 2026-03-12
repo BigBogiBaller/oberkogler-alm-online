@@ -52,8 +52,14 @@ const CartSheet = () => {
         ) : (
           <>
             <div className="flex-1 mt-8 space-y-4 min-h-0 overflow-y-auto">
-              {items.map(item => (
-                <div key={item.variantId} className="flex gap-4 border-b border-border pb-4">
+              {items.map(item => {
+                const isFlexibleVoucher = item.product.node.handle === 'oberkogler-alm-gutschein' && parseFloat(item.price.amount) === 1;
+                const displayPrice = isFlexibleVoucher
+                  ? formatPrice((parseFloat(item.price.amount) * item.quantity).toString(), item.price.currencyCode)
+                  : formatPrice(item.price.amount, item.price.currencyCode);
+
+                return (
+                <div key={`${item.variantId}-${item.variantTitle}`} className="flex gap-4 border-b border-border pb-4">
                   {item.product.node.images.edges[0] && (
                     <img
                       src={item.product.node.images.edges[0].node.url}
@@ -74,23 +80,28 @@ const CartSheet = () => {
                       )}
                     </p>
                     <p className="text-sm font-medium text-primary mt-1">
-                      {formatPrice(item.price.amount, item.price.currencyCode)}
+                      {displayPrice}
                     </p>
-                    <div className="flex items-center gap-2 mt-2">
-                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.variantId, item.quantity - 1)} disabled={isLoading}>
-                        <Minus className="h-3 w-3" />
-                      </Button>
-                      <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
-                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.variantId, item.quantity + 1)} disabled={isLoading}>
-                        <Plus className="h-3 w-3" />
-                      </Button>
-                    </div>
+                    {!isFlexibleVoucher ? (
+                      <div className="flex items-center gap-2 mt-2">
+                        <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.variantId, item.quantity - 1)} disabled={isLoading}>
+                          <Minus className="h-3 w-3" />
+                        </Button>
+                        <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
+                        <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.variantId, item.quantity + 1)} disabled={isLoading}>
+                          <Plus className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <p className="text-xs text-muted-foreground mt-2">1 Gutschein</p>
+                    )}
                   </div>
                   <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => removeItem(item.variantId)} disabled={isLoading}>
                     <X className="h-4 w-4" />
                   </Button>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="flex-shrink-0 pt-4 border-t space-y-4">
