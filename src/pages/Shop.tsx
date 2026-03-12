@@ -38,6 +38,7 @@ const Shop = () => {
       price: variant.price,
       quantity: 1,
       selectedOptions: variant.selectedOptions,
+      deliveryMethod: getDeliveryMethod(product.node.id),
     });
   };
 
