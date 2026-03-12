@@ -35,7 +35,7 @@ const ProductDetail = () => {
       variantId: variant.id,
       variantTitle: variant.title,
       price: variant.price,
-      quantity: 1,
+      quantity,
       selectedOptions: variant.selectedOptions,
       deliveryMethod,
     });
