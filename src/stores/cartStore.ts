@@ -1,38 +1,30 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { createCheckout } from '@/lib/shopify';
-import type { ShopifyProduct } from '@/lib/shopify';
 import { toast } from 'sonner';
+import {
+  type CartItem,
+  type ShopifyProduct,
+  createShopifyCart,
+  addLineToShopifyCart,
+  updateShopifyCartLine,
+  removeLineFromShopifyCart,
+  fetchCart,
+} from '@/lib/shopify';
 
-export interface CartItem {
-  product: ShopifyProduct;
-  variantId: string;
-  variantTitle: string;
-  price: {
-    amount: string;
-    currencyCode: string;
-  };
-  quantity: number;
-  selectedOptions: Array<{
-    name: string;
-    value: string;
-  }>;
-}
+export type { CartItem, ShopifyProduct };
 
 interface CartStore {
   items: CartItem[];
   cartId: string | null;
   checkoutUrl: string | null;
   isLoading: boolean;
-  
-  addItem: (item: CartItem) => void;
-  updateQuantity: (variantId: string, quantity: number) => void;
-  removeItem: (variantId: string) => void;
+  isSyncing: boolean;
+  addItem: (item: Omit<CartItem, 'lineId'>) => Promise<void>;
+  updateQuantity: (variantId: string, quantity: number) => Promise<void>;
+  removeItem: (variantId: string) => Promise<void>;
   clearCart: () => void;
-  setCartId: (cartId: string) => void;
-  setCheckoutUrl: (url: string) => void;
-  setLoading: (loading: boolean) => void;
-  createCheckout: () => Promise<void>;
+  syncCart: () => Promise<void>;
+  getCheckoutUrl: () => string | null;
   getTotalItems: () => number;
   getTotalPrice: () => { amount: number; currencyCode: string };
 }
@@ -44,117 +36,140 @@ export const useCartStore = create<CartStore>()(
       cartId: null,
       checkoutUrl: null,
       isLoading: false,
+      isSyncing: false,
 
-      addItem: (item) => {
-        const { items } = get();
+      addItem: async (item) => {
+        const { items, cartId, clearCart } = get();
         const existingItem = items.find(i => i.variantId === item.variantId);
-        
-        if (existingItem) {
-          set({
-            items: items.map(i =>
-              i.variantId === item.variantId
-                ? { ...i, quantity: i.quantity + item.quantity }
-                : i
-            )
-          });
-        } else {
-          set({ items: [...items, item] });
-        }
-        
-        toast.success(`${item.product.title} wurde zum Warenkorb hinzugefügt`);
-      },
 
-      updateQuantity: (variantId, quantity) => {
-        if (quantity <= 0) {
-          get().removeItem(variantId);
-          return;
-        }
-        
-        set({
-          items: get().items.map(item =>
-            item.variantId === variantId ? { ...item, quantity } : item
-          )
-        });
-      },
-
-      removeItem: (variantId) => {
-        const item = get().items.find(i => i.variantId === variantId);
-        set({
-          items: get().items.filter(item => item.variantId !== variantId)
-        });
-        
-        if (item) {
-          toast.success(`${item.product.title} wurde entfernt`);
-        }
-      },
-
-      clearCart: () => {
-        set({ items: [], cartId: null, checkoutUrl: null });
-      },
-
-      setCartId: (cartId) => set({ cartId }),
-      setCheckoutUrl: (checkoutUrl) => set({ checkoutUrl }),
-      setLoading: (isLoading) => set({ isLoading }),
-
-      createCheckout: async () => {
-        const { items, setLoading, setCartId, setCheckoutUrl, clearCart } = get();
-        
-        if (items.length === 0) {
-          toast.error('Ihr Warenkorb ist leer');
-          return;
-        }
-
-        setLoading(true);
-
+        set({ isLoading: true });
         try {
-          const lineItems = items.map(item => ({
-            variantId: item.variantId,
-            quantity: item.quantity,
-          }));
-
-          const { cartId, checkoutUrl } = await createCheckout(lineItems);
-          
-          setCartId(cartId);
-          setCheckoutUrl(checkoutUrl);
-          
-          // Open checkout in new tab
-          window.open(checkoutUrl, '_blank');
-          
-          // Clear cart after successful checkout
-          clearCart();
-          
-          toast.success('Zur Kasse weitergeleitet');
+          if (!cartId) {
+            const result = await createShopifyCart({ ...item, lineId: null });
+            if (result) {
+              set({
+                cartId: result.cartId,
+                checkoutUrl: result.checkoutUrl,
+                items: [{ ...item, lineId: result.lineId }],
+              });
+              toast.success(`${item.product.node.title} wurde zum Warenkorb hinzugefügt`);
+            }
+          } else if (existingItem) {
+            const newQuantity = existingItem.quantity + item.quantity;
+            if (!existingItem.lineId) return;
+            const result = await updateShopifyCartLine(cartId, existingItem.lineId, newQuantity);
+            if (result.success) {
+              const currentItems = get().items;
+              set({ items: currentItems.map(i => i.variantId === item.variantId ? { ...i, quantity: newQuantity } : i) });
+              toast.success(`${item.product.node.title} wurde zum Warenkorb hinzugefügt`);
+            } else if (result.cartNotFound) {
+              clearCart();
+            }
+          } else {
+            const result = await addLineToShopifyCart(cartId, { ...item, lineId: null });
+            if (result.success) {
+              const currentItems = get().items;
+              set({ items: [...currentItems, { ...item, lineId: result.lineId ?? null }] });
+              toast.success(`${item.product.node.title} wurde zum Warenkorb hinzugefügt`);
+            } else if (result.cartNotFound) {
+              clearCart();
+            }
+          }
         } catch (error) {
-          console.error('Checkout error:', error);
-          toast.error('Fehler beim Checkout. Bitte versuchen Sie es erneut.');
+          console.error('Failed to add item:', error);
+          toast.error('Fehler beim Hinzufügen zum Warenkorb');
         } finally {
-          setLoading(false);
+          set({ isLoading: false });
         }
       },
 
-      getTotalItems: () => {
-        return get().items.reduce((total, item) => total + item.quantity, 0);
+      updateQuantity: async (variantId, quantity) => {
+        if (quantity <= 0) {
+          await get().removeItem(variantId);
+          return;
+        }
+
+        const { items, cartId, clearCart } = get();
+        const item = items.find(i => i.variantId === variantId);
+        if (!item?.lineId || !cartId) return;
+
+        set({ isLoading: true });
+        try {
+          const result = await updateShopifyCartLine(cartId, item.lineId, quantity);
+          if (result.success) {
+            const currentItems = get().items;
+            set({ items: currentItems.map(i => i.variantId === variantId ? { ...i, quantity } : i) });
+          } else if (result.cartNotFound) {
+            clearCart();
+          }
+        } catch (error) {
+          console.error('Failed to update quantity:', error);
+        } finally {
+          set({ isLoading: false });
+        }
       },
+
+      removeItem: async (variantId) => {
+        const { items, cartId, clearCart } = get();
+        const item = items.find(i => i.variantId === variantId);
+        if (!item?.lineId || !cartId) return;
+
+        set({ isLoading: true });
+        try {
+          const result = await removeLineFromShopifyCart(cartId, item.lineId);
+          if (result.success) {
+            const currentItems = get().items;
+            const newItems = currentItems.filter(i => i.variantId !== variantId);
+            if (newItems.length === 0) {
+              clearCart();
+            } else {
+              set({ items: newItems });
+            }
+            toast.success(`${item.product.node.title} wurde entfernt`);
+          } else if (result.cartNotFound) {
+            clearCart();
+          }
+        } catch (error) {
+          console.error('Failed to remove item:', error);
+        } finally {
+          set({ isLoading: false });
+        }
+      },
+
+      clearCart: () => set({ items: [], cartId: null, checkoutUrl: null }),
+
+      getCheckoutUrl: () => get().checkoutUrl,
+
+      syncCart: async () => {
+        const { cartId, isSyncing, clearCart } = get();
+        if (!cartId || isSyncing) return;
+
+        set({ isSyncing: true });
+        try {
+          const data = await fetchCart(cartId);
+          if (!data) return;
+          const cart = data?.data?.cart;
+          if (!cart || cart.totalQuantity === 0) clearCart();
+        } catch (error) {
+          console.error('Failed to sync cart:', error);
+        } finally {
+          set({ isSyncing: false });
+        }
+      },
+
+      getTotalItems: () => get().items.reduce((sum, item) => sum + item.quantity, 0),
 
       getTotalPrice: () => {
         const items = get().items;
-        if (items.length === 0) {
-          return { amount: 0, currencyCode: 'EUR' };
-        }
-        
-        const total = items.reduce((sum, item) => {
-          return sum + (parseFloat(item.price.amount) * item.quantity);
-        }, 0);
-        
-        return {
-          amount: total,
-          currencyCode: items[0].price.currencyCode,
-        };
+        if (items.length === 0) return { amount: 0, currencyCode: 'EUR' };
+        const total = items.reduce((sum, item) => sum + parseFloat(item.price.amount) * item.quantity, 0);
+        return { amount: total, currencyCode: items[0].price.currencyCode };
       },
     }),
     {
       name: 'oberkogler-cart',
       storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ items: state.items, cartId: state.cartId, checkoutUrl: state.checkoutUrl }),
     }
   )
 );
