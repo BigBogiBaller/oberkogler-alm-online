@@ -165,8 +165,8 @@ const Navigation = () => {
                 </div>
               </div>
             </div>
-            <NavLink to="/reviews" onClick={closeSidebar} className="block font-heading text-2xl text-foreground hover:text-primary transition-colors">
-              {language === 'de' ? 'Rezensionen' : 'Reviews'}
+            <NavLink to="/veranstaltungen" onClick={closeSidebar} className="block font-heading text-2xl text-foreground hover:text-primary transition-colors">
+              {language === 'de' ? 'Veranstaltungen' : 'Events'}
             </NavLink>
           </nav>
 

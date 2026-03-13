@@ -289,13 +289,9 @@ const translations = {
     'shop.freeShipping': 'Free Shipping',
     'shop.freeShippingText': 'On orders over €50',
     
-    // Reviews
-    'reviews.title': 'Guest Reviews',
-    'reviews.subtitle': 'What our guests say about us',
-    'reviews.reviews': 'Reviews',
-    'reviews.language': 'en',
-    'reviews.visitUs': 'Visit us on Google Maps for more reviews',
-    'reviews.googleLink': 'Go to Google Maps',
+    // Events
+    'events.title': 'Upcoming Events',
+    'events.subtitle': 'Experience special moments at Oberkogler Alm',
     
     // Menu
     'menu.title': 'Our Menu',
