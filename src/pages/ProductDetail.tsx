@@ -9,6 +9,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState, useMemo } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { X } from "lucide-react";
 
 const ProductDetail = () => {
   const { handle } = useParams<{ handle: string }>();
@@ -19,6 +21,7 @@ const ProductDetail = () => {
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
   const [quantity, setQuantity] = useState(1);
   const [gutscheinAmount, setGutscheinAmount] = useState('25');
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
@@ -139,7 +142,10 @@ const ProductDetail = () => {
 
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-4">
-              <div className="aspect-square overflow-hidden rounded-lg bg-muted">
+              <div
+                className="aspect-square overflow-hidden rounded-lg bg-muted cursor-zoom-in"
+                onClick={() => images[selectedImageIndex] && setLightboxOpen(true)}
+              >
                 {images[selectedImageIndex] ? (
                   <img
                     src={images[selectedImageIndex].node.url}
@@ -291,6 +297,17 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-black/95 flex items-center justify-center">
+          {images[selectedImageIndex] && (
+            <img
+              src={images[selectedImageIndex].node.url}
+              alt={images[selectedImageIndex].node.altText || product.title}
+              className="max-w-full max-h-[85vh] object-contain"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
