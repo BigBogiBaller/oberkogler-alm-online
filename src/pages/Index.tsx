@@ -19,6 +19,7 @@ import aboutVideo from "@/assets/about-video.mp4";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
 import teamVideo from "@/assets/team-video.mp4";
 import curvedArrow from "@/assets/curved-arrow.png";
+import VideoPlayer from "@/components/VideoPlayer";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
