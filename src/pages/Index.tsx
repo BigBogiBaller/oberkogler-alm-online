@@ -575,7 +575,7 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <img src={oberkoglerLogo} alt="Oberkogler Alm" className="h-16 opacity-70 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
+            <img src={oberkoglerLogo} alt="Oberkogler Alm" className="h-24 opacity-80 cursor-pointer brightness-75 sepia hue-rotate-[340deg] saturate-150" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
           </div>
           
           {/* Links */}
