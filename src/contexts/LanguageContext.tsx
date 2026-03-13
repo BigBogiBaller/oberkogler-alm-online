@@ -166,7 +166,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.shop': 'Shop',
     'nav.contact': 'Contact',
-    'nav.reviews': 'Reviews',
+    'nav.events': 'Events',
     'nav.menu': 'Menu',
     
     // Hero
