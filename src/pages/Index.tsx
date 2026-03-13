@@ -122,19 +122,24 @@ const Index = () => {
   }];
   const shopProducts = [{
     key: 'salbe',
-    price: '€6,00'
+    price: '€6,00',
+    image: '/products/ringelblumensalbe-4.jpg'
   }, {
     key: 'johanniskraut',
-    price: '€8,50'
+    price: '€8,50',
+    image: '/products/johanniskraut-oel.jpg'
   }, {
     key: 'marmelade',
-    price: '€3,00'
+    price: '€3,00',
+    image: '/products/marille-2.jpg'
   }, {
     key: 'honig',
-    price: '€6,50 - €16,50'
+    price: '€6,50 - €16,50',
+    image: '/products/sommerhonig-2.jpg'
   }, {
     key: 'hartwuerstl',
-    price: '€4,50'
+    price: '€4,50',
+    image: '/products/hartwuerstl.jpg'
   }];
   return <div className="min-h-screen bg-background">
       <Navigation />
@@ -386,16 +391,18 @@ const Index = () => {
           </AnimatedSection>
           
           <div ref={shopStagger.containerRef} className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {shopProducts.map((product, index) => <Card key={product.key} className={`border-border/50 shadow-sm card-hover transition-all duration-700 ${shopStagger.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                <CardContent className="pt-6 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                    <ShoppingBag className="w-8 h-8 text-primary" />
-                  </div>
+            {shopProducts.map((product, index) => <Link to="/shop" key={product.key}>
+              <Card className={`border-border/50 shadow-sm card-hover transition-all duration-700 overflow-hidden ${shopStagger.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className="aspect-square overflow-hidden">
+                  <img src={product.image} alt={t(`farmshop.${product.key}.name`)} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                </div>
+                <CardContent className="pt-4 text-center">
                   <h3 className="font-semibold text-base mb-1">{t(`farmshop.${product.key}.name`)}</h3>
                   <p className="text-muted-foreground text-xs mb-2">{t(`farmshop.${product.key}.desc`)}</p>
                   <span className="text-primary font-bold">{product.price}</span>
                 </CardContent>
-              </Card>)}
+              </Card>
+            </Link>)}
           </div>
           
           <AnimatedSection className="text-center mt-12">
