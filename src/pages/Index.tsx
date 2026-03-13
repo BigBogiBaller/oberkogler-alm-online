@@ -8,7 +8,7 @@ import HeroSlideshow from "@/components/HeroSlideshow";
 import InstagramSection from "@/components/InstagramSection";
 import TikTokSection from "@/components/TikTokSection";
 import { useScrollAnimation, useStaggerAnimation } from "@/hooks/useScrollAnimation";
-import MenuQRPopup from "@/components/MenuQRPopup";
+
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
 import hero4 from "@/assets/hero-4.jpg";
@@ -143,7 +143,7 @@ const Index = () => {
   }];
   return <div className="min-h-screen bg-background">
       <Navigation />
-      <MenuQRPopup />
+      
       
       {/* Hero Section with Ken Burns Effect - Fade Slideshow */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
