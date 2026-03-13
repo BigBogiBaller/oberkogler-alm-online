@@ -348,9 +348,11 @@ const Index = () => {
           </AnimatedSection>
           
           <div ref={culinaryStagger.containerRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {culinaryHighlights.map((dish, index) => <Card key={dish.key} className={`bg-primary-foreground/95 border-0 shadow-xl card-hover transition-all duration-700 ${culinaryStagger.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                <CardContent className="pt-6 text-center">
-                  <Utensils className="w-10 h-10 text-primary mx-auto mb-4" />
+            {culinaryHighlights.map((dish, index) => <Card key={dish.key} className={`bg-primary-foreground/95 border-0 shadow-xl card-hover transition-all duration-700 overflow-hidden ${culinaryStagger.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className="aspect-square overflow-hidden">
+                  <img src={dish.image} alt={t(`culinary.${dish.key}.name`)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <CardContent className="pt-4 text-center">
                   <h3 className="font-semibold text-lg mb-2">{t(`culinary.${dish.key}.name`)}</h3>
                   <p className="text-muted-foreground text-sm mb-3">{t(`culinary.${dish.key}.desc`)}</p>
                   <span className="text-primary font-bold text-lg">{dish.price}</span>
