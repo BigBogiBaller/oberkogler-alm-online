@@ -191,8 +191,12 @@ export const useCartStore = create<CartStore>()(
     }),
     {
       name: 'oberkogler-cart',
+      version: 2,
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ items: state.items, cartId: state.cartId, checkoutUrl: state.checkoutUrl }),
+      migrate: () => {
+        return { items: [], cartId: null, checkoutUrl: null };
+      },
     }
   )
 );
