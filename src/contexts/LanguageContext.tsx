@@ -137,13 +137,9 @@ const translations = {
     'shop.freeShipping': 'Kostenloser Versand',
     'shop.freeShippingText': 'Bei Bestellungen über €50',
     
-    // Reviews
-    'reviews.title': 'Gästebewertungen',
-    'reviews.subtitle': 'Was unsere Gäste über uns sagen',
-    'reviews.reviews': 'Bewertungen',
-    'reviews.language': 'de',
-    'reviews.visitUs': 'Besuchen Sie uns auf Google Maps für mehr Rezensionen',
-    'reviews.googleLink': 'Zu Google Maps',
+    // Events
+    'events.title': 'Nächste Veranstaltungen',
+    'events.subtitle': 'Erleben Sie besondere Momente auf der Oberkogler Alm',
     
     // Menu
     'menu.title': 'Unsere Speisekarte',
