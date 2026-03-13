@@ -20,6 +20,10 @@ import oberkoglerLogo from "@/assets/oberkogler-logo.png";
 import teamVideo from "@/assets/team-video.mp4";
 import curvedArrow from "@/assets/curved-arrow.png";
 import VideoPlayer from "@/components/VideoPlayer";
+import dishKasnockerl from "@/assets/dish-kasnockerl.jpg";
+import dishSteirerkaskropfn from "@/assets/dish-steirerkaskropfn.jpg";
+import dishBratlbrot from "@/assets/dish-bratlbrot.jpg";
+import dishSuppe from "@/assets/dish-suppe.jpg";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
