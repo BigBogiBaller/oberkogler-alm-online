@@ -21,6 +21,7 @@ const ProductDetail = () => {
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
   const [quantity, setQuantity] = useState(1);
   const [gutscheinAmount, setGutscheinAmount] = useState('25');
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
