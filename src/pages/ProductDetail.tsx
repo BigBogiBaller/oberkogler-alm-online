@@ -297,6 +297,17 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-black/95 flex items-center justify-center">
+          {images[selectedImageIndex] && (
+            <img
+              src={images[selectedImageIndex].node.url}
+              alt={images[selectedImageIndex].node.altText || product.title}
+              className="max-w-full max-h-[85vh] object-contain"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
