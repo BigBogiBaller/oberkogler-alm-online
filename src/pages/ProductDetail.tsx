@@ -142,7 +142,10 @@ const ProductDetail = () => {
 
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-4">
-              <div className="aspect-square overflow-hidden rounded-lg bg-muted">
+              <div
+                className="aspect-square overflow-hidden rounded-lg bg-muted cursor-zoom-in"
+                onClick={() => images[selectedImageIndex] && setLightboxOpen(true)}
+              >
                 {images[selectedImageIndex] ? (
                   <img
                     src={images[selectedImageIndex].node.url}
