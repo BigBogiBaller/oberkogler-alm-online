@@ -9,6 +9,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState, useMemo } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { X } from "lucide-react";
 
 const ProductDetail = () => {
   const { handle } = useParams<{ handle: string }>();
