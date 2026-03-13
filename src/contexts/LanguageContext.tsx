@@ -14,7 +14,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.shop': 'Shop',
     'nav.contact': 'Kontakt',
-    'nav.reviews': 'Rezensionen',
+    'nav.events': 'Veranstaltungen',
     'nav.menu': 'Speisekarte',
     
     // Hero
@@ -137,13 +137,9 @@ const translations = {
     'shop.freeShipping': 'Kostenloser Versand',
     'shop.freeShippingText': 'Bei Bestellungen über €50',
     
-    // Reviews
-    'reviews.title': 'Gästebewertungen',
-    'reviews.subtitle': 'Was unsere Gäste über uns sagen',
-    'reviews.reviews': 'Bewertungen',
-    'reviews.language': 'de',
-    'reviews.visitUs': 'Besuchen Sie uns auf Google Maps für mehr Rezensionen',
-    'reviews.googleLink': 'Zu Google Maps',
+    // Events
+    'events.title': 'Nächste Veranstaltungen',
+    'events.subtitle': 'Erleben Sie besondere Momente auf der Oberkogler Alm',
     
     // Menu
     'menu.title': 'Unsere Speisekarte',
@@ -170,7 +166,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.shop': 'Shop',
     'nav.contact': 'Contact',
-    'nav.reviews': 'Reviews',
+    'nav.events': 'Events',
     'nav.menu': 'Menu',
     
     // Hero
@@ -293,13 +289,9 @@ const translations = {
     'shop.freeShipping': 'Free Shipping',
     'shop.freeShippingText': 'On orders over €50',
     
-    // Reviews
-    'reviews.title': 'Guest Reviews',
-    'reviews.subtitle': 'What our guests say about us',
-    'reviews.reviews': 'Reviews',
-    'reviews.language': 'en',
-    'reviews.visitUs': 'Visit us on Google Maps for more reviews',
-    'reviews.googleLink': 'Go to Google Maps',
+    // Events
+    'events.title': 'Upcoming Events',
+    'events.subtitle': 'Experience special moments at Oberkogler Alm',
     
     // Menu
     'menu.title': 'Our Menu',

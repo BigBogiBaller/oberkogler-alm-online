@@ -9,7 +9,7 @@ import { useCartSync } from "@/hooks/useCartSync";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
-import Reviews from "./pages/Reviews";
+import Events from "./pages/Events";
 import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
@@ -36,7 +36,7 @@ const AppContent = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/product/:handle" element={<ProductDetail />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/veranstaltungen" element={<Events />} />
         <Route path="/impressum" element={<Impressum />} />
         <Route path="/datenschutz" element={<Datenschutz />} />
         <Route path="/agb" element={<AGB />} />
