@@ -207,7 +207,7 @@ const Shop = () => {
 
       <footer className="bg-primary text-primary-foreground py-8 px-4">
         <div className="container mx-auto text-center">
-          <p className="text-sm">© 2024 Oberkogler Alm. {t('footer.rights')}</p>
+          <p className="text-sm">© 2026 Oberkogler Alm. {t('footer.rights')}</p>
         </div>
       </footer>
     </div>
