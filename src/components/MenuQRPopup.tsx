@@ -7,16 +7,15 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X, Download, Utensils } from "lucide-react";
+import { CalendarDays, ShoppingBag, Utensils } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import speisekarteQR from "@/assets/speisekarte-qr.png";
+import { Link } from "react-router-dom";
 
 const MenuQRPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language } = useLanguage();
 
   useEffect(() => {
-    // Check if user has already dismissed the popup in this session
     const hasSeenPopup = sessionStorage.getItem("menuPopupDismissed");
     
     if (!hasSeenPopup) {
@@ -33,59 +32,42 @@ const MenuQRPopup = () => {
     sessionStorage.setItem("menuPopupDismissed", "true");
   };
 
-  const handleDownload = () => {
-    window.open("/speisekarte.pdf", "_blank");
-  };
-
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) handleClose(); else setIsOpen(true); }}>
       <DialogContent className="sm:max-w-md bg-background border-primary/20">
         <DialogHeader className="text-center">
           <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-primary/10 flex items-center justify-center">
-            <Utensils className="w-6 h-6 text-primary" />
+            <CalendarDays className="w-6 h-6 text-primary" />
           </div>
           <DialogTitle className="text-2xl font-bold text-primary">
-            {language === 'de' ? 'Unsere Speisekarte' : 'Our Menu'}
+            {language === 'de' ? 'Wir öffnen bald!' : 'Opening Soon!'}
           </DialogTitle>
-          <DialogDescription className="text-muted-foreground">
-            {language === 'de' 
-              ? 'Scannen Sie den QR-Code oder laden Sie unsere Speisekarte herunter' 
-              : 'Scan the QR code or download our menu'}
+          <DialogDescription className="text-muted-foreground text-base leading-relaxed">
+            {language === 'de'
+              ? 'Voraussichtlich ab 1. Mai haben wir wieder für euch geöffnet! Wir organisieren verschiedene Veranstaltungen – schaut vorbei!'
+              : 'We are expected to reopen on May 1st! We organize various events – come visit us!'}
           </DialogDescription>
         </DialogHeader>
         
-        <div className="flex flex-col items-center space-y-6 py-4">
-          <div className="p-4 bg-white rounded-xl shadow-md">
-            <img 
-              src={speisekarteQR} 
-              alt="Speisekarte QR Code" 
-              className="w-48 h-48 object-contain"
-            />
-          </div>
-          
-          <p className="text-sm text-muted-foreground text-center">
-            {language === 'de' 
-              ? 'Scannen Sie den Code mit Ihrem Smartphone' 
-              : 'Scan the code with your smartphone'}
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-3 w-full">
-            <Button 
-              onClick={handleDownload}
-              className="flex-1 gap-2"
-              variant="default"
-            >
-              <Download className="w-4 h-4" />
-              {language === 'de' ? 'PDF herunterladen' : 'Download PDF'}
+        <div className="flex flex-col gap-3 py-4 w-full">
+          <Link to="/veranstaltungen" onClick={handleClose} className="w-full">
+            <Button className="w-full gap-2" variant="default">
+              <CalendarDays className="w-4 h-4" />
+              {language === 'de' ? 'Veranstaltungen ansehen' : 'View Events'}
             </Button>
-            <Button 
-              onClick={handleClose}
-              variant="outline"
-              className="flex-1"
-            >
-              {language === 'de' ? 'Später' : 'Later'}
+          </Link>
+          <Link to="/shop" onClick={handleClose} className="w-full">
+            <Button className="w-full gap-2" variant="outline">
+              <ShoppingBag className="w-4 h-4" />
+              {language === 'de' ? 'Zum Hofladen' : 'Visit Shop'}
             </Button>
-          </div>
+          </Link>
+          <a href="/speisekarte.pdf" target="_blank" rel="noopener noreferrer" onClick={handleClose} className="w-full">
+            <Button className="w-full gap-2" variant="outline">
+              <Utensils className="w-4 h-4" />
+              {language === 'de' ? 'Speisekarte ansehen' : 'View Menu'}
+            </Button>
+          </a>
         </div>
       </DialogContent>
     </Dialog>
