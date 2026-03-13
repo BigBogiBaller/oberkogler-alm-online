@@ -19,6 +19,7 @@ import aboutVideo from "@/assets/about-video.mp4";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
 import teamVideo from "@/assets/team-video.mp4";
 import curvedArrow from "@/assets/curved-arrow.png";
+import VideoPlayer from "@/components/VideoPlayer";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
@@ -191,8 +192,10 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="block relative overflow-hidden rounded-lg shadow-xl group cursor-pointer"
                 >
-                  <video src={aboutVideo} className="w-full h-[400px] md:h-[500px] object-cover group-hover:scale-105 transition-transform duration-500" autoPlay muted loop playsInline />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <div className="aspect-video relative">
+                    <VideoPlayer src={aboutVideo} className="w-full h-full group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center pointer-events-none">
                     <ExternalLink className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
                   </div>
                 </a>
@@ -260,9 +263,9 @@ const Index = () => {
 
           {/* Team Video */}
           <AnimatedSection className="mt-8 flex justify-center">
-            <a href="https://www.instagram.com/p/DLelUmZo5ID/" target="_blank" rel="noopener noreferrer" className="block max-w-sm rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300">
-              <div className="aspect-[9/16] relative bg-black">
-                <video src={teamVideo} className="w-full h-full object-cover" autoPlay muted loop playsInline />
+            <a href="https://www.instagram.com/p/DLelUmZo5ID/" target="_blank" rel="noopener noreferrer" className="block max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300">
+              <div className="aspect-video relative bg-black">
+                <VideoPlayer src={teamVideo} className="w-full h-full" />
               </div>
             </a>
           </AnimatedSection>
