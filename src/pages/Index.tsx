@@ -192,7 +192,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="block relative overflow-hidden rounded-lg shadow-xl group cursor-pointer"
                 >
-                  <div className="aspect-video relative">
+                  <div className="aspect-[9/16] relative">
                     <VideoPlayer src={aboutVideo} className="w-full h-full group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center pointer-events-none">
