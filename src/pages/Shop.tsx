@@ -203,16 +203,7 @@ const Shop = () => {
         </div>
       </section>
 
-      <section className="py-12 px-4 bg-accent/30">
-        <div className="container mx-auto max-w-6xl text-center">
-          <h3 className="text-2xl font-bold text-primary mb-2">
-            {t('shop.freeShipping')}
-          </h3>
-          <p className="text-muted-foreground">
-            {t('shop.freeShippingText')}
-          </p>
-        </div>
-      </section>
+
 
       <footer className="bg-primary text-primary-foreground py-8 px-4">
         <div className="container mx-auto text-center">
