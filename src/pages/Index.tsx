@@ -105,16 +105,20 @@ const Index = () => {
   }];
   const culinaryHighlights = [{
     key: 'kasnockerl',
-    price: '€9,50'
+    price: '€9,50',
+    image: dishKasnockerl
   }, {
     key: 'steirerkasnockerl',
-    price: '€10,50'
+    price: '€10,50',
+    image: dishSteirerkaskropfn
   }, {
     key: 'bratlbrot',
-    price: '€5,50'
+    price: '€5,50',
+    image: dishBratlbrot
   }, {
     key: 'suppen',
-    price: 'ab €4,00'
+    price: 'ab €4,00',
+    image: dishSuppe
   }];
   const shopProducts = [{
     key: 'salbe',
