@@ -192,7 +192,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="block relative overflow-hidden rounded-lg shadow-xl group cursor-pointer"
                 >
-                  <div className="aspect-video relative">
+                  <div className="aspect-[9/16] relative">
                     <VideoPlayer src={aboutVideo} className="w-full h-full group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center pointer-events-none">
@@ -264,7 +264,7 @@ const Index = () => {
           {/* Team Video */}
           <AnimatedSection className="mt-8 flex justify-center">
             <a href="https://www.instagram.com/p/DLelUmZo5ID/" target="_blank" rel="noopener noreferrer" className="block max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300">
-              <div className="aspect-video relative bg-black">
+              <div className="aspect-[9/16] relative bg-black">
                 <VideoPlayer src={teamVideo} className="w-full h-full" />
               </div>
             </a>
