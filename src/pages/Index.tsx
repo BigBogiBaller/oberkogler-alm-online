@@ -264,7 +264,7 @@ const Index = () => {
           {/* Team Video */}
           <AnimatedSection className="mt-8 flex justify-center">
             <a href="https://www.instagram.com/p/DLelUmZo5ID/" target="_blank" rel="noopener noreferrer" className="block max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition-transform duration-300">
-              <div className="aspect-video relative bg-black">
+              <div className="aspect-[9/16] relative bg-black">
                 <VideoPlayer src={teamVideo} className="w-full h-full" />
               </div>
             </a>
