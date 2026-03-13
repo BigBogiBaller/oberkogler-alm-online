@@ -9,7 +9,7 @@ import { useCartSync } from "@/hooks/useCartSync";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
-import Reviews from "./pages/Reviews";
+import Events from "./pages/Events";
 import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
