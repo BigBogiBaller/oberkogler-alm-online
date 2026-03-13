@@ -122,19 +122,24 @@ const Index = () => {
   }];
   const shopProducts = [{
     key: 'salbe',
-    price: '€6,00'
+    price: '€6,00',
+    image: '/products/ringelblumensalbe-4.jpg'
   }, {
     key: 'johanniskraut',
-    price: '€8,50'
+    price: '€8,50',
+    image: '/products/johanniskraut-oel.jpg'
   }, {
     key: 'marmelade',
-    price: '€3,00'
+    price: '€3,00',
+    image: '/products/marille-2.jpg'
   }, {
     key: 'honig',
-    price: '€6,50 - €16,50'
+    price: '€6,50 - €16,50',
+    image: '/products/sommerhonig-2.jpg'
   }, {
     key: 'hartwuerstl',
-    price: '€4,50'
+    price: '€4,50',
+    image: '/products/hartwuerstl.jpg'
   }];
   return <div className="min-h-screen bg-background">
       <Navigation />
