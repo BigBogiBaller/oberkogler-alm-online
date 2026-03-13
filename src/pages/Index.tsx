@@ -143,7 +143,7 @@ const Index = () => {
   }];
   return <div className="min-h-screen bg-background">
       <Navigation />
-      <MenuQRPopup />
+      
       
       {/* Hero Section with Ken Burns Effect - Fade Slideshow */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
