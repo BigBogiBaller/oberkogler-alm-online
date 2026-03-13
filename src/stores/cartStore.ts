@@ -195,16 +195,7 @@ export const useCartStore = create<CartStore>()(
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ items: state.items, cartId: state.cartId, checkoutUrl: state.checkoutUrl }),
       migrate: () => {
-        // Clear old cart data on version change so new visitors start fresh
         return { items: [], cartId: null, checkoutUrl: null };
-      },
-      onRehydrate: () => {
-        return (state) => {
-          if (state?.cartId) {
-            // Validate persisted cart with Shopify on load
-            state.syncCart();
-          }
-        };
       },
     }
   )
