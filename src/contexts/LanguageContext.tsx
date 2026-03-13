@@ -14,7 +14,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.shop': 'Shop',
     'nav.contact': 'Kontakt',
-    'nav.reviews': 'Rezensionen',
+    'nav.events': 'Veranstaltungen',
     'nav.menu': 'Speisekarte',
     
     // Hero
