@@ -124,9 +124,9 @@ const Shop = () => {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-6">
-                      <h3 className="text-xl font-semibold mb-2 text-foreground">
+                      <h2 className="text-xl font-semibold mb-2 text-foreground">
                         {product.node.title}
-                      </h3>
+                      </h2>
                       <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                         {product.node.description}
                       </p>
