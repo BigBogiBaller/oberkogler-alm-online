@@ -1,0 +1,17 @@
+# Oberkogler Alm
+
+> Traditionelle Almküche und Hofladen in Wörschach, Steiermark – mit Bergkäse, Honig, Marmeladen, Salben, Wurst, Veranstaltungen und Tieren auf der Alm.
+
+## Pages
+
+- [Startseite](/): Überblick über die Alm, Küche, Hofladen, Team und Tiere.
+- [Speisekarte](/menu): Almküche – Kasnockerl, Steirerkaskropfn, Bratlbrot, Suppen u.v.m.
+- [Shop](/shop): Online-Hofladen mit Salben, Ölen, Marmeladen, Honig, Wurst, Eiern und Merchandise. Lieferung oder Abholung.
+- [Veranstaltungen](/veranstaltungen): Almfeste, Workshops und saisonale Events.
+- [Galerie](/gallery): Bilder von Alm, Tieren und Landschaft.
+
+## Optional
+
+- [Impressum](/impressum)
+- [Datenschutz](/datenschutz)
+- [AGB](/agb)
