@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -53,7 +54,8 @@ const Shop = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-
+      <SEO title={"Shop – Oberkogler Alm Hofladen online"} description={"Salben, Marmeladen, Honig, Wurst, Eier und mehr – frisch von der Oberkogler Alm. Mit Lieferung oder Abholung am Hof."} path="/shop" />
+      
       <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-accent/50 to-background">
         <div className="container mx-auto max-w-6xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">

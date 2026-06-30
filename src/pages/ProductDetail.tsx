@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProductByHandle, formatPrice, type ShopifyProduct, type DeliveryMethod } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -131,9 +132,34 @@ const ProductDetail = () => {
   const hasMultipleVariants = !isGutschein && variants.length > 1;
   const optionName = product.options?.[0]?.name || 'Variante';
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.title,
+    description: product.description,
+    image: images.map((e) => e.node.url),
+    offers: {
+      "@type": "Offer",
+      priceCurrency: price.currencyCode,
+      price: price.amount,
+      availability: selectedVariant?.availableForSale
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+      url: `https://alm-shop-bloom.lovable.app/product/${product.handle}`,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      <SEO
+        title={`${product.title} – Oberkogler Alm`}
+        description={(product.description || product.title).slice(0, 155)}
+        path={`/product/${product.handle}`}
+        image={images[0]?.node.url}
+        type="product"
+        jsonLd={productJsonLd}
+      />
       <div className="pt-32 pb-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <Button variant="ghost" className="mb-8" onClick={() => navigate('/shop')}>

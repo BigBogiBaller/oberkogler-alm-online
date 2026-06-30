@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -86,7 +87,8 @@ const Gallery = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+      <SEO title={"Galerie – Oberkogler Alm in Bildern"} description={"Eindrücke von der Oberkogler Alm: Tiere, Landschaft, Hofladen und Almküche in den steirischen Bergen."} path="/gallery" />
+            
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 bg-muted/30">
         <div className="container mx-auto max-w-6xl text-center">
