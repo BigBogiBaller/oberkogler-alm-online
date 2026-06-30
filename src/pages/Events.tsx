@@ -165,10 +165,37 @@ const Events = () => {
   const { language } = useLanguage();
   const isGerman = language === 'de';
 
+  const eventsJsonLd = upcomingEvents.map((e) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: isGerman ? e.titleDe : e.titleEn,
+    description: isGerman ? e.descriptionDe : e.descriptionEn,
+    startDate: e.date,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: isGerman ? e.locationDe : e.locationEn,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Wörschachberg 63",
+        postalCode: "8942",
+        addressLocality: "Wörschach",
+        addressCountry: "AT",
+      },
+    },
+    organizer: { "@type": "Organization", name: "Oberkogler Alm", url: "https://alm-shop-bloom.lovable.app/" },
+  }));
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <SEO title={"Nächste Veranstaltungen – Oberkogler Alm"} description={"Feste, Workshops und Veranstaltungen auf der Oberkogler Alm in Wörschach. Alle Termine im Überblick."} path="/veranstaltungen" />
+      <SEO
+        title={"Nächste Veranstaltungen – Oberkogler Alm"}
+        description={"Feste, Workshops und Veranstaltungen auf der Oberkogler Alm in Wörschach. Alle Termine im Überblick."}
+        path="/veranstaltungen"
+        jsonLd={eventsJsonLd}
+      />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary/10 via-primary/5 to-background">
