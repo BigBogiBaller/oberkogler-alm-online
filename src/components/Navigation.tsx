@@ -63,7 +63,7 @@ const Navigation = () => {
             </a>
 
             {/* Phone Icon */}
-            <a href="tel:+436645014429" className={cn("transition-colors hidden sm:block", isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80")} aria-label="Phone">
+            <a href="tel:+4367761861537" className={cn("transition-colors hidden sm:block", isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/80")} aria-label="Phone">
               <Phone size={20} strokeWidth={1.5} />
             </a>
           </div>
@@ -126,7 +126,7 @@ const Navigation = () => {
             <a href="mailto:info@oberkogler-alm.at" className="text-foreground hover:text-primary transition-colors" aria-label="Email">
               <Mail size={20} strokeWidth={1.5} />
             </a>
-            <a href="tel:+436645014429" className="text-foreground hover:text-primary transition-colors" aria-label="Phone">
+            <a href="tel:+4367761861537" className="text-foreground hover:text-primary transition-colors" aria-label="Phone">
               <Phone size={20} strokeWidth={1.5} />
             </a>
           </div>
@@ -182,9 +182,9 @@ const Navigation = () => {
 
             {/* Contact Info */}
             <div className="space-y-2">
-              <a href="tel:+436645014429" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm">
+              <a href="tel:+4367761861537" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm">
                 <span className="text-primary font-medium">Tel:</span>
-                <span className="underline underline-offset-2">+43 664 5014429</span>
+                <span className="underline underline-offset-2">+43 677 61861537</span>
               </a>
               <a href="mailto:info@oberkogler-alm.at" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm">
                 <span className="text-primary font-medium">E-Mail:</span>
