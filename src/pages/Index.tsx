@@ -144,6 +144,11 @@ const Index = () => {
   }];
   return <div className="min-h-screen bg-background">
       <Navigation />
+      <SEO
+        title="Oberkogler Alm – Almküche & Hofladen in der Steiermark"
+        description="Traditionelle Almküche, Hofladen mit Honig, Marmeladen, Salben und Wurst – mitten in den steirischen Bergen auf der Oberkogler Alm."
+        path="/"
+      />
       
       
       {/* Hero Section with Ken Burns Effect - Fade Slideshow */}
