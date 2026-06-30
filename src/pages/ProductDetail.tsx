@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProductByHandle, formatPrice, type ShopifyProduct, type DeliveryMethod } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
