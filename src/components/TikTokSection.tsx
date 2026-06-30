@@ -71,6 +71,7 @@ const TikTokSection = () => {
                 href="https://www.tiktok.com/@oberkogler_alm" 
                 target="_blank" 
                 rel="noopener noreferrer"
+                aria-label="Oberkogler Alm auf TikTok folgen"
                 className="absolute inset-0 flex items-center justify-center hover:scale-110 transition-transform"
               >
                 <TikTokIcon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
@@ -94,6 +95,7 @@ const TikTokSection = () => {
                     href={post.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
+                    aria-label={`TikTok-Video ${index + 1} von Oberkogler Alm ansehen`}
                     className="block aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-black cursor-pointer"
                   >
                     <video 
