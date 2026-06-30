@@ -29,7 +29,7 @@ const Impressum = () => {
             <section>
               <h2 className="text-xl font-heading text-foreground">{language === 'de' ? 'Kontakt' : 'Contact'}</h2>
               <p>
-                {language === 'de' ? 'Telefon' : 'Phone'}: +43 664 5014429<br />
+                {language === 'de' ? 'Telefon' : 'Phone'}: +43 677 61861537<br />
                 E-Mail: info@oberkogler-alm.at
               </p>
             </section>
