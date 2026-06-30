@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, MapPin, Clock, PartyPopper } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -167,7 +168,8 @@ const Events = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-
+      <SEO title={"Nächste Veranstaltungen – Oberkogler Alm"} description={"Feste, Workshops und Veranstaltungen auf der Oberkogler Alm in Wörschach. Alle Termine im Überblick."} path="/veranstaltungen" />
+      
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary/10 via-primary/5 to-background">
         <div className="container mx-auto max-w-4xl text-center">

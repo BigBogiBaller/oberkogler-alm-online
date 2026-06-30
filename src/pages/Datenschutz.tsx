@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "react-router-dom";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
@@ -9,7 +10,8 @@ const Datenschutz = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navigation />
-      <main className="pt-32 pb-20 px-4">
+      <SEO title={"Datenschutz – Oberkogler Alm"} description={"Datenschutzerklärung der Oberkogler Alm: wie wir mit Ihren Daten umgehen."} path="/datenschutz" />
+            <main className="pt-32 pb-20 px-4">
         <div className="container mx-auto max-w-3xl break-words">
           <h1 className="text-3xl md:text-4xl font-heading text-foreground mb-8">
             {language === 'de' ? 'Datenschutzerklärung' : 'Privacy Policy'}

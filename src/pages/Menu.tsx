@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -204,7 +205,8 @@ const Menu = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-
+      <SEO title={"Speisekarte – Almküche der Oberkogler Alm"} description={"Kasnockerl, Steirerkaskropfn, Bratlbrot, Suppen und mehr – die traditionelle Speisekarte der Oberkogler Alm."} path="/menu" />
+      
       {/* QR Code Popup */}
       <Dialog open={showQRPopup} onOpenChange={setShowQRPopup}>
         <DialogContent className="sm:max-w-md">

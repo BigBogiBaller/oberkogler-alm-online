@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "react-router-dom";
 import oberkoglerLogo from "@/assets/oberkogler-logo.png";
@@ -9,7 +10,8 @@ const AGB = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navigation />
-      <main className="pt-32 pb-20 px-4">
+      <SEO title={"AGB – Oberkogler Alm"} description={"Allgemeine Geschäftsbedingungen für Bestellungen im Hofladen der Oberkogler Alm."} path="/agb" />
+            <main className="pt-32 pb-20 px-4">
         <div className="container mx-auto max-w-3xl break-words">
           <h1 className="text-3xl md:text-4xl font-heading text-foreground mb-8">
             {language === 'de' ? 'Allgemeine Geschäftsbedingungen' : 'Terms & Conditions'}
