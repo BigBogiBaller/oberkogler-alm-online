@@ -28,6 +28,8 @@ import dishSpeckknoedel from "@/assets/dishes/speckknoedelsuppe.jpg";
 import dishKaspress from "@/assets/dishes/kaspressknoedelsuppe.jpg";
 import dishFleischkrapfen from "@/assets/dishes/fleischkrapfen.jpg";
 import dishGemischtesBrot from "@/assets/dishes/gemischtes-brot.jpg";
+import animalDogs from "@/assets/animals/dogs.jpeg.asset.json";
+import animalCattle from "@/assets/animals/cattle.jpeg.asset.json";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
