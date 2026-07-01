@@ -27,8 +27,8 @@ const translations = {
     // About
     'about.badge': 'Willkommen',
     'about.title': 'Herzlich Willkommen auf der Oberkogler Alm',
-    'about.text': 'Auf 1.200m Seehöhe, eingebettet in die malerische Landschaft des steirischen Ennstals, liegt unsere familiengeführte Alm. Seit Generationen bewirtschaften wir diesen besonderen Ort und heißen Gäste aus nah und fern herzlich willkommen.',
-    'about.text2': 'Ob zum Wandern, Verweilen oder Genießen – bei uns finden Sie Ruhe, Natur und authentische Gastfreundschaft. Probieren Sie unsere hausgemachten Spezialitäten und erleben Sie echte Almkultur.',
+    'about.text': 'Über 400 Jahre alt, auf 1.000 Metern Höhe – die Oberkogler Alm gibt es seit dem 17. Jahrhundert. Früher ein Bauernhof, in dem die Tiere noch im Haus lebten. Geblieben ist die alte Rauchkuchl, das dunkle Holz und die krummen Decken – und mittendrin entsteht jeden Tag das, was unsere Gäste bei uns lieben: der beste Braten, den du je gegessen hast.',
+    'about.text2': 'Es ist kein Restaurant im klassischen Sinn. Es ist ein Ort, an dem gekocht wird wie zu Hause, mit dem, was die Region hergibt, und mit Menschen, die zur Familie gehören. Wer einmal da war, kommt wieder – wegen der Aussicht, wegen der Ruhe und wegen dem Gefühl, dass hier noch alles echt ist.',
     'about.visitButton': 'Besuchen Sie uns',
     'about.regional': '100% Regional',
     'about.regionalText': 'Alle Produkte stammen von unserer Alm oder aus der unmittelbaren Region',
@@ -185,8 +185,8 @@ const translations = {
     // About
     'about.badge': 'Welcome',
     'about.title': 'Welcome to Oberkogler Alm',
-    'about.text': 'At 1,200m altitude, nestled in the picturesque landscape of the Styrian Enns Valley, lies our family-run alpine pasture. For generations, we have been cultivating this special place and warmly welcoming guests from near and far.',
-    'about.text2': 'Whether for hiking, relaxing, or enjoying – with us you will find peace, nature, and authentic hospitality. Try our homemade specialties and experience genuine alpine culture.',
+    'about.text': 'More than 400 years old and perched at 1,000 metres – the Oberkogler Alm has stood here since the 17th century. It used to be a farmhouse where the animals lived under the same roof. What remains is the old smoke kitchen, the dark timber and the crooked ceilings – and in the middle of it all, we cook what our guests come back for: quite possibly the best roast you have ever tasted.',
+    'about.text2': 'This is not a restaurant in the usual sense. It is a place where food is cooked the way it is at home, with what the region has to offer, and with people who feel like family. Those who come once tend to come back – for the view, for the quiet, and for the feeling that everything here is still real.',
     'about.visitButton': 'Visit Us',
     'about.regional': '100% Regional',
     'about.regionalText': 'All products come from our alpine pasture or the immediate region',
