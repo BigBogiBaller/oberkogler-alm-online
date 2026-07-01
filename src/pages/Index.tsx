@@ -102,13 +102,16 @@ const Index = () => {
   }];
   const animals = [{
     key: 'dogs',
-    icon: Dog
+    icon: Dog,
+    image: animalDogs.url
   }, {
     key: 'cattle',
-    icon: Mountain
+    icon: Mountain,
+    image: animalCattle.url
   }, {
     key: 'ponies',
-    icon: Heart
+    icon: Heart,
+    image: null as string | null
   }];
   const culinaryHighlights = [{
     key: 'steirerkasekrapfen',
