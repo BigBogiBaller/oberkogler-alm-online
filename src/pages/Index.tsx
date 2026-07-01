@@ -336,8 +336,12 @@ const Index = () => {
             const Icon = animal.icon;
             const slideDirection = index % 2 === 0 ? '-translate-x-12' : 'translate-x-12';
             return <Card key={animal.key} className={`border-border/50 shadow-lg card-hover overflow-hidden transition-all duration-700 ease-out ${animalsStagger.visibleItems[index] ? 'opacity-100 translate-x-0' : `opacity-0 ${slideDirection}`}`}>
-                  <div className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                    <Icon className="w-20 h-20 text-primary/50" />
+                  <div className="h-64 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center overflow-hidden">
+                    {animal.image ? (
+                      <img src={animal.image} alt={t(`animals.${animal.key}.name`)} className="w-full h-full object-cover" loading="lazy" />
+                    ) : (
+                      <Icon className="w-20 h-20 text-primary/50" />
+                    )}
                   </div>
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-xl mb-2">{t(`animals.${animal.key}.name`)}</h3>
