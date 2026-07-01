@@ -21,6 +21,10 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [gutscheinAmount, setGutscheinAmount] = useState('25');
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [recipientEmail, setRecipientEmail] = useState('');
+  const [recipientName, setRecipientName] = useState('');
+  const [giftMessage, setGiftMessage] = useState('');
+  const [sendOn, setSendOn] = useState('');
 
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['shopify-product', handle],
@@ -71,6 +75,12 @@ const ProductDetail = () => {
         quantity: 1,
         selectedOptions: variant.selectedOptions,
         deliveryMethod: 'pickup',
+        attributes: [
+          { key: 'Recipient Email', value: recipientEmail.trim() },
+          { key: 'Recipient Name', value: recipientName.trim() },
+          { key: 'Message', value: giftMessage.trim() },
+          { key: 'Send on', value: sendOn },
+        ],
       });
       return;
     }
@@ -240,6 +250,40 @@ const ProductDetail = () => {
                         Bitte wählen Sie einen der verfügbaren Beträge: {variants.filter(v => v.node.availableForSale).map(v => v.node.title).join(', ')}
                       </p>
                     )}
+                  </div>
+                  <div className="space-y-3 pt-4 border-t border-border">
+                    <p className="text-sm font-medium text-foreground">
+                      Gutschein per E-Mail versenden (optional)
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Leer lassen, wenn der Code an deine eigene E-Mail gesendet werden soll.
+                    </p>
+                    <Input
+                      type="email"
+                      value={recipientEmail}
+                      onChange={(e) => setRecipientEmail(e.target.value)}
+                      placeholder="E-Mail des Empfängers"
+                    />
+                    <Input
+                      type="text"
+                      value={recipientName}
+                      onChange={(e) => setRecipientName(e.target.value)}
+                      placeholder="Name des Empfängers"
+                    />
+                    <Input
+                      type="text"
+                      value={giftMessage}
+                      onChange={(e) => setGiftMessage(e.target.value)}
+                      placeholder="Persönliche Nachricht (optional)"
+                    />
+                    <div className="space-y-1">
+                      <label className="text-xs text-muted-foreground">Versanddatum (optional)</label>
+                      <Input
+                        type="date"
+                        value={sendOn}
+                        onChange={(e) => setSendOn(e.target.value)}
+                      />
+                    </div>
                   </div>
                 </>
               ) : (
