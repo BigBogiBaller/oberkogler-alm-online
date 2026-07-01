@@ -3,6 +3,9 @@ import SEO from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 
 // Hero images
 import hero2 from "@/assets/hero-2.jpg";
@@ -55,6 +58,7 @@ const AnimatedSection = ({
 
 const Gallery = () => {
   const { t, language } = useLanguage();
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const allGalleryImages = [
     { src: hero2, alt: "Alm Landschaft" },
@@ -84,6 +88,25 @@ const Gallery = () => {
     { src: galleryPferd, alt: "Pferd auf der Weide" },
   ];
 
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const showPrev = useCallback(() => {
+    setLightboxIndex((i) => (i === null ? i : (i - 1 + allGalleryImages.length) % allGalleryImages.length));
+  }, [allGalleryImages.length]);
+  const showNext = useCallback(() => {
+    setLightboxIndex((i) => (i === null ? i : (i + 1) % allGalleryImages.length));
+  }, [allGalleryImages.length]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") showPrev();
+      else if (e.key === "ArrowRight") showNext();
+      else if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxIndex, showPrev, showNext, closeLightbox]);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -112,7 +135,10 @@ const Gallery = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {allGalleryImages.map((image, index) => (
               <AnimatedSection key={index} animation="scale-in">
-                <Card className="overflow-hidden border-border/50 shadow-sm card-hover group">
+                <Card
+                  className="overflow-hidden border-border/50 shadow-sm card-hover group cursor-zoom-in"
+                  onClick={() => setLightboxIndex(index)}
+                >
                   <CardContent className="p-0">
                     <div className="aspect-square overflow-hidden">
                       <img 
@@ -128,6 +154,44 @@ const Gallery = () => {
           </div>
         </div>
       </section>
+
+      <Dialog open={lightboxIndex !== null} onOpenChange={(o) => !o && closeLightbox()}>
+        <DialogContent className="max-w-[95vw] w-fit p-0 border-none bg-transparent shadow-none [&>button]:hidden">
+          {lightboxIndex !== null && (
+            <div className="relative flex items-center justify-center">
+              <button
+                onClick={closeLightbox}
+                className="absolute top-2 right-2 z-10 rounded-full bg-black/60 text-white p-2 hover:bg-black/80 transition-colors"
+                aria-label={language === "de" ? "Schließen" : "Close"}
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <button
+                onClick={showPrev}
+                className="absolute left-2 md:-left-14 z-10 rounded-full bg-black/60 text-white p-3 hover:bg-black/80 transition-colors"
+                aria-label={language === "de" ? "Vorheriges Bild" : "Previous image"}
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <img
+                src={allGalleryImages[lightboxIndex].src}
+                alt={allGalleryImages[lightboxIndex].alt}
+                className="max-h-[90vh] max-w-[95vw] w-auto h-auto object-contain rounded-md"
+              />
+              <button
+                onClick={showNext}
+                className="absolute right-2 md:-right-14 z-10 rounded-full bg-black/60 text-white p-3 hover:bg-black/80 transition-colors"
+                aria-label={language === "de" ? "Nächstes Bild" : "Next image"}
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs px-3 py-1 rounded-full">
+                {lightboxIndex + 1} / {allGalleryImages.length}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Footer */}
       <footer className="bg-primary text-primary-foreground py-8 px-4">
