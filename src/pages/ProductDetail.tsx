@@ -1,10 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getProductByHandle, formatPrice, type ShopifyProduct, type DeliveryMethod } from "@/lib/shopify";
+import { getProductByHandle, formatPrice, type ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import Navigation from "@/components/Navigation";
 import SEO from "@/components/SEO";
-import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
@@ -19,7 +18,6 @@ const ProductDetail = () => {
   const { addItem, isLoading: cartLoading } = useCartStore();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
-  const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>('pickup');
   const [quantity, setQuantity] = useState(1);
   const [gutscheinAmount, setGutscheinAmount] = useState('25');
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -72,7 +70,7 @@ const ProductDetail = () => {
         price: variant.price,
         quantity: 1,
         selectedOptions: variant.selectedOptions,
-        deliveryMethod,
+        deliveryMethod: 'pickup',
       });
       return;
     }
@@ -88,7 +86,7 @@ const ProductDetail = () => {
       price: variant.price,
       quantity,
       selectedOptions: variant.selectedOptions,
-      deliveryMethod,
+        deliveryMethod: 'pickup',
     });
   };
 
@@ -300,11 +298,6 @@ const ProductDetail = () => {
                   </div>
                 </div>
               )}
-
-              <div className="space-y-3">
-                <label className="text-sm font-medium text-foreground">Lieferart</label>
-                <DeliveryMethodPicker value={deliveryMethod} onChange={setDeliveryMethod} />
-              </div>
 
               <Button
                 size="lg"
