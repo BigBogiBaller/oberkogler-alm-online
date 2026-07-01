@@ -215,7 +215,7 @@ const Index = () => {
               </div>
             </AnimatedSection>
 
-            <AnimatedSection animation="fade-in-up">
+            {language === 'de' && <AnimatedSection animation="fade-in-up">
               <div className="relative max-w-3xl mx-auto">
                 {/* Arrow + "mehr über uns" */}
                 <div className="flex items-center gap-3 mb-4 justify-end pr-4">
@@ -237,7 +237,7 @@ const Index = () => {
                   </div>
                 </a>
               </div>
-            </AnimatedSection>
+            </AnimatedSection>}
           </div>
 
           {/* Feature Cards */}
@@ -293,6 +293,7 @@ const Index = () => {
           })}
           </div>
 
+          {language === 'de' && <>
           {/* Curved Arrow pointing down to Team Video */}
           <AnimatedSection className="flex flex-col items-center mt-16">
             <img src={curvedArrow} alt="Arrow pointing to video" className="w-20 h-auto" />
@@ -306,6 +307,7 @@ const Index = () => {
               </div>
             </a>
           </AnimatedSection>
+          </>}
         </div>
       </section>
 
