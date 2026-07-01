@@ -69,6 +69,25 @@ const translations = {
     'animals.ponies.desc': 'Die Mini-Shetland-Ponys Ginger und Fantasie sind der Liebling aller Kinder und bringen Freude auf die Alm.',
     'animals.notice.title': 'Bitte beachten Sie',
     'animals.notice.text': 'Zu Ihrer Sicherheit und zum Wohl unserer Tiere bitten wir Sie, die Tiere nicht selbstständig zu füttern. Gerne geben wir Ihnen geeignetes Futter.',
+
+    // FAQ
+    'faq.badge': 'FAQ',
+    'faq.title': 'Häufig gestellte Fragen',
+    'faq.subtitle': 'Alles Wichtige für Ihren Besuch auf der Oberkogler Alm',
+    'faq.q1': 'Muss ich einen Tisch reservieren?',
+    'faq.a1': 'An Wochenenden und Feiertagen empfehlen wir eine Reservierung unter +43 677 61861537. Unter der Woche sind spontane Besuche meist problemlos möglich.',
+    'faq.q2': 'Wie komme ich zur Oberkogler Alm?',
+    'faq.a2': 'Sie erreichen uns über eine gut ausgebaute Almstraße bis direkt vor die Hütte. Adresse: Wörschachberg 63, 8942 Wörschach. Parkplätze sind vorhanden.',
+    'faq.q3': 'Sind Hunde erlaubt?',
+    'faq.a3': 'Ja, gut erzogene Hunde sind an der Leine herzlich willkommen – unsere Almhunde Frida und Bertl freuen sich über tierischen Besuch.',
+    'faq.q4': 'Kann ich mit Kreditkarte bezahlen?',
+    'faq.a4': 'In der Hütte bevorzugen wir Barzahlung. Im Online-Shop stehen Ihnen alle gängigen Zahlungsmethoden zur Verfügung.',
+    'faq.q5': 'Bieten Sie vegetarische Gerichte an?',
+    'faq.a5': 'Ja, viele unserer Klassiker wie Kasnockerl, Kaspressknödelsuppe oder Topfenstrudel sind vegetarisch.',
+    'faq.q6': 'Kann ich Produkte auch direkt vor Ort im Hofladen kaufen?',
+    'faq.a6': 'Ja, alle Produkte des Online-Shops sind auch direkt bei uns auf der Alm erhältlich.',
+    'faq.q7': 'Ist die Alm auch im Winter geöffnet?',
+    'faq.a7': 'Ja, wir haben ganzjährig geöffnet – Mittwoch ist Ruhetag. Die Zufahrt ist auch im Winter geräumt.',
     
     // Culinary
     'culinary.badge': 'Kulinarik',
@@ -227,6 +246,25 @@ const translations = {
     'animals.ponies.desc': 'The Mini-Shetland ponies Ginger and Fantasie are the favorites of all children and bring joy to the alpine hut.',
     'animals.notice.title': 'Please Note',
     'animals.notice.text': 'For your safety and the welfare of our animals, we ask that you do not feed the animals on your own. We will gladly provide suitable feed.',
+
+    // FAQ
+    'faq.badge': 'FAQ',
+    'faq.title': 'Frequently Asked Questions',
+    'faq.subtitle': 'Everything you need to know for your visit to Oberkogler Alm',
+    'faq.q1': 'Do I need to reserve a table?',
+    'faq.a1': 'On weekends and holidays we recommend booking at +43 677 61861537. During the week, spontaneous visits are usually no problem.',
+    'faq.q2': 'How do I get to Oberkogler Alm?',
+    'faq.a2': 'A well-maintained alpine road leads directly to the hut. Address: Wörschachberg 63, 8942 Wörschach. Parking is available on site.',
+    'faq.q3': 'Are dogs allowed?',
+    'faq.a3': 'Yes, well-behaved dogs on a leash are warmly welcome – our alpine dogs Frida and Bertl love four-legged visitors.',
+    'faq.q4': 'Can I pay by credit card?',
+    'faq.a4': 'At the hut we prefer cash payment. In the online shop all common payment methods are available.',
+    'faq.q5': 'Do you offer vegetarian dishes?',
+    'faq.a5': 'Yes, many of our classics such as Kasnockerl, Kaspressknödel soup or Topfen strudel are vegetarian.',
+    'faq.q6': 'Can I buy products directly at the farm shop?',
+    'faq.a6': 'Yes, all products from the online shop are also available directly at the alpine hut.',
+    'faq.q7': 'Is the alm open in winter as well?',
+    'faq.a7': 'Yes, we are open year-round – Wednesday is our day off. The access road is cleared in winter too.',
     
     // Culinary
     'culinary.badge': 'Culinary',
