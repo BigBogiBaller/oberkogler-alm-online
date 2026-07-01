@@ -9,6 +9,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import { Download, UtensilsCrossed, Coffee, Beer, Wine, Soup, Sandwich, Leaf, Milk, Wheat, Egg } from "lucide-react";
 import speisekarteQR from "@/assets/speisekarte-qr.png";
+import imgKaesekrapfen from "@/assets/dishes/steirerkaesekrapfen.jpg";
+import imgKaesenockerl from "@/assets/dishes/steirerkaesenockerl.jpg";
+import imgStrudel from "@/assets/dishes/topfenschwarzbeerstrudel.jpg";
+import imgSpeckknoedel from "@/assets/dishes/speckknoedelsuppe.jpg";
+import imgKaspress from "@/assets/dishes/kaspressknoedelsuppe.jpg";
+import imgFleischkrapfen from "@/assets/dishes/fleischkrapfen.jpg";
+import imgGemischtesBrot from "@/assets/dishes/gemischtes-brot.jpg";
 
 interface MenuItem {
   nameDe: string;
@@ -18,6 +25,7 @@ interface MenuItem {
   price: string;
   allergens?: string[];
   vegetarian?: boolean;
+  image?: string;
 }
 
 interface MenuCategory {
@@ -49,7 +57,7 @@ const menuCategories: MenuCategory[] = [
       { nameDe: "Bratlfettbrot", nameEn: "Lard Bread", price: "€4,40", allergens: ["A", "M"] },
       { nameDe: "Steirerkas-Brot", nameEn: "Styrian Cheese Bread", price: "€5,00", allergens: ["A", "G", "M"], vegetarian: true },
       { nameDe: "Käse Brot mit Schnittkäse", nameEn: "Cheese Bread", price: "€7,00", allergens: ["A", "G", "M"], vegetarian: true },
-      { nameDe: "Gemischtes Brot", nameEn: "Mixed Bread Platter", descDe: "Käse, Bratl und Speck", descEn: "Cheese, roast pork and bacon", price: "€8,90", allergens: ["A", "G", "M"] },
+      { nameDe: "Gemischtes Brot", nameEn: "Mixed Bread Platter", descDe: "Käse, Bratl und Speck", descEn: "Cheese, roast pork and bacon", price: "€8,90", allergens: ["A", "G", "M"], image: imgGemischtesBrot },
       { nameDe: "Belegte Platte", nameEn: "Cold Cut Platter", descDe: "Ab 4 Personen, nur auf Bestellung", descEn: "From 4 persons, on request only", price: "€13,00/Pers." },
     ],
   },
@@ -58,11 +66,11 @@ const menuCategories: MenuCategory[] = [
     keyEn: "Hot Dishes",
     icon: <UtensilsCrossed className="w-5 h-5" />,
     items: [
-      { nameDe: "Kasnockerl mit Krautsalat", nameEn: "Cheese Spaetzle with Coleslaw", price: "€12,50", allergens: ["A", "M", "O", "C", "G"], vegetarian: true },
-      { nameDe: "Steirerkäsnockerl mit Krautsalat", nameEn: "Styrian Cheese Spaetzle with Coleslaw", price: "€12,50", allergens: ["A", "C", "G", "M", "O"], vegetarian: true },
+      { nameDe: "Kasnockerl mit Krautsalat", nameEn: "Cheese Spaetzle with Coleslaw", price: "€12,50", allergens: ["A", "M", "O", "C", "G"], vegetarian: true, image: imgKaesenockerl },
+      { nameDe: "Steirerkäsnockerl mit Krautsalat", nameEn: "Styrian Cheese Spaetzle with Coleslaw", price: "€12,50", allergens: ["A", "C", "G", "M", "O"], vegetarian: true, image: imgKaesenockerl },
       { nameDe: "Eiernockerl mit Krautsalat", nameEn: "Egg Spaetzle with Coleslaw", price: "€11,50", allergens: ["A", "M", "O", "C", "G"], vegetarian: true },
-      { nameDe: "Fleischkrapfen mit Sauerkraut", nameEn: "Meat Dumplings with Sauerkraut", price: "€9,50", allergens: ["A", "C", "G"] },
-      { nameDe: "Fleischkrapfen", nameEn: "Meat Dumplings", price: "€5,80", allergens: ["A", "C", "G"] },
+      { nameDe: "Fleischkrapfen mit Sauerkraut", nameEn: "Meat Dumplings with Sauerkraut", price: "€9,50", allergens: ["A", "C", "G"], image: imgFleischkrapfen },
+      { nameDe: "Fleischkrapfen", nameEn: "Meat Dumplings", price: "€5,80", allergens: ["A", "C", "G"], image: imgFleischkrapfen },
       { nameDe: "Käsekrainer", nameEn: "Cheese Sausage", descDe: "Mit Senf, Ketchup, Kren und Brot", descEn: "With mustard, ketchup, horseradish and bread", price: "€8,50" },
     ],
     note: "Alle Speisen nur solange der Vorrat reicht",
@@ -82,9 +90,9 @@ const menuCategories: MenuCategory[] = [
     icon: <Soup className="w-5 h-5" />,
     items: [
       { nameDe: "Kräftige Rindsuppe mit Leberknödel", nameEn: "Beef Broth with Liver Dumpling", price: "€5,00", allergens: ["A", "G", "C", "F", "L", "M"] },
-      { nameDe: "Kräftige Rindsuppe mit Kaspressknödel", nameEn: "Beef Broth with Cheese Dumpling", price: "€5,00", allergens: ["A", "G", "C", "F", "L", "M"], vegetarian: true },
+      { nameDe: "Kräftige Rindsuppe mit Kaspressknödel", nameEn: "Beef Broth with Cheese Dumpling", price: "€5,00", allergens: ["A", "G", "C", "F", "L", "M"], vegetarian: true, image: imgKaspress },
       { nameDe: "Kräftige Rindsuppe mit Frittaten", nameEn: "Beef Broth with Pancake Strips", price: "€4,40", allergens: ["A", "G", "C", "F", "L", "M"] },
-      { nameDe: "Speckknödel und weitere Suppen", nameEn: "Bacon Dumpling & more soups", descDe: "Auf Anfrage oder nach Saison", descEn: "On request or seasonal", price: "Auf Anfrage" },
+      { nameDe: "Speckknödel und weitere Suppen", nameEn: "Bacon Dumpling & more soups", descDe: "Auf Anfrage oder nach Saison", descEn: "On request or seasonal", price: "Auf Anfrage", image: imgSpeckknoedel },
     ],
     note: "Alle Speisen nur solange der Vorrat reicht",
   },
@@ -93,10 +101,10 @@ const menuCategories: MenuCategory[] = [
     keyEn: "Styrian Krapfen (Saturdays)",
     icon: <UtensilsCrossed className="w-5 h-5" />,
     items: [
-      { nameDe: "Steirerkrapfen ohne Käse", nameEn: "Styrian Krapfen without Cheese", price: "€2,20", vegetarian: true },
-      { nameDe: "Steirerkrapfen mit Käse", nameEn: "Styrian Krapfen with Cheese", price: "€2,80", vegetarian: true },
-      { nameDe: "Steirerkrapfen mit Kraut und Erdäpfel", nameEn: "Styrian Krapfen with Cabbage & Potato", price: "€4,80", vegetarian: true },
-      { nameDe: "Steirerkrapfen mit Kraut, Erdäpfel und Käse", nameEn: "Styrian Krapfen with Cabbage, Potato & Cheese", price: "€5,80", vegetarian: true },
+      { nameDe: "Steirerkrapfen ohne Käse", nameEn: "Styrian Krapfen without Cheese", price: "€2,20", vegetarian: true, image: imgKaesekrapfen },
+      { nameDe: "Steirerkrapfen mit Käse", nameEn: "Styrian Krapfen with Cheese", price: "€2,80", vegetarian: true, image: imgKaesekrapfen },
+      { nameDe: "Steirerkrapfen mit Kraut und Erdäpfel", nameEn: "Styrian Krapfen with Cabbage & Potato", price: "€4,80", vegetarian: true, image: imgKaesekrapfen },
+      { nameDe: "Steirerkrapfen mit Kraut, Erdäpfel und Käse", nameEn: "Styrian Krapfen with Cabbage, Potato & Cheese", price: "€5,80", vegetarian: true, image: imgKaesekrapfen },
     ],
     note: "Immer Samstags bei schönem Wetter, solange der Vorrat reicht",
   },
