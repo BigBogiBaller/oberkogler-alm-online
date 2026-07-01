@@ -70,7 +70,8 @@ const AnimatedSection = ({
 };
 const Index = () => {
   const {
-    t
+    t,
+    language
   } = useLanguage();
   const heroImages = [hero2, hero3, hero4, hero5, hero6];
   // Show only first 12 images on homepage
