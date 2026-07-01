@@ -682,6 +682,12 @@ const Index = () => {
           <p className="text-center text-xs text-muted-foreground">
             © 2026 Oberkogler Alm. {t('footer.rights')}
           </p>
+
+          {/* Website by */}
+          <div className="mt-6 flex justify-center sm:justify-end items-center gap-2 text-primary">
+            <span className="italic font-serif text-sm">Website by</span>
+            <span className="font-bold tracking-widest text-sm">BOGI</span>
+          </div>
         </div>
       </footer>
     </div>;
