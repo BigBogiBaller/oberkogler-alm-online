@@ -31,6 +31,7 @@ import dishFleischkrapfen from "@/assets/dishes/fleischkrapfen.jpg";
 import dishGemischtesBrot from "@/assets/dishes/gemischtes-brot.jpg";
 import animalDogs from "@/assets/animals/dogs.jpeg.asset.json";
 import animalCattle from "@/assets/animals/cattle.jpeg.asset.json";
+import animalPonies from "@/assets/animals/ponies.png.asset.json";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
@@ -112,7 +113,7 @@ const Index = () => {
   }, {
     key: 'ponies',
     icon: Heart,
-    image: null as string | null
+    image: animalPonies.url
   }];
   const culinaryHighlights = [{
     key: 'steirerkasekrapfen',
