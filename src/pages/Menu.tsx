@@ -357,6 +357,16 @@ const Menu = () => {
                   {category.items.map((item, itemIndex) => (
                     <Card key={itemIndex} className="hover:shadow-lg transition-shadow border-border/50">
                       <CardContent className="p-5">
+                        {item.image && (
+                          <div className="mb-4 -mx-5 -mt-5 aspect-[16/10] overflow-hidden rounded-t-lg">
+                            <img
+                              src={item.image}
+                              alt={language === 'de' ? item.nameDe : item.nameEn}
+                              loading="lazy"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        )}
                         <div className="flex justify-between items-start gap-4">
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
