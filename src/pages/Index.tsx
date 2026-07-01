@@ -453,41 +453,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* 3D Virtual Tour Section */}
-      <section className="section-padding px-4 bg-muted/30">
-        <div className="container mx-auto max-w-6xl">
-          <AnimatedSection className="text-center mb-12">
-            <span className="text-sm uppercase tracking-widest text-primary font-medium">
-              {t('tour.badge')}
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mt-4 mb-4">
-              {t('tour.title')}
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t('tour.text')}
-            </p>
-          </AnimatedSection>
-          
-          <AnimatedSection>
-            <Card className="overflow-hidden border-border/50 shadow-xl">
-              <CardContent className="p-0">
-                <div className="aspect-video w-full">
-                  <iframe src="https://my.matterport.com/show?play=1&lang=en-US&m=ACL5BLHHGgf" className="w-full h-full" allowFullScreen title="Oberkogler Alm 3D Tour" />
-                </div>
-              </CardContent>
-            </Card>
-          </AnimatedSection>
-          
-          <div className="text-center mt-8">
-            <Button size="lg" variant="default" onClick={() => window.open('https://my.matterport.com/show?play=1&lang=en-US&m=ACL5BLHHGgf', '_blank')} className="hover-lift">
-              <ExternalLink className="w-4 h-4 mr-2" />
-              {t('tour.button')}
-            </Button>
-          </div>
-
-        </div>
-      </section>
-
       {/* Social Media Section */}
       <section className="pt-20 pb-0 px-4 bg-muted/30">
         <div className="container mx-auto max-w-6xl">
