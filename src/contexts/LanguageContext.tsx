@@ -120,8 +120,8 @@ const translations = {
     'contact.title': 'Besuchen Sie uns',
     'contact.visit': 'Anfahrt',
     'contact.hours': 'Öffnungszeiten',
-    'contact.monday': 'Montag',
-    'contact.tuesday': 'Dienstag bis Sonntag',
+    'contact.monday': 'Mittwoch',
+    'contact.tuesday': 'Mo, Di, Do–So',
     'contact.closed': 'Ruhetag',
     'contact.kitchen': 'Küche geöffnet',
     
@@ -272,8 +272,8 @@ const translations = {
     'contact.title': 'Visit Us',
     'contact.visit': 'Directions',
     'contact.hours': 'Opening Hours',
-    'contact.monday': 'Monday',
-    'contact.tuesday': 'Tuesday to Sunday',
+    'contact.monday': 'Wednesday',
+    'contact.tuesday': 'Mon, Tue, Thu–Sun',
     'contact.closed': 'Closed',
     'contact.kitchen': 'Kitchen open',
     

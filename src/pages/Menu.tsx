@@ -395,8 +395,8 @@ const Menu = () => {
             {language === 'de' ? 'Öffnungszeiten' : 'Opening Hours'}
           </h3>
           <div className="text-muted-foreground space-y-2">
-            <p><strong>{language === 'de' ? 'Montag' : 'Monday'}:</strong> {language === 'de' ? 'Ruhetag' : 'Closed'}</p>
-            <p><strong>{language === 'de' ? 'Dienstag - Sonntag' : 'Tuesday - Sunday'}:</strong> 10:00 - 18:00</p>
+            <p><strong>{language === 'de' ? 'Mittwoch' : 'Wednesday'}:</strong> {language === 'de' ? 'Ruhetag' : 'Closed'}</p>
+            <p><strong>{language === 'de' ? 'Mo, Di, Do–So' : 'Mon, Tue, Thu–Sun'}:</strong> 10:00 - 18:00</p>
             <p><strong>{language === 'de' ? 'Warme Küche' : 'Hot Kitchen'}:</strong> 10:00 - 17:00</p>
           </div>
         </div>
