@@ -542,6 +542,37 @@ const Index = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="section-padding px-4 bg-background">
+        <div className="container mx-auto max-w-3xl">
+          <AnimatedSection className="text-center mb-12">
+            <span className="text-sm uppercase tracking-widest text-primary font-medium">
+              {t('faq.badge')}
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mt-4 mb-4">
+              {t('faq.title')}
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              {t('faq.subtitle')}
+            </p>
+          </AnimatedSection>
+          <AnimatedSection>
+            <Accordion type="single" collapsible className="w-full">
+              {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+                <AccordionItem key={n} value={`item-${n}`}>
+                  <AccordionTrigger className="text-left font-semibold text-base md:text-lg">
+                    {t(`faq.q${n}`)}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    {t(`faq.a${n}`)}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="section-padding px-4 bg-muted/30">
         <div className="container mx-auto max-w-6xl">
