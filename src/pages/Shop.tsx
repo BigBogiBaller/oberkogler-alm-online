@@ -6,27 +6,20 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton";
 import { ShoppingCart, Loader2, Plus, Minus } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getProducts, formatPrice, type ShopifyProduct, type DeliveryMethod } from "@/lib/shopify";
+import { getProducts, formatPrice, type ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
-import DeliveryMethodPicker from "@/components/DeliveryMethodPicker";
 
 const Shop = () => {
   const { addItem, isLoading: cartLoading } = useCartStore();
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [deliveryMethods, setDeliveryMethods] = useState<Record<string, DeliveryMethod>>({});
   const [quantities, setQuantities] = useState<Record<string, number>>({});
 
   const getQuantity = (productId: string): number => quantities[productId] || 1;
   const setQuantity = (productId: string, qty: number) => {
     setQuantities(prev => ({ ...prev, [productId]: Math.max(1, qty) }));
-  };
-
-  const getDeliveryMethod = (productId: string): DeliveryMethod => deliveryMethods[productId] || 'pickup';
-  const setDeliveryMethod = (productId: string, method: DeliveryMethod) => {
-    setDeliveryMethods(prev => ({ ...prev, [productId]: method }));
   };
 
   const { data: products, isLoading, error } = useQuery({
@@ -47,7 +40,7 @@ const Shop = () => {
       price: variant.price,
       quantity: isGutschein ? 1 : getQuantity(product.node.id),
       selectedOptions: variant.selectedOptions,
-      deliveryMethod: getDeliveryMethod(product.node.id),
+      deliveryMethod: 'pickup',
     });
   };
 
@@ -135,11 +128,6 @@ const Shop = () => {
                       </p>
                     </CardContent>
                     <CardFooter className="flex flex-col gap-3">
-                      <DeliveryMethodPicker
-                        value={getDeliveryMethod(product.node.id)}
-                        onChange={(method) => setDeliveryMethod(product.node.id, method)}
-                        compact
-                      />
                       {!isGutschein && (
                         <div className="flex items-center gap-2 w-full" onClick={(e) => e.stopPropagation()}>
                           <span className="text-sm font-medium text-foreground">Anzahl:</span>
