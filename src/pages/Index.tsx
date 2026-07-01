@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { MapPin, Phone, Mail, Mountain, ExternalLink, Heart, Utensils, ShoppingBag, Dog, Leaf } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
