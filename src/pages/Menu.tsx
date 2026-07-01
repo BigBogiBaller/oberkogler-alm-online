@@ -191,6 +191,15 @@ const menuCategories: MenuCategory[] = [
     ],
     note: "Alle Getränke nur solange der Vorrat reicht",
   },
+  {
+    keyDe: "Desserts",
+    keyEn: "Desserts",
+    icon: <UtensilsCrossed className="w-5 h-5" />,
+    items: [
+      { nameDe: "Topfen-Schwarzbeerstrudel", nameEn: "Curd & Blueberry Strudel", descDe: "Hausgemacht, saisonal", descEn: "Homemade, seasonal", price: "Saisonal", allergens: ["A", "C", "G"], vegetarian: true, image: imgStrudel },
+    ],
+    note: "Solange der Vorrat reicht",
+  },
 ];
 
 const Menu = () => {
