@@ -87,7 +87,7 @@ const translations = {
     'faq.q6': 'Kann ich Produkte auch direkt vor Ort im Hofladen kaufen?',
     'faq.a6': 'Ja, alle Produkte des Online-Shops sind auch direkt bei uns auf der Alm erhältlich.',
     'faq.q7': 'Ist die Alm auch im Winter geöffnet?',
-    'faq.a7': 'Ja, wir haben ganzjährig geöffnet – Mittwoch ist Ruhetag. Die Zufahrt ist auch im Winter geräumt.',
+    'faq.a7': 'Die Alm ist von April bis Ende September geöffnet.',
     
     // Culinary
     'culinary.badge': 'Kulinarik',
@@ -264,7 +264,7 @@ const translations = {
     'faq.q6': 'Can I buy products directly at the farm shop?',
     'faq.a6': 'Yes, all products from the online shop are also available directly at the alpine hut.',
     'faq.q7': 'Is the alm open in winter as well?',
-    'faq.a7': 'Yes, we are open year-round – Wednesday is our day off. The access road is cleared in winter too.',
+    'faq.a7': 'The alm is open from April to the end of September.',
     
     // Culinary
     'culinary.badge': 'Culinary',
