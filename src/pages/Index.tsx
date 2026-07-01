@@ -21,10 +21,13 @@ import oberkoglerLogo from "@/assets/oberkogler-logo.png";
 import teamVideo from "@/assets/team-video.mp4";
 import curvedArrow from "@/assets/curved-arrow.png";
 import VideoPlayer from "@/components/VideoPlayer";
-import dishKasnockerl from "@/assets/dish-kasnockerl.jpg";
-import dishSteirerkaskropfn from "@/assets/dish-steirerkaskropfn.jpg";
-import dishBratlbrot from "@/assets/dish-bratlbrot.jpg";
-import dishSuppe from "@/assets/dish-suppe.jpg";
+import dishKaesekrapfen from "@/assets/dishes/steirerkaesekrapfen.jpg";
+import dishKaesenockerl from "@/assets/dishes/steirerkaesenockerl.jpg";
+import dishStrudel from "@/assets/dishes/topfenschwarzbeerstrudel.jpg";
+import dishSpeckknoedel from "@/assets/dishes/speckknoedelsuppe.jpg";
+import dishKaspress from "@/assets/dishes/kaspressknoedelsuppe.jpg";
+import dishFleischkrapfen from "@/assets/dishes/fleischkrapfen.jpg";
+import dishGemischtesBrot from "@/assets/dishes/gemischtes-brot.jpg";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
@@ -76,7 +79,7 @@ const Index = () => {
   // Stagger animations for team and animals
   const teamStagger = useStaggerAnimation(5, 150);
   const animalsStagger = useStaggerAnimation(3, 200);
-  const culinaryStagger = useStaggerAnimation(4, 150);
+  const culinaryStagger = useStaggerAnimation(7, 120);
   const shopStagger = useStaggerAnimation(5, 120);
   const teamMembers = [{
     key: 'max',
@@ -105,21 +108,33 @@ const Index = () => {
     icon: Heart
   }];
   const culinaryHighlights = [{
-    key: 'kasnockerl',
+    key: 'steirerkasekrapfen',
+    price: '€2,80',
+    image: dishKaesekrapfen
+  }, {
+    key: 'steirerkasenockerl',
+    price: '€12,50',
+    image: dishKaesenockerl
+  }, {
+    key: 'topfenstrudel',
+    price: 'saisonal',
+    image: dishStrudel
+  }, {
+    key: 'speckknoedelsuppe',
+    price: 'auf Anfrage',
+    image: dishSpeckknoedel
+  }, {
+    key: 'kaspressknoedelsuppe',
+    price: '€5,00',
+    image: dishKaspress
+  }, {
+    key: 'fleischkrapfen',
     price: '€9,50',
-    image: dishKasnockerl
+    image: dishFleischkrapfen
   }, {
-    key: 'steirerkasnockerl',
-    price: '€10,50',
-    image: dishSteirerkaskropfn
-  }, {
-    key: 'bratlbrot',
-    price: '€5,50',
-    image: dishBratlbrot
-  }, {
-    key: 'suppen',
-    price: 'ab €4,00',
-    image: dishSuppe
+    key: 'gemischtesbrot',
+    price: '€8,90',
+    image: dishGemischtesBrot
   }];
   const shopProducts = [{
     key: 'salbe',
