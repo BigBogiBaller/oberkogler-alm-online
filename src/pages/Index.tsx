@@ -684,10 +684,10 @@ const Index = () => {
           </p>
 
           {/* Website by */}
-          <div className="mt-6 flex justify-center sm:justify-end items-center gap-2 text-primary">
+          <a href="https://bogdanlekic.com" target="_blank" rel="noopener noreferrer" className="mt-6 flex justify-center sm:justify-end items-center gap-2 text-primary hover:opacity-70 transition-opacity">
             <span className="italic font-serif text-sm">Website by</span>
             <span className="font-bold tracking-widest text-sm">BOGI</span>
-          </div>
+          </a>
         </div>
       </footer>
     </div>;
