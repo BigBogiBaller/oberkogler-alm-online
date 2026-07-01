@@ -158,8 +158,8 @@ const Navigation = () => {
               </button>
               <div className={cn("overflow-hidden transition-all duration-300 ease-out", isHoursOpen ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0")}>
                 <div className="pl-4 space-y-2 text-muted-foreground text-sm">
-                  <p><span className="text-primary font-medium">{language === 'de' ? 'Montag' : 'Monday'}:</span> {language === 'de' ? 'Ruhetag' : 'Closed'}</p>
-                  <p><span className="text-primary font-medium">{language === 'de' ? 'Dienstag bis Sonntag' : 'Tuesday to Sunday'}:</span> 10:00 - 18:00</p>
+                  <p><span className="text-primary font-medium">{language === 'de' ? 'Mittwoch' : 'Wednesday'}:</span> {language === 'de' ? 'Ruhetag' : 'Closed'}</p>
+                  <p><span className="text-primary font-medium">{language === 'de' ? 'Mo, Di, Do–So' : 'Mon, Tue, Thu–Sun'}:</span> 10:00 - 18:00</p>
                   <p className="pt-2"><span className="text-primary font-medium">{language === 'de' ? 'Küche geöffnet' : 'Kitchen open'}:</span></p>
                   <p>10:00 - 17:00</p>
                 </div>
