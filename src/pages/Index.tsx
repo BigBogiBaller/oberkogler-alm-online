@@ -105,7 +105,8 @@ const Index = () => {
   const animals = [{
     key: 'dogs',
     icon: Dog,
-    image: animalDogs.url
+    image: animalDogs.url,
+    objectPosition: '50% 75%'
   }, {
     key: 'cattle',
     icon: Mountain,
