@@ -106,7 +106,7 @@ const Index = () => {
     key: 'dogs',
     icon: Dog,
     image: animalDogs.url,
-    objectPosition: '50% 110%'
+    objectPosition: '50% 70%'
   }, {
     key: 'cattle',
     icon: Mountain,
