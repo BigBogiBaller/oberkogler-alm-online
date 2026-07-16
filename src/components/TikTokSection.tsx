@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import VideoPlayer from "@/components/VideoPlayer";
 import instagramVideo1 from "@/assets/instagram-video-1.mp4";
 import instagramVideo2 from "@/assets/instagram-video-2.mp4";
 import instagramVideo3 from "@/assets/instagram-video-3.mp4";
