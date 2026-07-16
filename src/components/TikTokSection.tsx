@@ -99,13 +99,10 @@ const TikTokSection = () => {
                     aria-label={`TikTok-Video ${index + 1} von Oberkogler Alm ansehen`}
                     className="block aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-black cursor-pointer"
                   >
-                    <video 
+                    <VideoPlayer 
                       src={post.src}
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
+                      className="w-full h-full"
+                      controls={false}
                     />
                   </a>
                   {/* TikTok Icon Overlay */}
