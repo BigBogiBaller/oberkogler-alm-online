@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import VideoPlayer from "@/components/VideoPlayer";
 import instagramVideo1 from "@/assets/instagram-video-1.mp4";
 import instagramVideo2 from "@/assets/instagram-video-2.mp4";
 import instagramVideo3 from "@/assets/instagram-video-3.mp4";
@@ -98,13 +99,10 @@ const TikTokSection = () => {
                     aria-label={`TikTok-Video ${index + 1} von Oberkogler Alm ansehen`}
                     className="block aspect-[9/16] overflow-hidden rounded-lg shadow-lg bg-black cursor-pointer"
                   >
-                    <video 
+                    <VideoPlayer 
                       src={post.src}
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
+                      className="w-full h-full"
+                      controls={false}
                     />
                   </a>
                   {/* TikTok Icon Overlay */}
