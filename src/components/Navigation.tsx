@@ -37,6 +37,8 @@ const Navigation = () => {
       contactSection.scrollIntoView({
         behavior: 'smooth'
       });
+    } else {
+      navigate('/#contact');
     }
     setIsSidebarOpen(false);
   };
