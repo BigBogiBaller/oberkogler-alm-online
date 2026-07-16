@@ -423,7 +423,7 @@ const Menu = () => {
       <footer className="bg-card border-t border-border py-8">
         <div className="container mx-auto text-center">
           <p className="text-sm text-muted-foreground">
-            © 2024 Oberkogler Alm. {language === 'de' ? 'Alle Rechte vorbehalten.' : 'All rights reserved.'}
+            © 2026 Oberkogler Alm. {language === 'de' ? 'Alle Rechte vorbehalten.' : 'All rights reserved.'}
           </p>
         </div>
       </footer>
