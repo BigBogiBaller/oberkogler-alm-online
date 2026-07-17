@@ -578,8 +578,8 @@ const Index = () => {
                     </div>
                     <div className="flex items-center gap-3 min-w-0">
                       <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                      <a href="mailto:maximilian_schwaiger@hotmail.com" className="text-muted-foreground hover:text-primary transition-colors truncate text-sm sm:text-base">
-                        maximilian_schwaiger@hotmail.com
+                      <a href="mailto:info@oberkogleralm.at" className="text-muted-foreground hover:text-primary transition-colors truncate text-sm sm:text-base">
+                        info@oberkogleralm.at
                       </a>
                     </div>
                   </div>
