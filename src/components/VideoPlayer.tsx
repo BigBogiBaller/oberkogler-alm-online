@@ -58,10 +58,10 @@ const VideoPlayer = ({ src, className = "", controls = true }: VideoPlayerProps)
       {controls && (
         <button
           onClick={toggleMute}
-          className="absolute bottom-3 right-3 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors z-10"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-black/80 text-white transition-colors z-10"
           aria-label={isMuted ? "Ton einschalten" : "Ton ausschalten"}
         >
-          {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+          {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
         </button>
       )}
     </div>
