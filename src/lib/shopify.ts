@@ -314,12 +314,6 @@ const CART_LINES_REMOVE_MUTATION = `
 function formatCheckoutUrl(checkoutUrl: string): string {
   try {
     const url = new URL(checkoutUrl);
-    // Force checkout to always run on the permanent Shopify domain.
-    // If a custom domain is added in Shopify that doesn't actually point at
-    // Shopify (e.g. it points at our Lovable app), the returned checkoutUrl
-    // would 404. Rewriting the host prevents that.
-    url.host = SHOPIFY_STORE_PERMANENT_DOMAIN;
-    url.protocol = 'https:';
     url.searchParams.set('channel', 'online_store');
     return url.toString();
   } catch {
