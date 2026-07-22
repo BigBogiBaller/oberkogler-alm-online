@@ -22,6 +22,7 @@ import oberkoglerLogo from "@/assets/oberkogler-logo.png";
 import teamVideo from "@/assets/team-video.mp4";
 import curvedArrow from "@/assets/curved-arrow.png";
 import VideoPlayer from "@/components/VideoPlayer";
+import ConsentMap from "@/components/ConsentMap";
 import dishKaesekrapfen from "@/assets/dishes/steirerkaesekrapfen.jpg";
 import dishKaesenockerl from "@/assets/dishes/steirerkaesenockerl.jpg";
 import dishStrudel from "@/assets/dishes/topfenschwarzbeerstrudel.jpg";
@@ -612,15 +613,9 @@ const Index = () => {
             </AnimatedSection>
           </div>
           
-          {/* Google Maps */}
+          {/* Google Maps (consent-gated) */}
           <AnimatedSection>
-            <Card className="border-border/50 overflow-hidden shadow-lg">
-              <CardContent className="p-0">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2691.9642510758026!2d14.17117247626381!3d47.56848397118633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47716d88a3786ecd%3A0x8b4f23744d2c760a!2sOberkogler%20Alm!5e0!3m2!1sen!2srs!4v1763413665846!5m2!1sen!2srs" className="w-full h-[300px] sm:h-[450px]" style={{
-                border: 0
-              }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Oberkogler Alm Location" />
-              </CardContent>
-            </Card>
+            <ConsentMap />
           </AnimatedSection>
         </div>
       </section>
