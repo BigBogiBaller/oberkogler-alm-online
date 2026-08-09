@@ -9,9 +9,10 @@ interface SEOProps {
   image?: string;
   type?: "website" | "article" | "product";
   jsonLd?: object | object[];
+  preloadImage?: string;
 }
 
-export const SEO = ({ title, description, path, image, type = "website", jsonLd }: SEOProps) => {
+export const SEO = ({ title, description, path, image, type = "website", jsonLd, preloadImage }: SEOProps) => {
   const url = `${SITE_URL}${path}`;
   const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
@@ -19,6 +20,7 @@ export const SEO = ({ title, description, path, image, type = "website", jsonLd 
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
+      {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
