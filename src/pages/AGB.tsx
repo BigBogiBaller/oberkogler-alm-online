@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "react-router-dom";
-import oberkoglerLogo from "@/assets/oberkogler-logo.png";
+import oberkoglerLogo from "@/assets/oberkogler-logo.webp";
 
 const AGB = () => {
   const { t, language } = useLanguage();
