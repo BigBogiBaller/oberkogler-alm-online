@@ -174,6 +174,7 @@ const Index = () => {
         title="Oberkogler Alm – Almküche & Hofladen in der Steiermark"
         description="Traditionelle Almküche, Hofladen mit Honig, Marmeladen, Salben und Wurst – mitten in den steirischen Bergen auf der Oberkogler Alm."
         path="/"
+        preloadImage={oberkoglerLogo}
       />
       
       
@@ -230,7 +231,7 @@ const Index = () => {
                 {/* Arrow + "mehr über uns" */}
                 <div className="flex items-center gap-3 mb-4 justify-end pr-4">
                   <span className="text-primary font-medium text-sm uppercase tracking-wider">Mehr über uns</span>
-                  <img src={curvedArrow} alt="" className="w-10 h-10 rotate-90 opacity-70" />
+                  <img src={curvedArrow} alt="" width={280} height={280} loading="lazy" className="w-10 h-10 rotate-90 opacity-70" />
                 </div>
                 <a
                   href="https://www.instagram.com/p/DMbAuEwIQh0/"
@@ -625,7 +626,7 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <img src={oberkoglerLogo} alt="Oberkogler Alm" className="h-24 cursor-pointer brightness-[0.3] sepia saturate-[3] hue-rotate-[350deg]" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
+            <img src={oberkoglerLogo} alt="Oberkogler Alm" width={465} height={465} loading="lazy" className="h-24 w-auto cursor-pointer brightness-[0.3] sepia saturate-[3] hue-rotate-[350deg]" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
           </div>
           
           {/* Links */}
