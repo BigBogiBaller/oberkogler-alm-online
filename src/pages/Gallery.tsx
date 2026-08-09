@@ -8,11 +8,11 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 
 // Hero images
-import hero2 from "@/assets/hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
-import hero4 from "@/assets/hero-4.jpg";
-import hero5 from "@/assets/hero-5.jpg";
-import hero6 from "@/assets/hero-6.jpg";
+import hero2 from "@/assets/hero-2.webp";
+import hero3 from "@/assets/hero-3.webp";
+import hero4 from "@/assets/hero-4.webp";
+import hero5 from "@/assets/hero-5.webp";
+import hero6 from "@/assets/hero-6.webp";
 
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
