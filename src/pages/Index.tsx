@@ -184,7 +184,7 @@ const Index = () => {
         <HeroSlideshow images={heroImages} />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-8">
-          <img src={oberkoglerLogo} alt="Oberkogler Alm" width={465} height={465} fetchPriority="high" decoding="sync" className="w-64 md:w-80 lg:w-96 mx-auto mb-8 drop-shadow-2xl" />
+          <img src={oberkoglerLogo} alt="Oberkogler Alm" width={465} height={465} {...{ fetchpriority: "high" }} decoding="sync" className="w-64 md:w-80 lg:w-96 mx-auto mb-8 drop-shadow-2xl" />
           <h1 className="sr-only">Oberkogler Alm – Almküche & Hofladen in der Steiermark</h1>
           <p className="text-xl md:text-2xl max-w-2xl mx-auto animate-fade-in-up drop-shadow-lg font-medium text-white" style={{
           animationDelay: '200ms'
