@@ -20,7 +20,7 @@ export const SEO = ({ title, description, path, image, type = "website", jsonLd,
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+      {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchPriority="high" />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
