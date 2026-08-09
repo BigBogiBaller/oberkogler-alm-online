@@ -9,6 +9,7 @@ interface VideoPlayerProps {
 
 const VideoPlayer = ({ src, className = "", controls = true }: VideoPlayerProps) => {
   const [isMuted, setIsMuted] = useState(true);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -20,6 +21,7 @@ const VideoPlayer = ({ src, className = "", controls = true }: VideoPlayerProps)
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          setShouldLoad(true);
           video.play().catch(() => {
             // Autoplay blocked or not ready; ignore.
           });
@@ -48,12 +50,12 @@ const VideoPlayer = ({ src, className = "", controls = true }: VideoPlayerProps)
     <div ref={wrapperRef} className={`relative ${className}`}>
       <video
         ref={videoRef}
-        src={src}
+        src={shouldLoad ? src : undefined}
         className="w-full h-full object-cover"
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
       />
       {controls && (
         <button
