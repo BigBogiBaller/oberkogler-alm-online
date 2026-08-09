@@ -7,6 +7,12 @@ interface HeroSlideshowProps {
 
 const HeroSlideshow = ({ images, interval = 6000 }: HeroSlideshowProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loadRest, setLoadRest] = useState(false);
+
+  useEffect(() => {
+    const idle = window.setTimeout(() => setLoadRest(true), 2000);
+    return () => window.clearTimeout(idle);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,7 +33,10 @@ const HeroSlideshow = ({ images, interval = 6000 }: HeroSlideshowProps) => {
         >
           <div
             className="h-full w-full bg-cover bg-center bg-no-repeat animate-ken-burns"
-            style={{ backgroundImage: `url(${image})` }}
+            style={{
+              backgroundImage:
+                index === 0 || loadRest || index === currentIndex ? `url(${image})` : undefined,
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
         </div>
