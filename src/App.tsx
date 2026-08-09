@@ -3,19 +3,19 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useCartSync } from "@/hooks/useCartSync";
 import Index from "./pages/Index";
-import Shop from "./pages/Shop";
-import ProductDetail from "./pages/ProductDetail";
-import Events from "./pages/Events";
-import Menu from "./pages/Menu";
-import Gallery from "./pages/Gallery";
-import NotFound from "./pages/NotFound";
-import Impressum from "./pages/Impressum";
-import Datenschutz from "./pages/Datenschutz";
-import AGB from "./pages/AGB";
+const Shop = lazy(() => import("./pages/Shop"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const Events = lazy(() => import("./pages/Events"));
+const Menu = lazy(() => import("./pages/Menu"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Impressum = lazy(() => import("./pages/Impressum"));
+const Datenschutz = lazy(() => import("./pages/Datenschutz"));
+const AGB = lazy(() => import("./pages/AGB"));
 
 const queryClient = new QueryClient();
 
@@ -39,6 +39,7 @@ const AppContent = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <Suspense fallback={<div className="min-h-screen bg-background" />}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/menu" element={<Menu />} />
@@ -51,6 +52,7 @@ const AppContent = () => {
         <Route path="/agb" element={<AGB />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };

@@ -11,16 +11,16 @@ import InstagramSection from "@/components/InstagramSection";
 import TikTokSection from "@/components/TikTokSection";
 import { useScrollAnimation, useStaggerAnimation } from "@/hooks/useScrollAnimation";
 
-import hero2 from "@/assets/hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
-import hero4 from "@/assets/hero-4.jpg";
-import hero5 from "@/assets/hero-5.jpg";
-import hero6 from "@/assets/hero-6.jpg";
-import heroAlm from "@/assets/hero-alm.jpg";
+import hero2 from "@/assets/hero-2.webp";
+import hero3 from "@/assets/hero-3.webp";
+import hero4 from "@/assets/hero-4.webp";
+import hero5 from "@/assets/hero-5.webp";
+import hero6 from "@/assets/hero-6.webp";
+import heroAlm from "@/assets/hero-alm.webp";
 import aboutVideo from "@/assets/about-video.mp4";
-import oberkoglerLogo from "@/assets/oberkogler-logo.png";
+import oberkoglerLogo from "@/assets/oberkogler-logo.webp";
 import teamVideo from "@/assets/team-video.mp4";
-import curvedArrow from "@/assets/curved-arrow.png";
+import curvedArrow from "@/assets/curved-arrow.webp";
 import VideoPlayer from "@/components/VideoPlayer";
 import ConsentMap from "@/components/ConsentMap";
 import dishKaesekrapfen from "@/assets/dishes/steirerkaesekrapfen.jpg";
@@ -30,9 +30,9 @@ import dishSpeckknoedel from "@/assets/dishes/speckknoedelsuppe.jpg";
 import dishKaspress from "@/assets/dishes/kaspressknoedelsuppe.jpg";
 import dishFleischkrapfen from "@/assets/dishes/fleischkrapfen.jpg";
 import dishGemischtesBrot from "@/assets/dishes/gemischtes-brot.jpg";
-import animalDogs from "@/assets/animals/dogs.jpeg.asset.json";
-import animalCattle from "@/assets/animals/cattle.jpeg.asset.json";
-import animalPonies from "@/assets/animals/ponies.png.asset.json";
+import animalDogs from "@/assets/animals/dogs.webp.asset.json";
+import animalCattle from "@/assets/animals/cattle.webp.asset.json";
+import animalPonies from "@/assets/animals/ponies.webp.asset.json";
 // Gallery images batch 1
 import galleryKuchen from "@/assets/gallery-kuchen.jpg";
 import galleryWaldweg from "@/assets/gallery-waldweg.jpg";
@@ -174,6 +174,7 @@ const Index = () => {
         title="Oberkogler Alm – Almküche & Hofladen in der Steiermark"
         description="Traditionelle Almküche, Hofladen mit Honig, Marmeladen, Salben und Wurst – mitten in den steirischen Bergen auf der Oberkogler Alm."
         path="/"
+        preloadImage={oberkoglerLogo}
       />
       
       
@@ -183,7 +184,7 @@ const Index = () => {
         <HeroSlideshow images={heroImages} />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-8">
-          <img src={oberkoglerLogo} alt="Oberkogler Alm" className="w-64 md:w-80 lg:w-96 mx-auto mb-8 drop-shadow-2xl" />
+          <img src={oberkoglerLogo} alt="Oberkogler Alm" width={465} height={465} {...{ fetchpriority: "high" }} decoding="sync" className="w-64 md:w-80 lg:w-96 mx-auto mb-8 drop-shadow-2xl" />
           <h1 className="sr-only">Oberkogler Alm – Almküche & Hofladen in der Steiermark</h1>
           <p className="text-xl md:text-2xl max-w-2xl mx-auto animate-fade-in-up drop-shadow-lg font-medium text-white" style={{
           animationDelay: '200ms'
@@ -230,7 +231,7 @@ const Index = () => {
                 {/* Arrow + "mehr über uns" */}
                 <div className="flex items-center gap-3 mb-4 justify-end pr-4">
                   <span className="text-primary font-medium text-sm uppercase tracking-wider">Mehr über uns</span>
-                  <img src={curvedArrow} alt="" className="w-10 h-10 rotate-90 opacity-70" />
+                  <img src={curvedArrow} alt="" width={280} height={280} loading="lazy" className="w-10 h-10 rotate-90 opacity-70" />
                 </div>
                 <a
                   href="https://www.instagram.com/p/DMbAuEwIQh0/"
@@ -306,7 +307,7 @@ const Index = () => {
           {language === 'de' && <>
           {/* Curved Arrow pointing down to Team Video */}
           <AnimatedSection className="flex flex-col items-center mt-16">
-            <img src={curvedArrow} alt="Arrow pointing to video" className="w-20 h-auto" />
+            <img src={curvedArrow} alt="Arrow pointing to video" width={280} height={280} loading="lazy" className="w-20 h-auto" />
           </AnimatedSection>
 
           {/* Team Video */}
@@ -625,7 +626,7 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <img src={oberkoglerLogo} alt="Oberkogler Alm" className="h-24 cursor-pointer brightness-[0.3] sepia saturate-[3] hue-rotate-[350deg]" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
+            <img src={oberkoglerLogo} alt="Oberkogler Alm" width={465} height={465} loading="lazy" className="h-24 w-auto cursor-pointer brightness-[0.3] sepia saturate-[3] hue-rotate-[350deg]" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
           </div>
           
           {/* Links */}
