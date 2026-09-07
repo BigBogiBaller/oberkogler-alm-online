@@ -264,7 +264,7 @@ const Menu = () => {
       </Dialog>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-12 bg-gradient-to-b from-primary/10 to-background">
+      <section className="pt-32 pb-12 bg-gradient-to-b from-primary/10 to-background">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-primary/10 rounded-full">
             <UtensilsCrossed className="w-5 h-5 text-primary" />
@@ -412,9 +412,8 @@ const Menu = () => {
             {language === 'de' ? 'Öffnungszeiten' : 'Opening Hours'}
           </h3>
           <div className="text-muted-foreground space-y-2">
-            <p><strong>{language === 'de' ? 'Mittwoch' : 'Wednesday'}:</strong> {language === 'de' ? 'Ruhetag' : 'Closed'}</p>
-            <p><strong>{language === 'de' ? 'Mo, Di, Do–So' : 'Mon, Tue, Thu–Sun'}:</strong> 10:00 - 18:00</p>
-            <p><strong>{language === 'de' ? 'Warme Küche' : 'Hot Kitchen'}:</strong> 10:00 - 17:00</p>
+            <p className="text-primary font-bold text-lg uppercase tracking-wide">{language === 'de' ? 'Vorübergehend geschlossen' : 'Temporarily closed'}</p>
+            <p>{language === 'de' ? 'Die Alm ist derzeit geschlossen. Wir freuen uns auf Ihren baldigen Besuch.' : 'The alm is currently closed. We look forward to welcoming you back soon.'}</p>
           </div>
         </div>
       </section>

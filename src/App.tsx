@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, lazy, Suspense } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useCartSync } from "@/hooks/useCartSync";
+import ClosedBanner from "@/components/ClosedBanner";
 import Index from "./pages/Index";
 const Shop = lazy(() => import("./pages/Shop"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
@@ -39,6 +40,7 @@ const AppContent = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <ClosedBanner />
       <Suspense fallback={<div className="min-h-screen bg-background" />}>
       <Routes>
         <Route path="/" element={<Index />} />
