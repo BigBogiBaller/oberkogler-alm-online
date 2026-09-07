@@ -45,7 +45,7 @@ const Navigation = () => {
   const closeSidebar = () => setIsSidebarOpen(false);
   return <>
       {/* Main Navigation Bar */}
-      <nav className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent")}>
+      <nav className={cn("fixed top-10 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent")}>
         <div className="flex items-center justify-between">
           {/* Left Section - Hamburger + Language + Icons */}
           <div className="flex items-center gap-4 md:gap-6 px-4 py-4">
@@ -160,10 +160,8 @@ const Navigation = () => {
               </button>
               <div className={cn("overflow-hidden transition-all duration-300 ease-out", isHoursOpen ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0")}>
                 <div className="pl-4 space-y-2 text-muted-foreground text-sm">
-                  <p><span className="text-primary font-medium">{language === 'de' ? 'Mittwoch' : 'Wednesday'}:</span> {language === 'de' ? 'Ruhetag' : 'Closed'}</p>
-                  <p><span className="text-primary font-medium">{language === 'de' ? 'Mo, Di, Do–So' : 'Mon, Tue, Thu–Sun'}:</span> 10:00 - 18:00</p>
-                  <p className="pt-2"><span className="text-primary font-medium">{language === 'de' ? 'Küche geöffnet' : 'Kitchen open'}:</span></p>
-                  <p>10:00 - 17:00</p>
+                  <p className="text-primary font-semibold uppercase tracking-wide">{language === 'de' ? 'Vorübergehend geschlossen' : 'Temporarily closed'}</p>
+                  <p className="pt-1">{language === 'de' ? 'Die Alm ist derzeit geschlossen. Wir freuen uns auf Ihren baldigen Besuch.' : 'The alm is currently closed. We look forward to welcoming you back soon.'}</p>
                 </div>
               </div>
             </div>
