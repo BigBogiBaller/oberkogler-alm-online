@@ -13,29 +13,72 @@ const VideoPlayer = ({ src, className = "", controls = true }: VideoPlayerProps)
   const videoRef = useRef<HTMLVideoElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
+  // Load the video as soon as it comes anywhere near the viewport
   useEffect(() => {
-    const video = videoRef.current;
     const wrapper = wrapperRef.current;
-    if (!video || !wrapper) return;
+    if (!wrapper) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setShouldLoad(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setShouldLoad(true);
-          video.play().catch(() => {
-            // Autoplay blocked or not ready; ignore.
-          });
-        } else {
-          video.pause();
+          observer.disconnect();
         }
       },
-      { threshold: 0.2, rootMargin: "0px" }
+      { threshold: 0.01, rootMargin: "600px" }
     );
 
     observer.observe(wrapper);
 
-    return () => observer.disconnect();
+    // Safety net: make sure every video loads even if it never intersects
+    const fallback = window.setTimeout(() => setShouldLoad(true), 4000);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
+
+  // Play/pause based on visibility, only once a source exists
+  useEffect(() => {
+    const video = videoRef.current;
+    const wrapper = wrapperRef.current;
+    if (!video || !wrapper || !shouldLoad) return;
+
+    video.load();
+
+    const tryPlay = () => {
+      video.play().catch(() => {
+        // Autoplay blocked; ignore.
+      });
+    };
+
+    if (typeof IntersectionObserver === "undefined") {
+      tryPlay();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) tryPlay();
+        else video.pause();
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(wrapper);
+    video.addEventListener("loadeddata", tryPlay);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("loadeddata", tryPlay);
+    };
+  }, [shouldLoad]);
 
   const toggleMute = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -55,8 +98,9 @@ const VideoPlayer = ({ src, className = "", controls = true }: VideoPlayerProps)
         muted
         loop
         playsInline
-        preload="none"
+        preload={shouldLoad ? "auto" : "none"}
       />
+
       {controls && (
         <button
           onClick={toggleMute}
