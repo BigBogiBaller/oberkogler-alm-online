@@ -4,7 +4,12 @@
  * forest-green gradient, terracotta accent border, subtle dotted texture,
  * serif uppercase bilingual notice.
  */
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const ClosedBanner = () => {
+  const { language } = useLanguage();
+  const message = language === "de" ? "Wir haben geschlossen" : "We are currently closed";
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50" role="status" aria-live="polite">
       <div
@@ -24,10 +29,8 @@ const ClosedBanner = () => {
           }}
         />
 
-        <p className="relative z-10 font-heading text-primary-foreground text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-center">
-          <span className="opacity-90">Wir haben derzeit geschlossen</span>
-          <span className="mx-3 opacity-40 inline-block scale-y-125">|</span>
-          <span className="opacity-90">We are currently closed</span>
+        <p className="relative z-10 font-heading text-primary-foreground text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-center opacity-90">
+          {message}
         </p>
       </div>
     </div>
