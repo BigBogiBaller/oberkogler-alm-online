@@ -17,17 +17,12 @@ export default defineTool({
       },
       phone: "+43 677 61861537",
       website: "https://alm-shop-bloom.lovable.app",
-      season: "Die Alm ist von April bis Ende September geöffnet.",
+      season: "Die Alm ist vorübergehend geschlossen.",
       openingHours: {
-        Montag: "10:00–18:00",
-        Dienstag: "10:00–18:00",
-        Mittwoch: "Ruhetag",
-        Donnerstag: "10:00–18:00",
-        Freitag: "10:00–18:00",
-        Samstag: "10:00–18:00",
-        Sonntag: "10:00–18:00",
+        Hinweis: "Vorübergehend geschlossen",
       },
-      kitchenHours: "10:00–17:00 (Mittwoch Ruhetag)",
+      kitchenHours: "Vorübergehend geschlossen",
+      status: "temporarily_closed",
     };
     return {
       content: [{ type: "text", text: JSON.stringify(info, null, 2) }],

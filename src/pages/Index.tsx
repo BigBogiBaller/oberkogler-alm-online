@@ -594,20 +594,14 @@ const Index = () => {
                 <CardContent className="pt-6">
                   <h3 className="font-semibold text-xl mb-4">{t('contact.hours')}</h3>
                   <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">{t('contact.monday')}</span>
-                      <span className="font-medium">{t('contact.closed')}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">{t('contact.tuesday')}</span>
-                      <span className="font-medium">10:00 - 18:00</span>
-                    </div>
-                    <div className="pt-2 border-t border-border">
-                      <p className="text-sm text-muted-foreground font-medium mb-1">
-                        {t('contact.kitchen')}
-                      </p>
-                      <p className="text-sm text-muted-foreground">10:00 - 17:00</p>
-                    </div>
+                    <p className="text-primary font-bold text-lg uppercase tracking-wide">
+                      {language === 'de' ? 'Vorübergehend geschlossen' : 'Temporarily closed'}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {language === 'de'
+                        ? 'Die Alm ist derzeit geschlossen. Wir freuen uns auf Ihren baldigen Besuch.'
+                        : 'The alm is currently closed. We look forward to welcoming you back soon.'}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
